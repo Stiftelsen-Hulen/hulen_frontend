@@ -7,9 +7,18 @@ const roboto = Roboto({
   display: 'swap',
 })
 
+const hulen_black = '#130F0C'
+const hulen_yellow = '#F7BD13'
+const hulen_yellow_text = '#FFD000'
+
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    background: {
+      default: hulen_black,
+    },
+    text: {
+      primary: hulen_yellow_text,
+    },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,

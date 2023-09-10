@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ['cdn.sanity.io'],
+  },
   modularizeImports: {
     '@mui/material': {
       transform: '@mui/material/{{member}}',

@@ -19,9 +19,7 @@ export const useLanguage = () => {
 }
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<LanguageOptions>(
-    (navigator?.language || 'no').startsWith('no') ? 'no' : 'en'
-  )
+  const [language, setLanguage] = useState<LanguageOptions>('no')
 
   const changeLanguage = useCallback(() => {
     setLanguage((current) => (current === 'en' ? 'no' : 'en'))

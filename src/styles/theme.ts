@@ -7,9 +7,9 @@ const karla = Karla({
   display: 'swap',
 })
 
-const hulen_black = '#000000'
-const hulen_yellow = '#F7BD13'
-const hulen_yellow_text = '#FFD000'
+export const hulen_black = '#000000'
+export const hulen_yellow = '#F7BD13'
+export const hulen_yellow_text = '#FFD000'
 
 const theme = createTheme({
   palette: {
@@ -22,6 +22,24 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: karla.style.fontFamily,
+  },
+  components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          transition: '0.3s',
+          '&:hover': {
+            backgroundColor: hulen_yellow,
+            svg: {
+              fill: hulen_black,
+            },
+          },
+          svg: {
+            fill: hulen_yellow_text,
+          },
+        },
+      },
+    },
   },
 })
 

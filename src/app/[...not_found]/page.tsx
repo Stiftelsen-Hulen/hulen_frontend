@@ -1,11 +1,19 @@
-import { Stack, Typography } from '@mui/material'
+import { Page404Content } from '@/components/NoPageContent'
+import { get404PageContent } from '@/util/sanity'
+import { Stack } from '@mui/material'
 
-const Not_Found = () => {
+export async function getData() {
+  const noDataContent = await get404PageContent()
+
+  return noDataContent
+}
+
+export default async function Not_Found() {
+  const noPageContentData = await getData()
+
   return (
     <Stack justifyContent={'center'} alignItems={'center'}>
-      <Typography>Not Found</Typography>
+      <Page404Content {...noPageContentData} />
     </Stack>
   )
 }
-
-export default Not_Found

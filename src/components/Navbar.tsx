@@ -31,7 +31,6 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
   const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState<boolean>(false)
   const { language } = useLanguage()
   const theme = useTheme()
-
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (

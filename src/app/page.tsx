@@ -1,10 +1,13 @@
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
+import { GenericPagePropsRenderer } from '@/components/GenericPageContent'
+import { getHomePageContent } from '@/util/sanity'
+import { Stack } from '@mui/material'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const data = await getHomePageContent()
+
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Typography>Content to be added...</Typography>
-    </Box>
+    <Stack alignItems={'center'} padding='2rem 0rem'>
+      <GenericPagePropsRenderer genericSanityPageProps={data} />
+    </Stack>
   )
 }

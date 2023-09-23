@@ -31,13 +31,11 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
 
   return (
     <StyledFooterWrapper display='flex'>
-      {footerElements
-        .sort((el) => (el.sortOrder < el.sortOrder ? 1 : -1))
-        .map((footerElement, index) => (
-          <StyledStack key={index}>
-            <PortableText value={footerElement.footerElement[language]} />
-          </StyledStack>
-        ))}
+      {footerElements.map((footerElement) => (
+        <StyledStack key={footerElement.sortOrder}>
+          <PortableText value={footerElement.footerElement[language]} />
+        </StyledStack>
+      ))}
     </StyledFooterWrapper>
   )
 }

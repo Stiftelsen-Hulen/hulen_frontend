@@ -1,5 +1,4 @@
 import { supportedLanguages } from '@/configs'
-
 const languageOptions = supportedLanguages.join(',')
 
 export const getNavigationElementsGroq = `*[_type == "navBarProps"][0] {navElements[]{subUrl, title{${languageOptions}}}, navbarLogo{ asset->{
@@ -16,5 +15,8 @@ altText{
   ${supportedLanguages.join(',')}
 } }}`
 
-export const getFooterElementsGroq = `*[_type == "footerElements"] {sortOrder, footerElement{${languageOptions}}}`
-//altText{${supportedLanguages.join(',')}}, "imageUrl": navbarLogo.asset->url}
+export const getFooterElementsGroq = `*[_type == "footerElements"] | order(sortOrder) {sortOrder, footerElement{${languageOptions}}}`
+
+export const getHomePageGroq = `*[_type == "pageProps" && title =="home"][0] { ..., locale{${supportedLanguages
+  .map((language) => `${language}[]{..., Image{asset ->  {url, metadata}}}`)
+  .join(',')} }}`

@@ -1,8 +1,8 @@
-import { Karla } from 'next/font/google'
+import { Sunflower } from 'next/font/google'
 import { createTheme } from '@mui/material/styles'
 
-const karla = Karla({
-  weight: ['300', '400', '500', '700'],
+const sunflower = Sunflower({
+  weight: ['300', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
 })
@@ -21,7 +21,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: karla.style.fontFamily,
+    fontFamily: [sunflower.style.fontFamily, 'sans-serif'].join(','),
+    h1: {
+      fontSize: '49px',
+    },
   },
   components: {
     MuiIconButton: {

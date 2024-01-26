@@ -17,6 +17,7 @@ const StyledStack = styled(Stack)({
 
 const StyledFooterWrapper = styled(Box)({
   paddingTop: '2rem',
+  marginTop: '2rem',
   display: 'flex',
   gap: '2rem',
   justifyContent: 'space-around',

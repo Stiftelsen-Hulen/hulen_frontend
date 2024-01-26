@@ -1,5 +1,6 @@
 import { SanityNavBarContent } from '@/types/sanity'
 import {
+  getContactPageGroq,
   getFooterElementsGroq,
   getHomePageGroq,
   getNavigationElementsGroq,
@@ -9,6 +10,7 @@ import { sanityClient } from './sanityClient'
 import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import { Sanity404Page } from '@/types/sanity/pageNotFound'
 import { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
+import { SanityContactPageContent } from '@/types/sanity/contact'
 
 export async function getSanityNavigationElements() {
   const navigationElements = await sanityClient.fetch(getNavigationElementsGroq)
@@ -32,4 +34,10 @@ export async function getHomePageContent() {
   const homePageContent = await sanityClient.fetch(getHomePageGroq)
 
   return homePageContent as GenericPageProps
+}
+
+export async function getContactPageContent() {
+  const contactPageContent = await sanityClient.fetch(getContactPageGroq)
+
+  return contactPageContent as SanityContactPageContent
 }

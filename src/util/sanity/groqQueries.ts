@@ -20,3 +20,5 @@ export const getFooterElementsGroq = `*[_type == "footerElements"] | order(sortO
 export const getHomePageGroq = `*[_type == "pageProps" && title =="home"][0] { ..., locale{${supportedLanguages
   .map((language) => `${language}[]{..., Image{asset ->  {url, metadata}}}`)
   .join(',')} }}`
+
+export const getContactPageGroq = `*[_type == "contactPage"][0] {contactList[]{name, title, phone, email, title{${languageOptions}}}, booking{title{${languageOptions}}, email}, headerInfoBlock{${languageOptions}}}`

@@ -42,7 +42,7 @@ const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) => {
   if (imageProps.value.linkUrl === undefined) {
     return (
       <Image
-        layout='responsice'
+        layout='responsive'
         src={imageProps.value.Image.asset.url ?? ''}
         alt={imageProps.value.altText ?? ''}
         width={imageProps.value.Image.asset.metadata.dimensions.width ?? 100}

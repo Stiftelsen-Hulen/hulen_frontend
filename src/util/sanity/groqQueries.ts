@@ -22,3 +22,32 @@ export const getHomePageGroq = `*[_type == "pageProps" && title =="home"][0] { .
   .join(',')} }}`
 
 export const getContactPageGroq = `*[_type == "contactPage"][0] {contactList[]{name, title, phone, email, title{${languageOptions}}}, booking{title{${languageOptions}}, email}, headerInfoBlock{${languageOptions}}}`
+
+export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
+  benefitsSection{
+    content{${languageOptions}}, 
+    header{${languageOptions}}, 
+    descImage{
+      asset ->  {url, metadata}
+    }, 
+  },
+  field{ ${languageOptions} },
+  joinSection{
+    content{${languageOptions}},
+    email,
+    emailPreface{${languageOptions}},
+    header{${languageOptions}},
+    descImage{
+      asset ->  {url, metadata}
+    }, 
+  },
+  pageTitle{${languageOptions}},
+  positions[]{
+    title{${languageOptions}},
+    category,
+    description{${languageOptions}},
+    descImage{
+      asset ->  {url, metadata}
+    }
+  }
+}`

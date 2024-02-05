@@ -31,7 +31,13 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
   const { language } = useLanguage()
 
   return (
-    <StyledFooterWrapper display='flex'>
+    <StyledFooterWrapper
+      display='flex'
+      sx={{
+        flexDirection: { xs: 'column', sm: 'row' },
+        alignItems: { xs: 'center', sm: 'default' },
+      }}
+    >
       {footerElements.map((footerElement) => (
         <StyledStack key={footerElement.sortOrder}>
           <PortableText value={footerElement.footerElement[language]} />

@@ -15,7 +15,7 @@ export const ClientLayout = ({
 }: PropsWithChildren<{ headerData: SanityNavBarContent; footerData: SanityFooterElements[] }>) => {
   return (
     <LanguageProvider>
-      <Stack padding={{ xs: '1rem', md: '4rem' }} justifyContent={'space-between'} height='100%'>
+      <Stack margin={{ xs: '1rem', md: '4rem' }} justifyContent={'space-between'} height='100%'>
         <NavigationBar navbarElements={headerData} />
         <Box>{children}</Box>
         <Footer footerElements={footerData} />

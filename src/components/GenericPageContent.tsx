@@ -34,7 +34,7 @@ export const GenericPagePropsRenderer = ({
   )
 }
 
-const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) => {
+export const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) => {
   if (imageProps?.value == undefined || imageProps.value?.Image?.asset.metadata == undefined) {
     return <p>error rendering image, wrong config</p>
   }

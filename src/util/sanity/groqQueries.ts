@@ -35,7 +35,7 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
       asset ->  {url, metadata}
     }, 
   },
-  field{ ${languageOptions} },
+  ingress{ ${languageOptions} },
   joinSection{
     content{${languageOptions}},
     email,
@@ -45,6 +45,11 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
       asset ->  {url, metadata}
     }, 
   },
+  positionPreface{
+    header{${languageOptions}},
+    content{${languageOptions}}
+  },
+  navigationButtons[]{label{${languageOptions}},section },
   pageTitle{${languageOptions}},
   positions[]{
     title{${languageOptions}},

@@ -1,3 +1,6 @@
 export * from './benefitsSection'
 export * from './joinSection'
 export * from './joinUsPageContent'
+export * from './position'
+export * from './positionDescriptionSection'
+export * from './JoinUsNavigationButton'

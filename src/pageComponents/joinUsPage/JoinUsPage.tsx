@@ -12,6 +12,7 @@ import { JoinUsSection } from './components/sections/JoinUsSection'
 
 export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent }) => {
   const { language } = useLanguage()
+  console.log(content)
 
   return (
     <Box display='flex' justifyContent={'center'} width={'100%'}>
@@ -32,24 +33,21 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
           gap='1rem'
           width='100%'
         >
-          {
-            //TODO: Sanity translate
-          }
-          <Button variant='linkButton' onClick={() => scrollToSection('positions')}>
-            Stillinger
-          </Button>
-          <Button variant='linkButton' onClick={() => scrollToSection('benefits')}>
-            Fordeler
-          </Button>
-          <Button variant='linkButton' onClick={() => scrollToSection('join')}>
-            Bli med
-          </Button>
+          {content.navigationButtons.map((buttonProps) => (
+            <Button
+              key={buttonProps.section}
+              variant='linkButton'
+              onClick={() => scrollToSection(buttonProps.section)}
+            >
+              {buttonProps.label[language]}
+            </Button>
+          ))}
         </Box>
         <Stack>
-          <PortableText value={content.field[language]} />
+          <PortableText value={content.ingress[language]} />
         </Stack>
 
-        <PositionButtons positions={content.positions} />
+        <PositionButtons positions={content.positions} introductoryText={content.positionPreface} />
         <Stack gap='2rem' margin='2rem 0rem' id='positions'>
           {content.positions.map((position, index) => (
             <PositionEntry position={position} key={index} />

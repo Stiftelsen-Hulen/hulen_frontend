@@ -1,17 +1,27 @@
+import { createTheme } from '@mui/material/styles' //this sometimes complains, ignore it.
 import { Sunflower } from 'next/font/google'
-import { createTheme } from '@mui/material/styles'
 
+//We use google fonts for the simple reason that they are free. You can easily add more fonts by doing as below, then inserting them to font families in the places you need them
+//Note that if someone ask you to add an adobe font, slap them.
 const sunflower = Sunflower({
   weight: ['300', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
 })
 
+//Define all colours in project here. Aspire to not use them globally
 export const hulen_black = '#000000'
 export const hulen_yellow = '#F7BD13'
 export const hulen_yellow_text = '#FFD000'
 
+/** This is the global theme. Put styles that are global, i.e. stuff you want everywhere here.
+ *  If adding new options (such as a new typography option, button variant), you will need to extend
+ *  the mui.d.ts for typescript to allow it. If you want to access the theme directly to read the values,
+ *  use the hook "const theme = useTheme()" import from MATERIAL UI (NOT emoticon).
+ */
 const theme = createTheme({
+  //Palette is a predefined global "this are the colour settings" that MuI inherits from. Note that these values
+  //are used by many MuI components as default values. We don't really use any of the fancy ones right now, but worth keeping in mind if adding later.
   palette: {
     background: {
       default: hulen_black,
@@ -20,12 +30,30 @@ const theme = createTheme({
       primary: hulen_yellow_text,
     },
   },
+  //Typography is all text elements
   typography: {
     fontFamily: [sunflower.style.fontFamily, 'sans-serif'].join(','),
     h1: {
       fontSize: '49px',
     },
+    link: {
+      color: 'white',
+      textDecorationColor: hulen_yellow_text,
+    },
+    menuLink: {
+      transition: '0.3s',
+      padding: '0.25rem',
+      fontSize: '1.5rem',
+      lineHeight: 1.334,
+      fontWeight: 700,
+      '&:hover': {
+        backgroundColor: hulen_yellow,
+        color: hulen_black,
+      },
+    },
   },
+
+  //If overriding specific components insert them here
   components: {
     MuiIconButton: {
       styleOverrides: {
@@ -42,6 +70,57 @@ const theme = createTheme({
           },
         },
       },
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'positionButton' },
+          style: {
+            color: hulen_black,
+            backgroundColor: hulen_yellow_text,
+            borderRadius: '25px',
+            transition: '0.4s',
+            boxSizing: 'border-box',
+            fontSize: '23px',
+            padding: '0.5rem 1rem',
+            '&:hover': {
+              color: hulen_black,
+              backgroundColor: hulen_yellow_text,
+              transform: 'scale(1.2)',
+              transitionTimingFunction: ' cubic-bezier(0.47,2.02,.31,-.36)',
+            },
+          },
+        },
+        {
+          props: { variant: 'linkButton' },
+          style: {
+            unset: 'all',
+            color: hulen_yellow_text,
+            backgroundColor: 'transparent',
+            textDecoration: 'underline',
+            fontSize: '24px',
+            '&:hover': {
+              color: hulen_yellow,
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      ],
+    },
+    MuiPaper: {
+      variants: [
+        {
+          props: { variant: 'menuDrawer' },
+          style: {
+            backgroundColor: hulen_black,
+            borderLeft: '3px',
+            borderLeftStyle: 'double',
+            borderLeftColor: hulen_yellow_text,
+            minWidth: '300px',
+            maxWidth: '80%',
+          },
+        },
+      ],
     },
   },
 })

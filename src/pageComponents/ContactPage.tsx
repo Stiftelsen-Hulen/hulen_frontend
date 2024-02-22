@@ -1,16 +1,17 @@
 'use client'
+import { ContactCard } from '@/components/cards'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import { hulen_yellow_text } from '@/styles'
-import { ContactInfo, SanityContactPageContent } from '@/types/sanity/contact'
+import { SanityContactPageContent } from '@/types/sanity/contact'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Grid, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 
 export const ContactPageContent = ({ content }: { content: SanityContactPageContent }) => {
   const { language } = useLanguage()
-  console.log(content)
 
   return (
-    <Stack>
+    <Stack maxWidth={DEFAULT_LAYOUT_MAXWIDTH}>
       <Stack alignItems={'center'} gap='1rem' sx={{ '&>*': { margin: 0, textAlign: 'center' } }}>
         <PortableText value={content.headerInfoBlock[language]} />
         <Stack alignItems={'center'}>
@@ -31,25 +32,6 @@ export const ContactPageContent = ({ content }: { content: SanityContactPageCont
           </Grid>
         ))}
       </Grid>
-    </Stack>
-  )
-}
-
-const ContactCard = ({ contactInfo }: { contactInfo: ContactInfo }) => {
-  const { language } = useLanguage()
-
-  return (
-    <Stack alignItems={'center'}>
-      <Typography variant='overline'>{contactInfo.title[language]}</Typography>
-      <Typography sx={{ fontWeight: 500 }}>{contactInfo.name}</Typography>
-      <Typography
-        component={'a'}
-        href={`mailto:${contactInfo.email}`}
-        sx={{ color: 'white', textDecorationColor: hulen_yellow_text }}
-      >
-        {contactInfo.email}
-      </Typography>
-      <Typography>{contactInfo.phone}</Typography>
     </Stack>
   )
 }

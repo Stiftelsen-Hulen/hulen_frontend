@@ -1,8 +1,13 @@
-import { ContactPageContent } from '@/components/ContactPage'
+import { ContactPageContent } from '@/pageComponents/ContactPage'
 import { getContactPageContent } from '@/util/sanity'
+import { Stack } from '@mui/material'
 
 export default async function ContactPage() {
   const data = await getContactPageContent()
 
-  return <ContactPageContent content={data} />
+  return (
+    <Stack alignItems={'center'}>
+      <ContactPageContent content={data} />
+    </Stack>
+  )
 }

@@ -28,7 +28,7 @@ export const Page404Content = ({ notFoundImage, infotext, backbuttonlabel }: San
       />
       <Typography textAlign={'center'}>{infotext[language]}</Typography>
       <Link href='/' style={{ all: 'unset', cursor: 'pointer' }}>
-        <TypographyAsButton sx={{}}>{backbuttonlabel[language]}</TypographyAsButton>
+        <TypographyAsButton>{backbuttonlabel[language]}</TypographyAsButton>
       </Link>
     </Stack>
   )

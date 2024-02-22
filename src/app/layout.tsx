@@ -1,7 +1,7 @@
 import * as React from 'react'
 import ThemeRegistry from '@/util/ThemeRegistry/ThemeRegistry'
 import { getSanityNavigationElements, getFooterElements } from '@/util/sanity'
-import { ClientLayout } from '@/components/ClientLayout'
+import { ClientLayout } from '@/components/language/ClientLayout'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headerData = await getSanityNavigationElements()
@@ -10,7 +10,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang='en'>
       <body>
-        <ThemeRegistry >
+        <ThemeRegistry>
           <ClientLayout headerData={headerData} footerData={footerData}>
             {children}
           </ClientLayout>

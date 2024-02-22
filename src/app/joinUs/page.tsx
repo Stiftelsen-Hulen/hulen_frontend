@@ -1,4 +1,4 @@
-import { JoinUsPageContent } from '@/components/joinUsPage'
+import { JoinUsPageContent } from '@/pageComponents/joinUsPage'
 import { getJoinUsPageContent } from '@/util/sanity'
 
 export default async function JoinUsPage() {

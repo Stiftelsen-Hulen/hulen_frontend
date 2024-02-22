@@ -8,7 +8,6 @@ export default async function HomePage() {
   return (
     <Stack alignItems={'center'} padding='2rem 0rem'>
       <GenericPagePropsRenderer genericSanityPageProps={data} />
-      <h5>test</h5>
     </Stack>
   )
 }

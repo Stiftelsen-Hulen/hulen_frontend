@@ -1,5 +1,6 @@
 import { SanityNavBarContent } from '@/types/sanity'
 import {
+  getAboutUsPageGroq,
   getContactPageGroq,
   getFooterElementsGroq,
   getHomePageGroq,
@@ -36,6 +37,12 @@ export async function getHomePageContent() {
   const homePageContent = await sanityClient.fetch(getHomePageGroq)
 
   return homePageContent as GenericPageProps
+}
+
+export async function getAboutUsContent() {
+  const aboutUsPageContent = await sanityClient.fetch(getAboutUsPageGroq)
+
+  return aboutUsPageContent as GenericPageProps
 }
 
 export async function getContactPageContent() {

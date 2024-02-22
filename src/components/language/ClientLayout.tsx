@@ -2,8 +2,8 @@
 
 import { LanguageProvider } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack } from '@mui/material'
-import NavigationBar from './Navbar'
-import { Footer } from './Footer'
+import NavigationBar from '../navigation/Navbar'
+import { Footer } from '../footer/Footer'
 import { SanityNavBarContent } from '@/types/sanity'
 import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import { PropsWithChildren } from 'react'

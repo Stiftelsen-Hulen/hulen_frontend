@@ -1,9 +1,9 @@
-import { Box, CircularProgress } from '@mui/material'
+import { CircularProgress, Stack } from '@mui/material'
 
 export default function Loading() {
   return (
-    <Box width='100%' height='100%' justifyContent={'center'}>
-      <CircularProgress />
-    </Box>
+    <Stack height='100%' width='100%' justifyContent='center' alignItems='center'>
+      <CircularProgress size='10rem' color='secondary' />
+    </Stack>
   )
 }

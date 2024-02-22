@@ -26,6 +26,9 @@ const theme = createTheme({
     background: {
       default: hulen_black,
     },
+    secondary: {
+      main: hulen_yellow,
+    },
     text: {
       primary: hulen_yellow_text,
     },

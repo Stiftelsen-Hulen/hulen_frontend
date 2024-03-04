@@ -6,7 +6,7 @@ export default async function HomePage() {
   const data = await getHomePageContent()
 
   return (
-    <Stack alignItems={'center'} padding='2rem 0rem'>
+    <Stack alignItems={'center'} padding='2rem 0rem' sx={{ textAlign: 'center' }}>
       <GenericPagePropsRenderer genericSanityPageProps={data} />
     </Stack>
   )

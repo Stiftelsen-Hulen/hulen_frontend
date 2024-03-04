@@ -2,10 +2,15 @@
 
 import type { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
-import { PortableText } from '@portabletext/react'
-import { Stack } from '@mui/material'
+import {
+  PortableText,
+  PortableTextComponentProps,
+  PortableTextReactComponents,
+} from '@portabletext/react'
+import { Box, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
+import { PortableTextBlock } from '@portabletext/types'
 
 export const GenericPagePropsRenderer = ({
   genericSanityPageProps,
@@ -13,10 +18,52 @@ export const GenericPagePropsRenderer = ({
   genericSanityPageProps: GenericPageProps
 }) => {
   const { language } = useLanguage()
-  const customPortableTextComponents = {
+  console.log(genericSanityPageProps)
+  const serializers: Partial<PortableTextReactComponents> = {
     types: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       localeImage: (localeImageProps: any) => (
         <SanityLocaleImageComponent imageProps={localeImageProps} />
+      ),
+    },
+    list: (props: PortableTextComponentProps<PortableTextBlock>) => (
+      <Typography component='ul' variant='body1'>
+        {props.children}
+      </Typography>
+    ),
+    listItem: (props: PortableTextComponentProps<PortableTextBlock>) => (
+      <Typography component='li' variant='body1'>
+        {props.children}
+      </Typography>
+    ),
+    block: {
+      h1: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='h1'>{children}</Typography>
+      ),
+      h2: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='h2'>{children}</Typography>
+      ),
+      h3: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='h3'>{children}</Typography>
+      ),
+      h4: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='h4'>{children}</Typography>
+      ),
+      h5: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='h5'>{children}</Typography>
+      ),
+      h6: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='h6'>{children}</Typography>
+      ),
+      blockquote: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='body1' style={{ fontStyle: 'italic' }}>
+          {children}
+        </Typography>
+      ),
+      normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+        <Typography variant='body1' paragraph>
+          {children}
+        </Typography>
       ),
     },
   }
@@ -24,16 +71,13 @@ export const GenericPagePropsRenderer = ({
   return (
     <Stack alignItems={'center'}>
       {genericSanityPageProps.locale[language].map((sanityBlock) => (
-        <PortableText
-          key={sanityBlock._key}
-          value={sanityBlock}
-          components={customPortableTextComponents}
-        />
+        <PortableText key={sanityBlock._key} value={sanityBlock} components={serializers} />
       ))}
     </Stack>
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) => {
   if (imageProps?.value == undefined || imageProps.value?.Image?.asset.metadata == undefined) {
     return <p>error rendering image, wrong config</p>
@@ -41,13 +85,20 @@ export const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) 
 
   if (imageProps.value.linkUrl === undefined) {
     return (
-      <Image
-        layout='responsive'
-        src={imageProps.value.Image.asset.url ?? ''}
-        alt={imageProps.value.altText ?? ''}
-        width={imageProps.value.Image.asset.metadata.dimensions.width ?? 100}
-        height={imageProps.value.Image.asset.metadata.dimensions.height ?? 100}
-      />
+      <Box
+        sx={{
+          width: imageProps.value.Image.asset.metadata.dimensions.width ?? '100px',
+          height: imageProps.value.Image.asset.metadata.dimensions.height ?? '100px',
+        }}
+      >
+        <Image
+          layout='responsive'
+          src={imageProps.value.Image.asset.url ?? ''}
+          alt={imageProps.value.altText ?? ''}
+          width={imageProps.value.Image.asset.metadata.dimensions.width ?? 100}
+          height={imageProps.value.Image.asset.metadata.dimensions.height ?? 100}
+        />
+      </Box>
     )
   }
 

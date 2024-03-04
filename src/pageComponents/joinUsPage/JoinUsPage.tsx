@@ -9,6 +9,7 @@ import { PositionButtons } from './components/position/PositionButtons'
 import { PositionEntry } from './components/position/PositionEntry'
 import { BenefitsSection } from './components/sections/BenefitsSection'
 import { JoinUsSection } from './components/sections/JoinUsSection'
+import Image from 'next/image'
 
 export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent }) => {
   const { language } = useLanguage()
@@ -44,6 +45,20 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
           ))}
         </Box>
         <Stack>
+          <Box
+            sx={{
+              width: content.positionPreface.descImage.asset.metadata.dimensions.width ?? '100px',
+              height: content.positionPreface.descImage.asset.metadata.dimensions.height ?? '100px',
+            }}
+          >
+            <Image
+              layout='responsive'
+              src={content.positionPreface.descImage.asset.url ?? ''}
+              alt={''}
+              width={content.positionPreface.descImage.asset.metadata.dimensions.width ?? 100}
+              height={content.positionPreface.descImage.asset.metadata.dimensions.height ?? 100}
+            />
+          </Box>
           <PortableText value={content.ingress[language]} />
         </Stack>
 

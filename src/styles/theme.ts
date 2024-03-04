@@ -37,7 +37,23 @@ const theme = createTheme({
   typography: {
     fontFamily: [sunflower.style.fontFamily, 'sans-serif'].join(','),
     h1: {
+      fontSize: '53px',
+      fontWeight: 700,
+    },
+    h2: {
       fontSize: '49px',
+      fontWeight: 700,
+    },
+    h3: {
+      fontSize: '42px',
+      fontWeight: 700,
+    },
+    h4: {
+      fontSize: '32px',
+    },
+    h5: { fontSize: '29px' },
+    body1: {
+      fontSize: '22px',
     },
     link: {
       color: 'white',

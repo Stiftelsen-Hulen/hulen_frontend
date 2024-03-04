@@ -2,6 +2,7 @@ import { BenefitsSectionContent } from '@/types/sanity/joinUsPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
+import Image from 'next/image'
 
 export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }) => {
   const { language } = useLanguage()
@@ -16,11 +17,25 @@ export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }
       }}
       id='benefits'
     >
-      <Box sx={{ maxWidth: { xs: '100%', md: '50%' } }}>
+      <Stack sx={{ maxWidth: { xs: '100%', md: '50%' }, alignItems: 'center', gap: '2rem' }}>
+        <Box
+          sx={{
+            width: content.descImage.asset.metadata.dimensions.width ?? '100px',
+            height: content.descImage.asset.metadata.dimensions.height ?? '100px',
+          }}
+        >
+          <Image
+            layout='responsive'
+            src={content.descImage.asset.url ?? ''}
+            alt={''}
+            width={content.descImage.asset.metadata.dimensions.width ?? 100}
+            height={content.descImage.asset.metadata.dimensions.height ?? 100}
+          />
+        </Box>
         <Typography variant='h4' fontWeight={700} textAlign={'center'}>
           {content.header[language]}
         </Typography>
-      </Box>
+      </Stack>
       <Stack
         sx={{
           maxWidth: { xs: '100%', md: '50%' },

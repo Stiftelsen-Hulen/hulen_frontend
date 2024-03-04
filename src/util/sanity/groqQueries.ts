@@ -41,13 +41,16 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
     email,
     emailPreface{${languageOptions}},
     header{${languageOptions}},
-    descImage{
+    icon{
       asset ->  {url, metadata}
     }, 
   },
   positionPreface{
     header{${languageOptions}},
-    content{${languageOptions}}
+    content{${languageOptions}},
+    descImage{
+      asset ->  {url, metadata}
+    }, 
   },
   navigationButtons[]{label{${languageOptions}},section },
   pageTitle{${languageOptions}},

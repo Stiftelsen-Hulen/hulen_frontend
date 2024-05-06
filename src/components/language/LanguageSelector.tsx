@@ -8,6 +8,8 @@ const StyledSelect = styled(Select)({
   minHeight: '0px!important',
   height: '2rem!important',
   display: 'flex',
+  alignItems: "flex-start",
+  paddingLeft: "0.25rem",
   svg: {
     fill: hulen_yellow_text,
     padding: 0,

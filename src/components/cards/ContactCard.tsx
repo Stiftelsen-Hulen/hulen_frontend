@@ -8,7 +8,7 @@ export const ContactCard = ({ contactInfo }: { contactInfo: ContactInfo }) => {
   const { language } = useLanguage()
 
   return (
-    <Stack alignItems={'center'}>
+    <Stack alignItems={'center'} textAlign={"center"}>
       <Typography variant='overline'>{contactInfo.title[language]}</Typography>
       <Typography sx={{ fontWeight: 500 }}>{contactInfo.name}</Typography>
       <Typography component={'a'} href={`mailto:${contactInfo.email}`} variant='link'>

@@ -18,7 +18,6 @@ export const GenericPagePropsRenderer = ({
   genericSanityPageProps: GenericPageProps
 }) => {
   const { language } = useLanguage()
-  console.log(genericSanityPageProps)
   const serializers: Partial<PortableTextReactComponents> = {
     types: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

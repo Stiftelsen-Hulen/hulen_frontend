@@ -7,7 +7,6 @@ import Image from 'next/image'
 
 export const PositionEntry = ({ position }: { position: Position }) => {
   const { language } = useLanguage()
-  console.log(position)
 
   const image = position.descImage
 

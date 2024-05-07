@@ -13,7 +13,6 @@ import Image from 'next/image'
 
 export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent }) => {
   const { language } = useLanguage()
-  console.log(content)
 
   return (
     <Box display='flex' justifyContent={'center'} width={'100%'}>

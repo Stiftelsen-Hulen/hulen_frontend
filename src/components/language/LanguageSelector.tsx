@@ -6,7 +6,7 @@ import { styled } from '@mui/system'
 import { LanguageOptions } from '@/types/language'
 
 const StyledSelect = styled(Select)({
-  minHeight: '0px!important',
+  minHeight: '0rem!important',
   height: '2rem!important',
   display: 'flex',
   alignItems: "flex-start",
@@ -23,7 +23,7 @@ const StyledSelect = styled(Select)({
   '.MuiSelect-select': {
     fontWeight: 400,
     fontSize: '1.5rem',
-    minHeight: '0px!important',
+    minHeight: '0rem!important',
     padding: 0,
     height: '1.4rem!important', //Race condition defines CSS priority order, some sinning required
     overflow: 'visible!important',

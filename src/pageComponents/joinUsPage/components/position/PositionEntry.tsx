@@ -51,7 +51,7 @@ const PositionSanityImage = ({ imageData, width }: { imageData: SanityImage; wid
   }
 
   return (
-    <Box width='100%' height='100%' maxWidth={`${calcWidth()}px`} maxHeight={`${calcHeight()}px`}>
+    <Box width='100%' height='100%' maxWidth={`${calcWidth()}rem`} maxHeight={`${calcHeight()}rem`}>
       <Image
         layout='responsive'
         placeholder='blur'

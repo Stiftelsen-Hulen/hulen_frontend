@@ -87,8 +87,8 @@ export const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) 
     return (
       <Box
         sx={{
-          width: imageProps.value.Image.asset.metadata.dimensions.width ?? '100px',
-          height: imageProps.value.Image.asset.metadata.dimensions.height ?? '100px',
+          width: imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem',
+          height: imageProps.value.Image.asset.metadata.dimensions.height ?? '625rem',
         }}
       >
         <Image

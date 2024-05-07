@@ -11,12 +11,12 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
   const { language } = useLanguage()
 
   return (
-    <Paper sx={{ backgroundColor: hulen_yellow_text, borderRadius: '0px', padding: '4rem' }}>
+    <Paper sx={{ backgroundColor: hulen_yellow_text, borderRadius: '0rem', padding: '4rem' }}>
       <Stack id='join' sx={{ textAlign: 'center', alignItems: 'center', color: hulen_black }}>
         <Box
           sx={{
-            width: content.icon.asset.metadata.dimensions.width ?? '100px',
-            height: content.icon.asset.metadata.dimensions.height ?? '100px',
+            width: content.icon.asset.metadata.dimensions.width ?? '6.25rem',
+            height: content.icon.asset.metadata.dimensions.height ?? '6.25rem',
           }}
         >
           <Image

@@ -10,8 +10,8 @@ import Link from 'next/link'
 const TypographyAsButton = styled(Typography)({
   backgroundColor: hulen_yellow_text,
   color: hulen_black,
-  padding: '4px 8px',
-  borderRadius: '4px',
+  padding: '0.25rem 0.5rem',
+  borderRadius: '0.25rem',
   fontWeight: 'bold',
 })
 

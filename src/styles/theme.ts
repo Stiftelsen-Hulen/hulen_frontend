@@ -37,23 +37,23 @@ const theme = createTheme({
   typography: {
     fontFamily: [sunflower.style.fontFamily, 'sans-serif'].join(','),
     h1: {
-      fontSize: '53px',
+      fontSize: '3.313rem',
       fontWeight: 700,
     },
     h2: {
-      fontSize: '49px',
+      fontSize: '3rem',
       fontWeight: 700,
     },
     h3: {
-      fontSize: '42px',
+      fontSize: '2.625rem',
       fontWeight: 700,
     },
     h4: {
-      fontSize: '32px',
+      fontSize: '2rem',
     },
-    h5: { fontSize: '29px' },
+    h5: { fontSize: '1.813rem' },
     body1: {
-      fontSize: '22px',
+      fontSize: '1.375rem',
     },
     link: {
       color: 'white',
@@ -97,10 +97,10 @@ const theme = createTheme({
           style: {
             color: hulen_black,
             backgroundColor: hulen_yellow_text,
-            borderRadius: '25px',
+            borderRadius: '1.563rem',
             transition: '0.4s',
             boxSizing: 'border-box',
-            fontSize: '23px',
+            fontSize: '1.438rem',
             padding: '0.5rem 1rem',
             '&:hover': {
               color: hulen_black,
@@ -117,7 +117,7 @@ const theme = createTheme({
             color: hulen_yellow_text,
             backgroundColor: 'transparent',
             textDecoration: 'underline',
-            fontSize: '24px',
+            fontSize: '1.5rem',
             '&:hover': {
               color: hulen_yellow,
               backgroundColor: 'transparent',
@@ -132,10 +132,10 @@ const theme = createTheme({
           props: { variant: 'menuDrawer' },
           style: {
             backgroundColor: hulen_black,
-            borderLeft: '3px',
+            borderLeft: '1.188rem',
             borderLeftStyle: 'double',
             borderLeftColor: hulen_yellow_text,
-            minWidth: '300px',
+            minWidth: '18.75rem',
             maxWidth: '80%',
           },
         },

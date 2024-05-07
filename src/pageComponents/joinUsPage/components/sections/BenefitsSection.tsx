@@ -20,8 +20,8 @@ export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }
       <Stack sx={{ maxWidth: { xs: '100%', md: '50%' }, alignItems: 'center', gap: '2rem' }}>
         <Box
           sx={{
-            width: content.descImage.asset.metadata.dimensions.width ?? '100px',
-            height: content.descImage.asset.metadata.dimensions.height ?? '100px',
+            width: content.descImage.asset.metadata.dimensions.width ?? '6.25rem',
+            height: content.descImage.asset.metadata.dimensions.height ?? '6.25rem',
           }}
         >
           <Image

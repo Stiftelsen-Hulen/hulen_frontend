@@ -21,7 +21,7 @@ const StyledFooterWrapper = styled(Box)({
   display: 'flex',
   gap: '2rem',
   justifyContent: 'space-around',
-  borderTop: '3px',
+  borderTop: '0.188rem',
   borderTopStyle: 'double',
   borderTopColor: hulen_yellow_text,
   flexWrap: 'wrap',

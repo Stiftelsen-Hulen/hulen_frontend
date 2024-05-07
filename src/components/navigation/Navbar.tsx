@@ -14,7 +14,7 @@ const LOGO_HEIGHT_BASE = 120
 const LOGO_WIDTH_BASE = 143
 
 /** The navbar handles all the global navigation. This means rendering the hulen logo and menu elements.
- *  It will render a row of navigation buttons and language selector  if window width above md (900px if i remember correctly)
+ *  It will render a row of navigation buttons and language selector  if window width above md (900px (56.25rem) if i remember correctly)
  *  if not, it will render only the logo and a button for accessing a side drawer.
  *
  * @param param0

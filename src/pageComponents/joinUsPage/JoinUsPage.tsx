@@ -17,7 +17,7 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
 
   return (
     <Box display='flex' justifyContent={'center'} width={'100%'}>
-      <Stack maxWidth={'1040px'} textAlign={'center'} alignItems={'center'}>
+      <Stack maxWidth={'65rem'} textAlign={'center'} alignItems={'center'}>
         <Typography variant='h2' fontWeight={700}>
           {content.pageTitle[language]}
         </Typography>
@@ -47,8 +47,8 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
         <Stack>
           <Box
             sx={{
-              width: content.positionPreface.descImage.asset.metadata.dimensions.width ?? '100px',
-              height: content.positionPreface.descImage.asset.metadata.dimensions.height ?? '100px',
+              width: content.positionPreface.descImage.asset.metadata.dimensions.width ?? '6.25rem',
+              height: content.positionPreface.descImage.asset.metadata.dimensions.height ?? '6.25rem',
             }}
           >
             <Image

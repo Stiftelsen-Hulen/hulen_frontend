@@ -44,7 +44,11 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
         />
       </Link>
       {isMobile ? (
-        <IconButton onClick={() => setIsMenuDrawerOpen(true)} sx={{ fontSize: '3rem' }}>
+        <IconButton
+          onClick={() => setIsMenuDrawerOpen(true)}
+          sx={{ fontSize: '3rem' }}
+          aria-label='Open menu button'
+        >
           <SvgIcon fontSize='inherit' component={MenuRoundedIcon} />
         </IconButton>
       ) : (

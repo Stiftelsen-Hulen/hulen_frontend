@@ -28,7 +28,7 @@ export const MenuDrawer = ({
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <IconButton size='large' onClick={onClose}>
+        <IconButton size='large' onClick={onClose} aria-label='Close menu button'>
           <SvgIcon fontSize='large' component={CloseRoundedIcon} />
         </IconButton>
       </Box>

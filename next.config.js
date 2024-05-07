@@ -18,4 +18,17 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+const redirects = async () => {
+  return [
+    {
+      source: '/frivillig',
+      destination: '/joinUs',
+      permanent: true,
+    },
+  ]
+}
+
+module.exports = {
+  ...nextConfig,
+  redirects,
+}

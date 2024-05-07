@@ -1,6 +1,18 @@
 import { supportedLanguages } from '@/configs'
 const languageOptions = supportedLanguages.join(',')
 
+//////////
+// What's this?
+// Sanity stores data in a so-called "lake". It's basically a json store, where you can put documents (expressed as objects).
+// The sanity client here uses GROQ  queries to access this data. (There are other ways to get the data too, ref: https://www.sanity.io/docs/datastore)
+// Your queries filter the documents (objects), based on attributes and values.
+// example value filtering: *[attributename == "somevalue"]
+// example key filtering: *{ giveMeObjectsWithThisKey}
+// The query language returns only what you ask for. You can ask for all, or specific parts of the objects (with curly brace accessing syntax).
+// Check this out for detailed explanation about queries. https://www.sanity.io/docs/how-queries-work
+// Cheat sheet: https://www.sanity.io/docs/query-cheat-sheet
+//////////
+
 export const getNavigationElementsGroq = `*[_type == "navBarProps"][0] {navElements[]{subUrl, title{${languageOptions}}}, navbarLogo{ asset->{
   url,
 },

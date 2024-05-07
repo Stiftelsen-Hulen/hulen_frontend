@@ -1,8 +1,9 @@
 'use client'
-import { MenuItem, Select } from '@mui/material'
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import { styled } from '@mui/system'
+import { LanguageOptions } from '@/types/language'
 
 const StyledSelect = styled(Select)({
   minHeight: '0px!important',
@@ -58,14 +59,20 @@ const StyledMenuItem = styled(MenuItem)({
 export const LanguageSelector = () => {
   const { changeLanguage, language } = useLanguage()
 
+  const labels: Record<LanguageOptions, string> = { "en": "Language", "no": "Språk" }
+
   return (
-    <StyledSelect
-      onChange={changeLanguage}
-      value={language ?? 'en'}
-      MenuProps={{ PaperProps: { sx: { backgroundColor: 'black' } } }}
-    >
-      <StyledMenuItem value='no'>Norsk</StyledMenuItem>
-      <StyledMenuItem value='en'>English</StyledMenuItem>
-    </StyledSelect>
+    <FormControl>
+      <InputLabel id="language-select-label" style={{ display: "none" }}>{labels[language]}</InputLabel>
+      <StyledSelect
+        onChange={changeLanguage}
+        value={language ?? 'en'}
+        MenuProps={{ PaperProps: { sx: { backgroundColor: 'black' } } }}
+        labelId="language-select-label"
+      >
+        <StyledMenuItem value='no'>Norsk</StyledMenuItem>
+        <StyledMenuItem value='en'>English</StyledMenuItem>
+      </StyledSelect>
+    </FormControl>
   )
 }

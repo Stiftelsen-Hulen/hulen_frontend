@@ -35,7 +35,7 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
           <Typography sx={{ color: hulen_black }}>{content.emailPreface[language]}</Typography>
           <Link
             href={`mailto:${content.email}`}
-            sx={{ color: '#5b5b5b', textDecorationColor: 'black', fontStyle: 'italic' }}
+            sx={{ color: '#5b5b5b', textDecorationColor: '#5b5b5b', fontStyle: 'italic' }}
           >
             {content.email}
           </Link>

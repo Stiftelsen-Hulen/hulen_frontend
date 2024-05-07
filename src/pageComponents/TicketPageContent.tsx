@@ -10,6 +10,7 @@ export const TicketPageContent = () => {
         height='50rem'
         frameBorder='0'
         scrolling='auto'
+        title='Frame section containing the shows and tickets available'
       />
     </Stack>
   )

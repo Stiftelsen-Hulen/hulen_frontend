@@ -7,6 +7,13 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Grid, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 
+/**
+ * Defines the layout of the content from Sanity Studio on the Contact page.
+ * Contact info is listed in a grid that adjust the number of columns based on the screen size.
+ * Read more about mui grids: https://mui.com/material-ui/react-grid/ 
+ * @param content from sanity studio
+ * @returns 
+ */
 export const ContactPageContent = ({ content }: { content: SanityContactPageContent }) => {
   const { language } = useLanguage()
 

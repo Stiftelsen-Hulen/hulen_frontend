@@ -32,6 +32,7 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
 
   return (
     <StyledFooterWrapper
+      component={"footer"}
       display='flex'
       sx={{
         flexDirection: { xs: 'column', sm: 'row' },

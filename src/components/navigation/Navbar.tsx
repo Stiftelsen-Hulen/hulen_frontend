@@ -9,6 +9,10 @@ import { useTheme } from '@mui/material/styles'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import { useState } from 'react'
 import { MenuDrawer } from '.'
+import { usePathname } from 'next/navigation'
+import { hulen_yellow } from '@/styles'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import LanguageIcon from '@mui/icons-material/Language'
 
 const LOGO_HEIGHT_BASE = 120
 const LOGO_WIDTH_BASE = 143
@@ -26,10 +30,42 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
   const theme = useTheme()
   // MuI has an easy accessible tool for doing media queries. This can also be done in the SX prop as {width: {xs: value, md: value}}
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const currentPath = usePathname()
+
+  const renderNavBarElements = navbarElements.navElements.map((element, idx) => {
+    const isCurrentPath = element.subUrl === currentPath
+
+    return (
+      <Link
+        href={element.subUrl}
+        key={idx}
+        passHref
+        style={{
+          all: 'unset',
+          cursor: 'pointer',
+        }}
+        role='link'
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ArrowDownwardIcon style={{ color: isCurrentPath ? hulen_yellow : 'initial' }} />
+          <Typography variant='menuLink' onClick={() => setIsMenuDrawerOpen(false)}>
+            {element.title[language]}
+          </Typography>
+        </Box>
+      </Link>
+    )
+  })
 
   return (
     <Box
-      component={"nav"}
+      component={'nav'}
       display='flex'
       flexDirection={isMobile ? 'column' : 'row'}
       justifyContent={'center'}
@@ -54,19 +90,18 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
         </IconButton>
       ) : (
         <>
-          {navbarElements.navElements.map((element, idx) => (
-            <Link
-              href={element.subUrl}
-              key={idx}
-              passHref
-              style={{ all: 'unset', cursor: 'pointer' }}
-            >
-              <Typography variant='menuLink' onClick={() => setIsMenuDrawerOpen(false)}>
-                {element.title[language]}
-              </Typography>
-            </Link>
-          ))}
-          <LanguageSelector />
+          {renderNavBarElements}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <LanguageIcon />
+            <LanguageSelector />
+          </Box>
         </>
       )}
       <MenuDrawer

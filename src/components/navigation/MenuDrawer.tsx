@@ -4,6 +4,8 @@ import { Box, Drawer, IconButton, Stack, SvgIcon, Typography } from '@mui/materi
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import Link from 'next/link'
 import { LanguageSelector } from '../language'
+import { usePathname } from 'next/navigation'
+import { hulen_black, hulen_yellow } from '@/styles'
 
 /** The menu drawer is the side menu we use for navigation when on mobile/small screens
  */
@@ -18,6 +20,8 @@ export const MenuDrawer = ({
   onClose: () => void
   navElements: SanityNavElement[]
 }) => {
+  const currentPath = usePathname()
+
   return (
     <Drawer
       onClose={onClose}
@@ -28,7 +32,7 @@ export const MenuDrawer = ({
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <IconButton size='large' onClick={onClose} aria-label='Close menu button'>
+        <IconButton size='large' onClick={onClose}>
           <SvgIcon fontSize='large' component={CloseRoundedIcon} />
         </IconButton>
       </Box>
@@ -38,8 +42,14 @@ export const MenuDrawer = ({
             href={element.subUrl}
             key={idx}
             passHref
-            style={{ all: 'unset', cursor: 'pointer' }}
-            onClick={() => onClose()}
+            style={{
+              all: 'unset',
+              cursor: 'pointer',
+              background: element.subUrl === currentPath ? hulen_yellow : hulen_black,
+              color: element.subUrl === currentPath ? hulen_black : hulen_yellow,
+            }}
+            onClick={onClose}
+            role='link'
           >
             <Typography variant='menuLink'>{element.title[language]}</Typography>
           </Link>

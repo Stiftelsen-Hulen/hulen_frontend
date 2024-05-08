@@ -39,6 +39,7 @@ export const MenuDrawer = ({
             key={idx}
             passHref
             style={{ all: 'unset', cursor: 'pointer' }}
+            onClick={() => onClose()}
           >
             <Typography variant='menuLink'>{element.title[language]}</Typography>
           </Link>

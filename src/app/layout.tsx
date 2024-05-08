@@ -9,7 +9,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang='en'>
-      <body>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <ThemeRegistry>
           <ClientLayout headerData={headerData} footerData={footerData}>
             {children}

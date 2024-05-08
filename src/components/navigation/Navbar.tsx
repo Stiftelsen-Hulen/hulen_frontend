@@ -29,6 +29,7 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
 
   return (
     <Box
+      component={"nav"}
       display='flex'
       flexDirection={isMobile ? 'column' : 'row'}
       justifyContent={'center'}

@@ -13,8 +13,6 @@ import { PropsWithChildren } from 'react'
  * Navigationbar at the top
  * Main content in the middle
  * Footer at the bottom
- * @param param0 
- * @returns 
  */
 export const ClientLayout = ({
   headerData,

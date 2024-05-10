@@ -17,7 +17,7 @@ const StyledStack = styled(Stack)({
 
 const StyledFooterWrapper = styled(Box)({
   paddingTop: '2rem',
-  marginTop: '2rem',
+  marginTop: 'auto',
   display: 'flex',
   gap: '2rem',
   justifyContent: 'space-around',
@@ -33,7 +33,6 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
   return (
     <StyledFooterWrapper
       component={"footer"}
-      display='flex'
       sx={{
         flexDirection: { xs: 'column', sm: 'row' },
         alignItems: { xs: 'center', sm: 'default' },

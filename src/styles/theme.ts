@@ -54,6 +54,7 @@ const theme = createTheme({
     h5: { fontSize: '1.813rem' },
     body1: {
       fontSize: '1.375rem',
+      fontWeight: '300'
     },
     link: {
       color: 'white',

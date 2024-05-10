@@ -8,6 +8,14 @@ import { SanityNavBarContent } from '@/types/sanity'
 import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import { PropsWithChildren } from 'react'
 
+/**
+ * Defines the client-side layout(code run on end-user´s device).
+ * Navigationbar at the top
+ * Main content in the middle
+ * Footer at the bottom
+ * @param param0 
+ * @returns 
+ */
 export const ClientLayout = ({
   headerData,
   footerData,

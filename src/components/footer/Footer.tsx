@@ -26,7 +26,12 @@ const StyledFooterWrapper = styled(Box)({
   borderTopColor: hulen_yellow_text,
   flexWrap: 'wrap',
 })
-
+/**
+ * A Footer is located at the bottom of a webpage, containing information such as contact details, or links to important pages.
+ * For accessibility purposes, defined by the HTML <footer> tag.
+ * @param param0 
+ * @returns 
+ */
 export const Footer = ({ footerElements }: { footerElements: SanityFooterElements[] }) => {
   const { language } = useLanguage()
 

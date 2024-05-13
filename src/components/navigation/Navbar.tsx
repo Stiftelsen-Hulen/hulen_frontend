@@ -10,12 +10,36 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import { useState } from 'react'
 import { MenuDrawer } from '.'
 import { usePathname } from 'next/navigation'
-import { hulen_yellow } from '@/styles'
+import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import LanguageIcon from '@mui/icons-material/Language'
-
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import { styled } from '@mui/system'
 const LOGO_HEIGHT_BASE = 120
 const LOGO_WIDTH_BASE = 143
+
+const StyledNavbarWrapper = styled(Box)({
+  display: "flex",
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+  gap: '1rem',
+  maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
+})
+const StyledNavLinksWrapper = styled(Box)({
+  display: 'flex',
+  gap: '1rem',
+  flexWrap: 'wrap',
+  justifyContent: 'flex-end'
+
+})
+const StyleLinksWrapper = styled(Box)({
+  display: 'flex',
+  gap: '1rem',
+  flexWrap: 'wrap',
+  justifyContent: 'flex-end'
+
+})
 
 /** The navbar handles all the global navigation. This means rendering the hulen logo and menu elements.
  *  It will render a row of navigation buttons and language selector  if window width above md (900px (56.25rem) if i remember correctly)
@@ -41,18 +65,21 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
         key={idx}
         passHref
         style={{
-          all: 'unset',
+          transition: '0.3s',
+          padding: '0.25rem',
+          fontSize: '1.5rem',
+          lineHeight: 1.334,
+          fontWeight: 300,
           cursor: 'pointer',
+          color: hulen_yellow_text,
+          textDecoration: 'none',
         }}
-        role='link'
       >
         <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          display='flex'
+          flexDirection='column'
+          justifyContent='center'
+          alignItems='center'
         >
           <ArrowDownwardIcon style={{ color: isCurrentPath ? hulen_yellow : 'initial' }} />
           <Typography variant='menuLink' onClick={() => setIsMenuDrawerOpen(false)}>
@@ -64,54 +91,55 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
   })
 
   return (
-    <Box
+    <StyledNavbarWrapper
       component={'nav'}
-      display='flex'
       flexDirection={isMobile ? 'column' : 'row'}
-      justifyContent={'center'}
-      alignItems={'center'}
-      gap='2rem'
     >
       <Link href={'/'}>
         <Image
           src={navbarElements.navbarLogo.asset.url}
           alt={navbarElements.navbarLogo.altText.no}
-          width={isMobile ? LOGO_WIDTH_BASE * 2 : LOGO_WIDTH_BASE}
-          height={isMobile ? LOGO_HEIGHT_BASE * 2 : LOGO_HEIGHT_BASE}
+          width={isMobile ? LOGO_WIDTH_BASE * 2 : LOGO_WIDTH_BASE * 3}
+          height={isMobile ? LOGO_HEIGHT_BASE * 2 : LOGO_HEIGHT_BASE * 3}
         />
       </Link>
-      {isMobile ? (
-        <IconButton
-          onClick={() => setIsMenuDrawerOpen(true)}
-          sx={{ fontSize: '3rem' }}
-          aria-label='Open menu button'
-        >
-          <SvgIcon fontSize='inherit' component={MenuRoundedIcon} />
-        </IconButton>
-      ) : (
-        <>
-          {renderNavBarElements}
-          <Box
-            sx={{
-              paddingTop: '1.5rem',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <LanguageIcon />
-            <LanguageSelector />
-          </Box>
-        </>
-      )}
+      <StyledNavLinksWrapper >
+        {
+          isMobile ? (
+            <IconButton
+              onClick={() => setIsMenuDrawerOpen(true)}
+              sx={{ fontSize: '3rem' }}
+              aria-label='Open menu button'
+            >
+              <SvgIcon fontSize='inherit' component={MenuRoundedIcon} />
+            </IconButton>
+          ) : (
+            <>
+              {renderNavBarElements}
+              <Box
+                sx={{
+                  paddingTop: '1.5rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: '0.24rem',
+                }}
+              >
+                <LanguageIcon />
+                <LanguageSelector />
+              </Box>
+            </>
+          )
+        }
+      </StyledNavLinksWrapper>
       <MenuDrawer
         navElements={navbarElements.navElements}
         isOpen={isMenuDrawerOpen}
         language={language}
         onClose={() => setIsMenuDrawerOpen(false)}
       />
-    </Box>
+    </StyledNavbarWrapper >
   )
 }
 

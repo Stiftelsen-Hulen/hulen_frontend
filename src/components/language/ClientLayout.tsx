@@ -30,7 +30,7 @@ export const ClientLayout = ({
         height='100%'
         width='100%'>
         <NavigationBar navbarElements={headerData} />
-        <Box component={"main"} marginTop={{ xs: '2rem', md: '4rem' }} width={'100%'}>{children}</Box>
+        <Box component={"main"} marginTop={{ xs: '2rem', md: '4rem' }} width={'100%'} marginBottom={'1rem'}>{children}</Box>
         <Footer footerElements={footerData} />
       </Stack>
     </LanguageProvider>

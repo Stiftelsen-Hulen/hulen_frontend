@@ -21,7 +21,7 @@ const StyledSelect = styled(Select)({
     display: 'none',
   },
   '.MuiSelect-select': {
-    fontWeight: 400,
+    fontWeight: 300,
     fontSize: '1.5rem',
     minHeight: '0rem!important',
     padding: 0,
@@ -39,7 +39,7 @@ const StyledMenuItem = styled(MenuItem)({
     backgroundColor: hulen_yellow,
     color: hulen_black,
   },
-  fontWeight: 700,
+  fontWeight: 300,
   '&.Mui-selected': {
     fontWeight: 'bold',
     backgroundColor: `${hulen_black}!important`,

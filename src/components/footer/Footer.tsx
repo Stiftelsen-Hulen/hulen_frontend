@@ -5,6 +5,7 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack } from '@mui/material'
 import { styled } from '@mui/system'
 import { PortableText } from '@portabletext/react'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 
 const StyledStack = styled(Stack)({
   p: {
@@ -20,6 +21,8 @@ const StyledFooterWrapper = styled(Box)({
   marginTop: 'auto',
   display: 'flex',
   gap: '2rem',
+  width: '100%',
+  maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
   justifyContent: 'space-around',
   borderTop: '0.188rem',
   borderTopStyle: 'double',

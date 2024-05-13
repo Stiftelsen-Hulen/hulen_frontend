@@ -93,8 +93,9 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
           {renderNavBarElements}
           <Box
             sx={{
+              paddingTop: '1.5rem',
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
             }}

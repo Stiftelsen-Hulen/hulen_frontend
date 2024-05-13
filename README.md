@@ -67,3 +67,41 @@ you do not inherit much of the base styling from specific components. So instead
 ### <Paper>
 
 <Paper> is a <div> with more styling. Think of it as a "styled container" and typically comes with some default styling such as background, rounded borders, box shadow etc.
+
+## Avoid CSS confusion:
+
+There are different ways of styling elements in this project.
+Normal inline styling with the style attribute (meaning directly inside the tsx file (not a css/scss/sass file), or the Material UI way with styled component or sx attribute.
+
+MUI, the component library Material UI, normally use styled components and the sx-attribute. (You can use style, but shouldn't normally)
+A styled component is a wrapper on another component, but adds styling. It's used as a normal React component.
+If you want the technical name, it's a "higher order component", since it extends another component.
+
+```
+export const StyledMenuItem = styled(MenuItem)({
+transition: '0.2s',
+'&:hover': {
+backgroundColor: hulen_yellow,
+color: hulen_black,
+},
+fontWeight: 700,
+'&.Mui-selected': {
+fontWeight: 'bold',
+backgroundColor: `${hulen_black}!important`,
+'&:hover': {
+backgroundColor: `${hulen_yellow}!important`,
+color: `${hulen_black}!important`,
+},
+},
+})
+```
+
+You can also style Material UI component through the sx attribute. This is the recommended way when using MUI. You still can use the style prop in rare circumstances, see: https://stackoverflow.com/questions/72527461/when-should-i-use-style-instead-of-sx-prop-in-material-ui
+
+It takes an object with the styles as an argument
+`<MenuItem sx={{color:hulen_black}}/>`
+
+For other React components, like Next.js components or those you make yourself, use the style attribute like normal, or stylesheets. Try to keep things consistent though. Don't write inline css in one place, and use a style sheet for another. Here we're using inline styling.
+
+Like this:
+`<SomeComponent style={{color:hulen_yellow}}>`

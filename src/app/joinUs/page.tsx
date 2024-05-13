@@ -7,7 +7,7 @@ export default async function JoinUsPage() {
   const data = await getJoinUsPageContent()
 
   return (
-    <Stack alignItems={'center'} paddingTop='2rem'>
+    <Stack alignItems={'center'} padding='2rem 0rem'>
       <Stack maxWidth={DEFAULT_LAYOUT_MAXWIDTH}>
         <JoinUsPageContent content={data} />
       </Stack>

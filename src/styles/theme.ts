@@ -66,6 +66,7 @@ const theme = createTheme({
       fontSize: '1.5rem',
       lineHeight: 1.334,
       fontWeight: 300,
+      textAlign: 'center',
       '&:hover': {
         backgroundColor: hulen_yellow,
         color: hulen_black,

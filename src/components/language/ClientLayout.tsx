@@ -26,6 +26,7 @@ export const ClientLayout = ({
         marginTop={{ xs: '1rem', md: '4rem' }}
         padding={{ xs: '0 4rem', md: '0 4rem' }}
         justifyContent='start'
+        alignItems={'center'}
         height='100%'
         width='100%'>
         <NavigationBar navbarElements={headerData} />

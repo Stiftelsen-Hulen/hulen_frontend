@@ -4,6 +4,7 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import { styled } from '@mui/system'
 import { LanguageOptions } from '@/types/language'
+import LanguageIcon from '@mui/icons-material/Language'
 
 const StyledSelect = styled(Select)({
   minHeight: '0rem!important',
@@ -31,6 +32,9 @@ const StyledSelect = styled(Select)({
   input: {
     display: 'none',
   },
+  '&:hover': {
+    outline: 'solid 3 px green',
+  },
 })
 
 const StyledMenuItem = styled(MenuItem)({
@@ -50,6 +54,20 @@ const StyledMenuItem = styled(MenuItem)({
   },
 })
 
+const StyledLanguageWrapper = styled(Box)({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '0.25rem',
+  '&:Mui-focus-visible': {
+    outlineStyle: 'solid',
+    outlineColor: hulen_yellow,
+    outlineWidth: '0.25rem',
+    //backgroundColor: 'transparent',
+  },
+})
+
 /**
  * The Language selector is a dropdown menu for changing the language of the entire website.
  * As of now we have the language options norwegian and English
@@ -62,17 +80,20 @@ export const LanguageSelector = () => {
   const labels: Record<LanguageOptions, string> = { "en": "Language", "no": "Språk" }
 
   return (
-    <FormControl>
-      <InputLabel id="language-select-label" style={{ display: "none" }}>{labels[language]}</InputLabel>
-      <StyledSelect
-        onChange={changeLanguage}
-        value={language ?? 'en'}
-        MenuProps={{ PaperProps: { sx: { backgroundColor: 'black' } } }}
-        labelId="language-select-label"
-      >
-        <StyledMenuItem value='no'>Norsk</StyledMenuItem>
-        <StyledMenuItem value='en'>English</StyledMenuItem>
-      </StyledSelect>
-    </FormControl>
+    <StyledLanguageWrapper>
+      <LanguageIcon />
+      <FormControl>
+        <InputLabel id="language-select-label" style={{ display: "none" }}>{labels[language]}</InputLabel>
+        <StyledSelect
+          onChange={changeLanguage}
+          value={language ?? 'en'}
+          MenuProps={{ PaperProps: { sx: { backgroundColor: 'black' } } }}
+          labelId="language-select-label"
+        >
+          <StyledMenuItem value='no'>Norsk</StyledMenuItem>
+          <StyledMenuItem value='en'>English</StyledMenuItem>
+        </StyledSelect>
+      </FormControl>
+    </StyledLanguageWrapper>
   )
 }

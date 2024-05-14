@@ -116,19 +116,8 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
           ) : (
             <>
               {renderNavBarElements}
-              <Box
-                sx={{
-                  paddingTop: '1.5rem',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: '0.24rem',
-                }}
-              >
-                <LanguageIcon />
-                <LanguageSelector />
-              </Box>
+              <LanguageSelector />
+
             </>
           )
         }

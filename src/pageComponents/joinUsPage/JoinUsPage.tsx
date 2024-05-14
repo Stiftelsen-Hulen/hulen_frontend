@@ -16,7 +16,7 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
 
   return (
     <Box display='flex' justifyContent={'center'} width={'100%'}>
-      <Stack maxWidth={'65rem'} textAlign={'center'} alignItems={'center'}>
+      <Stack textAlign={'center'} alignItems={'center'}>
         <Typography variant='h2' fontWeight={700}>
           {content.pageTitle[language]}
         </Typography>
@@ -41,9 +41,15 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
             >
               {buttonProps.label[language]}
             </Button>
-          ))}
+          ))
+          }
+
         </Box>
-        <Stack>
+        <Box width={{ xs: '100%', md: '50%' }} alignSelf={'start'} textAlign={'start'}>
+          <PortableText value={content.ingress[language]} />
+        </Box>
+
+        <Stack justifyContent={'center'}>
           <Box
             sx={{
               width: content.positionPreface.descImage.asset.metadata.dimensions.width ?? '6.25rem',
@@ -54,11 +60,10 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
               layout='responsive'
               src={content.positionPreface.descImage.asset.url ?? ''}
               alt={''}
-              width={content.positionPreface.descImage.asset.metadata.dimensions.width ?? 100}
-              height={content.positionPreface.descImage.asset.metadata.dimensions.height ?? 100}
+              width={content.positionPreface.descImage.asset.metadata.dimensions.width ?? '6.25rem'}
+              height={content.positionPreface.descImage.asset.metadata.dimensions.height ?? '6.25rem'}
             />
           </Box>
-          <PortableText value={content.ingress[language]} />
         </Stack>
 
         <PositionButtons positions={content.positions} introductoryText={content.positionPreface} />

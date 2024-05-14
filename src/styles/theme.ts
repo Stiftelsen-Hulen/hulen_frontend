@@ -54,6 +54,7 @@ const theme = createTheme({
     h5: { fontSize: '1.813rem' },
     body1: {
       fontSize: '1.375rem',
+      fontWeight: '300'
     },
     link: {
       color: 'white',
@@ -64,7 +65,9 @@ const theme = createTheme({
       padding: '0.25rem',
       fontSize: '1.5rem',
       lineHeight: 1.334,
-      fontWeight: 700,
+      fontWeight: 300,
+      textAlign: 'center',
+      textWrap: 'nowrap',
       '&:hover': {
         backgroundColor: hulen_yellow,
         color: hulen_black,

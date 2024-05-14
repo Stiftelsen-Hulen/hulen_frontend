@@ -23,8 +23,8 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
             layout='responsive'
             src={content.icon.asset.url ?? ''}
             alt={''}
-            width={content.icon.asset.metadata.dimensions.width ?? 100}
-            height={content.icon.asset.metadata.dimensions.height ?? 100}
+            width={content.icon.asset.metadata.dimensions.width ?? '6.25rem'}
+            height={content.icon.asset.metadata.dimensions.height ?? '6.25rem'}
           />
         </Box>
         <Typography variant='h2' sx={{ color: hulen_black, fontWeight: 700 }}>

@@ -32,9 +32,6 @@ const StyledSelect = styled(Select)({
   input: {
     display: 'none',
   },
-  '&:hover': {
-    outline: 'solid 3 px green',
-  },
 })
 
 const StyledMenuItem = styled(MenuItem)({

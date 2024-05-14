@@ -94,8 +94,8 @@ export const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) 
           layout='responsive'
           src={imageProps.value.Image.asset.url ?? ''}
           alt={imageProps.value.altText ?? ''}
-          width={imageProps.value.Image.asset.metadata.dimensions.width ?? 100}
-          height={imageProps.value.Image.asset.metadata.dimensions.height ?? 100}
+          width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25'}
+          height={imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25rem'}
         />
       </Box>
     )
@@ -110,8 +110,8 @@ export const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) 
         }}
         src={imageProps.value.Image.asset.url ?? ''}
         alt={imageProps.value.altText ?? ''}
-        width={imageProps.value.Image.asset.metadata.dimensions.width ?? 100}
-        height={imageProps.value.Image.asset.metadata.dimensions.height ?? 100}
+        width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25'}
+        height={imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25'}
       />
     </Link>
   )

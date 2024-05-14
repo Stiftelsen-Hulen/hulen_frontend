@@ -16,8 +16,8 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
 
   return (
     <Box display='flex' justifyContent={'center'} width={'100%'}>
-      <Stack textAlign={'center'} alignItems={'center'}>
-        <Typography variant='h2' fontWeight={700}>
+      <Stack textAlign={'center'} alignItems={'center'} width={'100%'}>
+        <Typography variant='h1' fontWeight={700} width={'100%'}>
           {content.pageTitle[language]}
         </Typography>
         <Box
@@ -45,7 +45,7 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
           }
 
         </Box>
-        <Box width={{ xs: '100%', md: '50%' }} alignSelf={'start'} textAlign={'start'}>
+        <Box width={{ xs: '100%', md: '50%' }} alignSelf={'start'} textAlign={{ xs: 'center', md: 'left' }}>
           <PortableText value={content.ingress[language]} />
         </Box>
 
@@ -67,7 +67,7 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
         </Stack>
 
         <PositionButtons positions={content.positions} introductoryText={content.positionPreface} />
-        <Stack gap='2rem' margin='2rem 0rem' id='positions'>
+        <Stack gap='2rem' margin='2rem 0rem' id='positions' width={'100%'}>
           {content.positions.map((position, index) => (
             <PositionEntry position={position} key={index} />
           ))}

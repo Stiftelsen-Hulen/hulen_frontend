@@ -24,7 +24,7 @@ export const ClientLayout = ({
       <Stack
         flexGrow='1' //flex-grow to ensure children fills available space
         marginTop={{ xs: '1rem', md: '4rem' }}
-        padding={{ xs: '0 4rem', md: '0 4rem' }}
+        padding={{ xs: '0 2rem', md: '0 4rem' }}
         justifyContent='start'
         alignItems={'center'}
         height='100%'

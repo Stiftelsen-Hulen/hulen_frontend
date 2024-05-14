@@ -28,8 +28,8 @@ export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }
             layout='responsive'
             src={content.descImage.asset.url ?? ''}
             alt={''}
-            width={content.descImage.asset.metadata.dimensions.width ?? 100}
-            height={content.descImage.asset.metadata.dimensions.height ?? 100}
+            width={content.descImage.asset.metadata.dimensions.width ?? '6.25rem'}
+            height={content.descImage.asset.metadata.dimensions.height ?? '6.25rem'}
           />
         </Box>
         <Typography variant='h4' fontWeight={700} textAlign={'center'}>

@@ -92,7 +92,7 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
 
   return (
     <StyledNavbarWrapper
-      component={'nav'}
+      component={'nav'} //Enhances accessibility with semantic HTML structure.
       flexDirection={isMobile ? 'column' : 'row'}
     >
       <Link href={'/'}>

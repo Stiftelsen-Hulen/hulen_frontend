@@ -19,6 +19,7 @@ const StyledStack = styled(Stack)({
 const StyledFooterWrapper = styled(Box)({
   paddingTop: '2rem',
   marginTop: 'auto',
+  paddingBottom: '2rem',
   display: 'flex',
   gap: '2rem',
   width: '100%',

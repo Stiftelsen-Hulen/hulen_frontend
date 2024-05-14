@@ -12,7 +12,6 @@ import { MenuDrawer } from '.'
 import { usePathname } from 'next/navigation'
 import { hulen_yellow, hulen_yellow_text } from '@/styles'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
-import LanguageIcon from '@mui/icons-material/Language'
 import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import { styled } from '@mui/system'
 const LOGO_HEIGHT_BASE = 120
@@ -31,13 +30,6 @@ const StyledNavLinksWrapper = styled(Box)({
   gap: '1rem',
   flexWrap: 'wrap',
   justifyContent: 'flex-end'
-
-})
-const StyleNavItemWrapper = styled(Box)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
 
 })
 
@@ -73,19 +65,16 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
           cursor: 'pointer',
           color: hulen_yellow_text,
           textDecoration: 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
-        <StyleNavItemWrapper
-          display='flex'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-        >
-          <ArrowDownwardIcon style={{ color: isCurrentPath ? hulen_yellow : 'initial' }} />
-          <Typography variant='menuLink' onClick={() => setIsMenuDrawerOpen(false)}>
-            {element.title[language]}
-          </Typography>
-        </StyleNavItemWrapper>
+        <ArrowDownwardIcon style={{ color: isCurrentPath ? hulen_yellow : 'initial' }} />
+        <Typography variant='menuLink' onClick={() => setIsMenuDrawerOpen(false)}>
+          {element.title[language]}
+        </Typography>
       </Link>
     )
   })
@@ -117,7 +106,6 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
             <>
               {renderNavBarElements}
               <LanguageSelector />
-
             </>
           )
         }

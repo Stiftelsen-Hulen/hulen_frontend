@@ -33,11 +33,11 @@ const StyledNavLinksWrapper = styled(Box)({
   justifyContent: 'flex-end'
 
 })
-const StyleLinksWrapper = styled(Box)({
+const StyleNavItemWrapper = styled(Box)({
   display: 'flex',
-  gap: '1rem',
-  flexWrap: 'wrap',
-  justifyContent: 'flex-end'
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
 
 })
 
@@ -75,7 +75,7 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
           textDecoration: 'none',
         }}
       >
-        <Box
+        <StyleNavItemWrapper
           display='flex'
           flexDirection='column'
           justifyContent='center'
@@ -85,7 +85,7 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
           <Typography variant='menuLink' onClick={() => setIsMenuDrawerOpen(false)}>
             {element.title[language]}
           </Typography>
-        </Box>
+        </StyleNavItemWrapper>
       </Link>
     )
   })

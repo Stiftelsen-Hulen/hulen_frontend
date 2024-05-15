@@ -5,6 +5,12 @@ import { Box, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 
+
+/**
+ * Posistion entry is for details of a posistion eg. "Bartender"
+ * If an image is included in Sanity, it will be displayed; otherwise, no image will be shown.
+ * @param position type Position
+ */
 export const PositionEntry = ({ position }: { position: Position }) => {
   const { language } = useLanguage()
 
@@ -35,6 +41,12 @@ export const PositionEntry = ({ position }: { position: Position }) => {
   )
 }
 
+/**
+ * PositionSanityImage is a responsive image component that adapts its size based on the provided width.
+ * If no width is provided, it dynamically calculates the width and height based on the aspect ratio of the image.
+ * @param imageData type SanityImage
+ * @param width type number, optional
+ */
 const PositionSanityImage = ({ imageData, width }: { imageData: SanityImage; width?: number }) => {
   const calcWidth = () => {
     if (width) {

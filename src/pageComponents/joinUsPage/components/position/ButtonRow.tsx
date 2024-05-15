@@ -3,6 +3,12 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { scrollToSection } from '@/util/helpers'
 import { Box, Button, Stack, Typography } from '@mui/material'
 
+/**
+ * ButtonRow displays positions as a row of buttons under one title
+ * The button row adapts by wrapping onto the next line on smaller screens.
+ * @param title type string
+ * @param positions type array of job positions
+ */
 export const ButtonRow = ({ title, positions }: { title: string; positions: Position[] }) => {
   const { language } = useLanguage()
 

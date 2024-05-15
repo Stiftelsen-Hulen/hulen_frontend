@@ -6,6 +6,12 @@ import { PositionDescriptionSection } from '@/types/sanity/joinUsPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { PortableText } from '@portabletext/react'
 
+/**
+ * PositionButtons generates buttons for different job positions, and organizing them based on their shift type.
+ * It also displays introductory text related to the positions.
+ * @param param0 
+ * @returns 
+ */
 export const PositionButtons = ({
   positions,
   introductoryText,
@@ -18,6 +24,7 @@ export const PositionButtons = ({
   const organized = useMemo(() => {
     const byType: Record<PositionShiftType, Position[]> = { night_shift: [], outside_regular: [] }
 
+    //Categorize positions based on shift type
     positions.forEach((position) => {
       const prevValue = byType[position.category]
       if (prevValue === undefined) {

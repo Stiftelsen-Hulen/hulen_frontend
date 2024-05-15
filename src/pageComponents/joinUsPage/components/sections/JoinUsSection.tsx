@@ -5,7 +5,7 @@ import { Box, Link, Paper, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 
-/** Section for handling the Join Us page
+/** Section on the Join Us page
  */
 export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
   const { language } = useLanguage()

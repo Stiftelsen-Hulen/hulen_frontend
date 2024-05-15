@@ -16,8 +16,8 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
   const { language } = useLanguage()
 
   return (
-    <Stack justifyContent={'center'} width={'100%'}>
-      <Stack sx={{ textAlign: 'center', alignItems: 'center', width: '100%', maxWidth: DEFAULT_LAYOUT_MAXWIDTH }}>
+    <Stack sx={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+      <Stack sx={{ textAlign: 'center', alignItems: 'center', width: '100%', maxWidth: DEFAULT_LAYOUT_MAXWIDTH, justifyContent: 'center' }}>
         <Typography variant='h1' fontWeight={700} width={'100%'}>
           {content.pageTitle[language]}
         </Typography>
@@ -77,6 +77,6 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
 
       </Stack>
       <JoinUsSection content={content.joinSection} />
-    </Stack>
+    </Stack >
   )
 }

@@ -10,13 +10,14 @@ import { PositionEntry } from './components/position/PositionEntry'
 import { BenefitsSection } from './components/sections/BenefitsSection'
 import { JoinUsSection } from './components/sections/JoinUsSection'
 import Image from 'next/image'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 
 export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent }) => {
   const { language } = useLanguage()
 
   return (
-    <Box display='flex' justifyContent={'center'} width={'100%'}>
-      <Stack textAlign={'center'} alignItems={'center'} width={'100%'}>
+    <Stack justifyContent={'center'} width={'100%'}>
+      <Stack sx={{ textAlign: 'center', alignItems: 'center', width: '100%', maxWidth: DEFAULT_LAYOUT_MAXWIDTH }}>
         <Typography variant='h1' fontWeight={700} width={'100%'}>
           {content.pageTitle[language]}
         </Typography>
@@ -73,8 +74,9 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
           ))}
         </Stack>
         <BenefitsSection content={content.benefitsSection} />
-        <JoinUsSection content={content.joinSection} />
+
       </Stack>
-    </Box>
+      <JoinUsSection content={content.joinSection} />
+    </Stack>
   )
 }

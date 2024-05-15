@@ -31,7 +31,7 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
           {content.header[language]}
         </Typography>
         <PortableText value={content.content[language]} />
-        <Box display='flex'>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
           <Typography sx={{ color: hulen_black }}>{content.emailPreface[language]}</Typography>
           <Link
             href={`mailto:${content.email}`}

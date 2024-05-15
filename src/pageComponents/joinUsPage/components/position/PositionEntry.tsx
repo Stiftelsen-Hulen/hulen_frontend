@@ -23,10 +23,10 @@ export const PositionEntry = ({ position }: { position: Position }) => {
       id={`${position.title[language]}`}
     >
       <Stack sx={{ justifyContent: 'center', maxWidth: { xs: '100%', md: '60%' }, width: '100%' }}>
-        <Typography variant='h3' textAlign={'center'} width={'100%'} >
+        <Typography variant='h3' sx={{ wordWrap: 'break-word', width: '100%', textAlign: 'center' }} >
           {position.title[language]}
         </Typography>
-        <Stack textAlign={'justify'} width={'100%'}>
+        <Stack sx={{ textAlign: 'justify', width: '100%' }}>
           <PortableText value={position.description[language]} />
         </Stack>
       </Stack>

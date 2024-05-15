@@ -21,15 +21,14 @@ export const ButtonRow = ({ title, positions }: { title: string; positions: Posi
   }
 
   return (
-    <Stack alignItems={'center'} gap='1rem'>
+    <Stack sx={{ alignItems: 'center', gap: '1rem' }}>
       <Typography variant='h4'>{getTranslatedTitle()}</Typography>
-      <Box display='flex' gap='0.5rem' flexWrap={'wrap'} justifyContent={'center'}>
+      <Box sx={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
         {positions.map((position, index) => (
           <Button
             variant='positionButton'
             onClick={() => scrollToSection(position.title[language])}
             key={index}
-            sx={{}}
           >
             {position.title[language]}
           </Button>

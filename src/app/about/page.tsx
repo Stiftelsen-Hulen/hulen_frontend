@@ -7,9 +7,17 @@ export default async function AboutUsPage() {
   const data = await getAboutUsContent()
 
   return (
-    <Stack alignItems={'center'} padding='2rem 0rem'>
-      <Stack maxWidth={DEFAULT_LAYOUT_MAXWIDTH}>
+    <Stack sx={{ alignItems: 'center', padding: '2rem' }}>
+      <Stack sx={{ width: '100%', maxWidth: DEFAULT_LAYOUT_MAXWIDTH, gap: '2rem' }}>
         <GenericPagePropsRenderer genericSanityPageProps={data} />
+        <iframe
+          loading="lazy"
+          src="https://maps.google.com/maps?q=Olaf%20Ryes%20vei%2048&amp;t=m&amp;z=13&amp;output=embed&amp;iwloc=near"
+          title="Olaf Ryes vei 48"
+          aria-label="Olaf Ryes vei 48"
+          width='100%'
+          height='400'
+        />
       </Stack>
     </Stack>
   )

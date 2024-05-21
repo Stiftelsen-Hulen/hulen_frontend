@@ -16,8 +16,6 @@ import { PositionSection } from './components/sections/PositionSection'
  * Position section
  * Benefit section
  * Join us section
- * @param param0 
- * @returns 
  */
 export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent }) => {
   const { language } = useLanguage()

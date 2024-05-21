@@ -5,19 +5,27 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 import { scrollToSection } from '@/util/helpers'
-import { PositionButtons } from './components/position/PositionButtons'
-import { PositionEntry } from './components/position/PositionEntry'
 import { BenefitsSection } from './components/sections/BenefitsSection'
 import { JoinUsSection } from './components/sections/JoinUsSection'
-import Image from 'next/image'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import { PositionSection } from './components/sections/PositionSection'
 
+/**
+ * Renders the content for the join us page, inclueds:
+ * Title, navigation buttons, and ingress text
+ * Position section
+ * Benefit section
+ * Join us section
+ * @param param0 
+ * @returns 
+ */
 export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent }) => {
   const { language } = useLanguage()
 
   return (
-    <Box display='flex' justifyContent={'center'} width={'100%'}>
-      <Stack textAlign={'center'} alignItems={'center'}>
-        <Typography variant='h2' fontWeight={700}>
+    <Stack sx={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+      <Stack sx={{ textAlign: 'center', alignItems: 'center', width: '100%', maxWidth: DEFAULT_LAYOUT_MAXWIDTH, justifyContent: 'center' }}>
+        <Typography variant='h1' fontWeight={700} width={'100%'}>
           {content.pageTitle[language]}
         </Typography>
         <Box
@@ -28,10 +36,6 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
             width: '100%',
             flexDirection: { xs: 'column', sm: 'row' },
           }}
-          display='flex'
-          justifyContent={'space-between'}
-          gap='1rem'
-          width='100%'
         >
           {content.navigationButtons.map((buttonProps) => (
             <Button
@@ -43,38 +47,15 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
             </Button>
           ))
           }
-
         </Box>
-        <Box width={{ xs: '100%', md: '50%' }} alignSelf={'start'} textAlign={'start'}>
+        <Box sx={{ width: { xs: '100%', md: '50%' }, alignSelf: 'start', textAlign: { xs: 'center', md: 'left' } }}>
           <PortableText value={content.ingress[language]} />
         </Box>
-
-        <Stack justifyContent={'center'}>
-          <Box
-            sx={{
-              width: content.positionPreface.descImage.asset.metadata.dimensions.width ?? '6.25rem',
-              height: content.positionPreface.descImage.asset.metadata.dimensions.height ?? '6.25rem',
-            }}
-          >
-            <Image
-              layout='responsive'
-              src={content.positionPreface.descImage.asset.url ?? ''}
-              alt={''}
-              width={content.positionPreface.descImage.asset.metadata.dimensions.width ?? '6.25rem'}
-              height={content.positionPreface.descImage.asset.metadata.dimensions.height ?? '6.25rem'}
-            />
-          </Box>
-        </Stack>
-
-        <PositionButtons positions={content.positions} introductoryText={content.positionPreface} />
-        <Stack gap='2rem' margin='2rem 0rem' id='positions'>
-          {content.positions.map((position, index) => (
-            <PositionEntry position={position} key={index} />
-          ))}
-        </Stack>
+        <PositionSection content={content.positionPreface} positions={content.positions} />
         <BenefitsSection content={content.benefitsSection} />
-        <JoinUsSection content={content.joinSection} />
       </Stack>
-    </Box>
+
+      <JoinUsSection content={content.joinSection} />
+    </Stack >
   )
 }

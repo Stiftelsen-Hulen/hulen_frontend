@@ -32,9 +32,6 @@ const StyledSelect = styled(Select)({
   input: {
     display: 'none',
   },
-  '&:hover': {
-    outline: 'solid 3 px green',
-  },
 })
 
 const StyledMenuItem = styled(MenuItem)({
@@ -55,17 +52,12 @@ const StyledMenuItem = styled(MenuItem)({
 })
 
 const StyledLanguageWrapper = styled(Box)({
+  paddingBottom: '0.5rem',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'start',
   gap: '0.25rem',
-  '&:Mui-focus-visible': {
-    outlineStyle: 'solid',
-    outlineColor: hulen_yellow,
-    outlineWidth: '0.25rem',
-    //backgroundColor: 'transparent',
-  },
 })
 
 /**

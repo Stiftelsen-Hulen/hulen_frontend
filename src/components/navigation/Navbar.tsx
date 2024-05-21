@@ -26,10 +26,13 @@ const StyledNavbarWrapper = styled(Box)({
   maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
 })
 const StyledNavLinksWrapper = styled(Box)({
+  width: '100%',
   display: 'flex',
   gap: '1rem',
+  marginBottom: '1rem',
   flexWrap: 'wrap',
-  justifyContent: 'flex-end'
+  justifyContent: 'flex-end',
+  alignItems: 'end'
 
 })
 
@@ -88,11 +91,11 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
         <Image
           src={navbarElements.navbarLogo.asset.url}
           alt={navbarElements.navbarLogo.altText.no}
-          width={isMobile ? LOGO_WIDTH_BASE * 2 : LOGO_WIDTH_BASE * 3}
-          height={isMobile ? LOGO_HEIGHT_BASE * 2 : LOGO_HEIGHT_BASE * 3}
+          width={isMobile ? LOGO_WIDTH_BASE * 2 : LOGO_WIDTH_BASE * 2.3}
+          height={isMobile ? LOGO_HEIGHT_BASE * 2 : LOGO_HEIGHT_BASE * 2.3}
         />
       </Link>
-      <StyledNavLinksWrapper >
+      <StyledNavLinksWrapper sx={{ justifyContent: { xs: 'center', md: 'end' } }}>
         {
           isMobile ? (
             <IconButton

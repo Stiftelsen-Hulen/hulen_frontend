@@ -5,14 +5,14 @@ import { Box, Link, Paper, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 
-/** Section for handling the Join Us page
+/** Section on the Join Us page
  */
 export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
   const { language } = useLanguage()
 
   return (
-    <Paper sx={{ backgroundColor: hulen_yellow_text, borderRadius: '0rem', padding: '4rem' }}>
-      <Stack id='join' sx={{ textAlign: 'center', alignItems: 'center', color: hulen_black }}>
+    <Paper sx={{ backgroundColor: hulen_yellow_text, borderRadius: '0rem', padding: '4rem', margin: { xs: ' 0 -2rem', md: '0 -4rem' } }}>
+      <Stack id='join' sx={{ textAlign: 'center', alignItems: 'center', color: hulen_black, width: '100%' }}>
         <Box
           sx={{
             width: content.icon.asset.metadata.dimensions.width ?? '6.25rem',
@@ -23,15 +23,15 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
             layout='responsive'
             src={content.icon.asset.url ?? ''}
             alt={''}
-            width={content.icon.asset.metadata.dimensions.width ?? 100}
-            height={content.icon.asset.metadata.dimensions.height ?? 100}
+            width={content.icon.asset.metadata.dimensions.width ?? '6.25rem'}
+            height={content.icon.asset.metadata.dimensions.height ?? '6.25rem'}
           />
         </Box>
         <Typography variant='h2' sx={{ color: hulen_black, fontWeight: 700 }}>
           {content.header[language]}
         </Typography>
         <PortableText value={content.content[language]} />
-        <Box display='flex'>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
           <Typography sx={{ color: hulen_black }}>{content.emailPreface[language]}</Typography>
           <Link
             href={`mailto:${content.email}`}

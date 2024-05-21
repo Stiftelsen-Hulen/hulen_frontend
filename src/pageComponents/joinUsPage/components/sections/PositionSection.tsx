@@ -12,12 +12,9 @@ import Image from 'next/image'
  * Introduction
  * Postition Buttons
  * Position entries
- * @param param0 
- * @returns 
  */
 export const PositionSection = ({ content, positions }: { content: PositionDescriptionSection, positions: Position[] }) => {
   const { language } = useLanguage()
-
 
   return (
     <Stack sx={{ alignItems: 'center', gap: '2rem', width: '100%' }}>
@@ -35,7 +32,7 @@ export const PositionSection = ({ content, positions }: { content: PositionDescr
             width={content.descImage.asset.metadata.dimensions.width ?? '6.25rem'}
             height={content.descImage.asset.metadata.dimensions.height ?? '6.25rem'}
           />
-        </Box>-h
+        </Box>
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />
       </Stack>

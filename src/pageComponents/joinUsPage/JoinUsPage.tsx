@@ -10,6 +10,15 @@ import { JoinUsSection } from './components/sections/JoinUsSection'
 import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import { PositionSection } from './components/sections/PositionSection'
 
+/**
+ * Renders the content for the join us page, inclueds:
+ * Title, navigation buttons, and ingress text
+ * Position section
+ * Benefit section
+ * Join us section
+ * @param param0 
+ * @returns 
+ */
 export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent }) => {
   const { language } = useLanguage()
 
@@ -27,10 +36,6 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
             width: '100%',
             flexDirection: { xs: 'column', sm: 'row' },
           }}
-          display='flex'
-          justifyContent={'space-between'}
-          gap='1rem'
-          width='100%'
         >
           {content.navigationButtons.map((buttonProps) => (
             <Button
@@ -42,7 +47,6 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
             </Button>
           ))
           }
-
         </Box>
         <Box sx={{ width: { xs: '100%', md: '50%' }, alignSelf: 'start', textAlign: { xs: 'center', md: 'left' } }}>
           <PortableText value={content.ingress[language]} />

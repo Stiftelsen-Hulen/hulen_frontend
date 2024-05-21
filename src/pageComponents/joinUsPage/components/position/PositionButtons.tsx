@@ -28,7 +28,7 @@ export const PositionButtons = ({
   }, [positions])
 
   return (
-    <Stack alignItems={'center'} gap='2rem'>
+    <Stack sx={{ alignItems: 'center', gap: '2rem' }}>
       {Object.entries(organized).map(([key, value]) => (
         <ButtonRow key={key} title={key} positions={value} />
       ))}

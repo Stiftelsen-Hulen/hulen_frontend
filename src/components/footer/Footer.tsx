@@ -28,6 +28,10 @@ const StyledFooterWrapper = styled(Box)({
   maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
 })
 const StyledFooterBorder = styled(Stack)({
+  paddingTop: '2rem',
+  marginTop: 'auto',
+  paddingBottom: '2rem',
+  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',

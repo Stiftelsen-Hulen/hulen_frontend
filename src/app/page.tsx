@@ -7,7 +7,7 @@ export default async function HomePage() {
   const data = await getHomePageContent()
 
   return (
-    <Stack alignItems={'center'} padding='2rem 0rem' >
+    <Stack sx={{ alignItems: 'center', padding: '2rem 2rem', width: '100%' }}>
       <Stack maxWidth={DEFAULT_LAYOUT_MAXWIDTH}>
         <GenericPagePropsRenderer genericSanityPageProps={data} />
       </Stack>

@@ -37,13 +37,13 @@ export const PositionSection = ({ content, positions }: { content: PositionDescr
         <PortableText value={content.content[language]} />
       </Stack>
 
+      <PositionButtons positions={positions} />
+
       <Stack sx={{ gap: '2rem', margin: '2rem 0rem', width: '100%' }}>
         {positions.map((position, index) => (
           <PositionEntry position={position} key={index} />
         ))}
       </Stack>
-
-      <PositionButtons positions={positions} />
     </Stack>
 
   )

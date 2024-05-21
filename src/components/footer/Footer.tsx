@@ -23,12 +23,17 @@ const StyledFooterWrapper = styled(Box)({
   display: 'flex',
   gap: '2rem',
   width: '100%',
-  maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
   justifyContent: 'space-around',
+  flexWrap: 'wrap',
+  maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
+})
+const StyledFooterBorder = styled(Stack)({
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
   borderTop: '0.188rem',
   borderTopStyle: 'double',
   borderTopColor: hulen_yellow_text,
-  flexWrap: 'wrap',
 })
 /**
  * A Footer is located at the bottom of a webpage, containing information such as contact details, or links to important pages.
@@ -40,18 +45,20 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
   const { language } = useLanguage()
 
   return (
-    <StyledFooterWrapper
-      component={"footer"}
-      sx={{
-        flexDirection: { xs: 'column', sm: 'row' },
-        alignItems: { xs: 'center', sm: 'default' },
-      }}
-    >
-      {footerElements.map((footerElement) => (
-        <StyledStack key={footerElement.sortOrder}>
-          <PortableText value={footerElement.footerElement[language]} />
-        </StyledStack>
-      ))}
-    </StyledFooterWrapper>
+    <StyledFooterBorder>
+      <StyledFooterWrapper
+        component={"footer"}
+        sx={{
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'center', sm: 'default' },
+        }}
+      >
+        {footerElements.map((footerElement) => (
+          <StyledStack key={footerElement.sortOrder}>
+            <PortableText value={footerElement.footerElement[language]} />
+          </StyledStack>
+        ))}
+      </StyledFooterWrapper>
+    </StyledFooterBorder>
   )
 }

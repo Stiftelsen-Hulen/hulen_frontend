@@ -1,3 +1,4 @@
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import { hulen_black, hulen_yellow_text } from '@/styles'
 import { JoinSanitySection } from '@/types/sanity/joinUsPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
@@ -11,8 +12,10 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
   const { language } = useLanguage()
 
   return (
-    <Paper sx={{ backgroundColor: hulen_yellow_text, borderRadius: '0rem', padding: '4rem', margin: { xs: ' 0 -2rem', md: '0 -4rem' } }}>
-      <Stack id='join' sx={{ textAlign: 'center', alignItems: 'center', color: hulen_black, width: '100%' }}>
+    <Paper sx={{ backgroundColor: hulen_yellow_text, borderRadius: '0rem', padding: '4rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Stack id='join' sx={{
+        textAlign: 'center', alignItems: 'center', color: hulen_black, width: '100%', maxWidth: DEFAULT_LAYOUT_MAXWIDTH
+      }}>
         <Box
           sx={{
             width: content.icon.asset.metadata.dimensions.width ?? '6.25rem',

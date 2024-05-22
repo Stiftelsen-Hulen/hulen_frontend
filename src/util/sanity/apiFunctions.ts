@@ -7,6 +7,7 @@ import {
   getJoinUsPageGroq,
   getNavigationElementsGroq,
   getNoPageFoundGroq,
+  getTechInfoPageGroq,
 } from './groqQueries'
 import { sanityClient } from './sanityClient'
 import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
@@ -14,6 +15,7 @@ import { Sanity404Page } from '@/types/sanity/pageNotFound'
 import { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
 import { SanityContactPageContent } from '@/types/sanity/contact'
 import { JoinUsSanityContent } from '@/types/sanity/joinUsPage'
+import { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
 
 export async function getSanityNavigationElements() {
   const navigationElements = await sanityClient.fetch(getNavigationElementsGroq)
@@ -56,3 +58,10 @@ export async function getJoinUsPageContent() {
 
   return joinUsPageContent as JoinUsSanityContent
 }
+
+export async function getTechInfoPageContent() {
+  const techInfoPageContent = await sanityClient.fetch(getTechInfoPageGroq)
+  console.log('api data : ', techInfoPageContent)
+  return techInfoPageContent as TechInfoPageContent
+}
+

@@ -7,7 +7,7 @@ export default async function AboutUsPage() {
   const data = await getAboutUsContent()
 
   return (
-    <Stack sx={{ alignItems: 'center', padding: '2rem' }}>
+    <Stack sx={{ alignItems: 'center', padding: '2rem', width: '100%' }}>
       <Stack sx={{ width: '100%', maxWidth: DEFAULT_LAYOUT_MAXWIDTH, gap: '2rem' }}>
         <GenericPagePropsRenderer genericSanityPageProps={data} />
         <iframe

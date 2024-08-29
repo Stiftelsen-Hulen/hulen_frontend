@@ -1,4 +1,5 @@
 'use client'
+import { TechCategory } from '@/components/infoPage'
 import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import { hulen_yellow_text } from '@/styles/theme'
 import { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
@@ -36,16 +37,7 @@ export const TechSection = ({ content }: { content: TechInfoPageContent }) => {
           <Grid container spacing={4} paddingY='4rem' maxWidth={'45rem'} margin={'auto'}>
             {content.categories.map((category, i) => (
               <Grid item xs={12} sm={6} key={i}>
-                <Typography variant='h6' sx={{ textDecoration: 'underline' }}>
-                  {category.category}
-                </Typography>
-                <List>
-                  {category.entries?.map((entry, j) => (
-                    <ListItem sx={{ fontSize: '1rem', padding: '0.1rem' }} key={j} disableGutters>
-                      {entry}
-                    </ListItem>
-                  ))}
-                </List>
+                <TechCategory category={category}></TechCategory>
               </Grid>
             ))}
           </Grid>

@@ -1,2 +1,2 @@
-export * from './techCaterories'
+export * from './techCategories'
 export * from './techInfoPage'

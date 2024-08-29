@@ -1,5 +1,5 @@
 import { LanguageOptions } from "@/types/language/LanguageOptions";
-import { TechCategories } from "./techCaterories";
+import { TechCategories } from "./techCategories";
 
 
 export interface TechInfoPageContent {

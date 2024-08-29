@@ -78,7 +78,7 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
 
 export const getTechInfoPageGroq = `*[_type == "techInfo"][0]{
   categories[]{
-    enteries[],
+    entries[],
     category,
   },
   email,

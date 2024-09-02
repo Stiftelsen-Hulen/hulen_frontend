@@ -1,11 +1,11 @@
 import { LanguageOptions } from '@/types/language'
 import { SanityNavElement } from '@/types/sanity'
-import { Box, Drawer, IconButton, Stack, SvgIcon, Typography } from '@mui/material'
+import { Box, Drawer, IconButton, Stack, SvgIcon } from '@mui/material'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
-import Link from 'next/link'
 import { LanguageSelector } from '../language'
-import { usePathname } from 'next/navigation'
-import { hulen_black, hulen_yellow } from '@/styles'
+import { NavDropDown } from './NavDropDown'
+import { Fragment } from 'react'
+import { DrawerLinkItem } from './DrawerLinkItem'
 
 /** The menu drawer is the side menu we use for navigation when on mobile/small screens
  */
@@ -20,8 +20,6 @@ export const MenuDrawer = ({
   onClose: () => void
   navElements: SanityNavElement[]
 }) => {
-  const currentPath = usePathname()
-
   return (
     <Drawer
       onClose={onClose}
@@ -38,21 +36,13 @@ export const MenuDrawer = ({
       </Box>
       <Stack gap='1rem' padding='2rem'>
         {navElements.map((element, idx) => (
-          <Link
-            href={element.subUrl}
-            key={idx}
-            passHref
-            style={{
-              all: 'unset',
-              cursor: 'pointer',
-              background: element.subUrl === currentPath ? hulen_yellow : hulen_black,
-              color: element.subUrl === currentPath ? hulen_black : hulen_yellow,
-            }}
-            onClick={onClose}
-            role='link'
-          >
-            <Typography variant='menuLink'>{element.title[language]}</Typography>
-          </Link>
+          <Fragment key={idx}>
+            {element.subNavElements?.length ? (
+              <NavDropDown navElement={element} onClick={onClose} language={language} isMobile />
+            ) : (
+              <DrawerLinkItem navElement={element} onClick={onClose} language={language} />
+            )}
+          </Fragment>
         ))}
         <LanguageSelector />
       </Stack>

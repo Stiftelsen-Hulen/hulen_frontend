@@ -13,4 +13,5 @@ export interface SanityNavBarContent {
 export interface SanityNavElement {
   subUrl: string
   title: Record<SupportedLanguageTypes, string>
+  subNavElements: SanityNavElement[]
 }

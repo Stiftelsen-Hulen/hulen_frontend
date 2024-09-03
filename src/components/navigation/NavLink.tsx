@@ -1,10 +1,10 @@
-import { SupportedLanguageTypes } from '@/configs'
+import type { SupportedLanguageTypes } from '@/configs'
 import { hulen_yellow, hulen_yellow_text } from '@/styles'
-import { SanityNavElement } from '@/types/sanity'
+import type { SanityNavElement } from '@/types/sanity'
 import { ArrowDownward } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import Link from 'next/link'
-import { MouseEventHandler } from 'react'
+import type { MouseEventHandler } from 'react'
 
 export const NavLink = ({
   navElement,

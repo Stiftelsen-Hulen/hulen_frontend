@@ -1,5 +1,5 @@
-import { LanguageOptions } from '@/types/language'
-import { SanityNavElement } from '@/types/sanity'
+import type { LanguageOptions } from '@/types/language'
+import type { SanityNavElement } from '@/types/sanity'
 import { Box, Drawer, IconButton, Stack, SvgIcon } from '@mui/material'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import { LanguageSelector } from '../language'

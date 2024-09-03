@@ -1,10 +1,11 @@
-import { SupportedLanguageTypes } from '@/configs'
+import type { SupportedLanguageTypes } from '@/configs'
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
-import { SanityNavElement } from '@/types/sanity'
+import type { SanityNavElement } from '@/types/sanity'
 import { ArrowDownward, ArrowDropDown } from '@mui/icons-material'
 import { Box, Button, ClickAwayListener, List, ListItem, Typography } from '@mui/material'
 import { usePathname } from 'next/navigation'
-import { MouseEventHandler, useRef, useState, useEffect } from 'react'
+import type { MouseEventHandler } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { DrawerLinkItem } from './DrawerLinkItem'
 
 /** Navigation Dropdown component used in navigation and on mobile devices in MenuDrawer

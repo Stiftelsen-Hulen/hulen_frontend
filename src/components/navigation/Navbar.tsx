@@ -1,5 +1,5 @@
 'use client'
-import { SanityNavBarContent } from '@/types/sanity'
+import type { SanityNavBarContent } from '@/types/sanity'
 import { Box, IconButton, useMediaQuery, SvgIcon } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'

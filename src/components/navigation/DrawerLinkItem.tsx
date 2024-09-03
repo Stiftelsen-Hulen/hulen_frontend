@@ -1,10 +1,10 @@
-import { SupportedLanguageTypes } from '@/configs'
+import type { SupportedLanguageTypes } from '@/configs'
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
-import { SanityNavElement } from '@/types/sanity'
+import type { SanityNavElement } from '@/types/sanity'
 import { Typography } from '@mui/material'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { MouseEventHandler } from 'react'
+import type { MouseEventHandler } from 'react'
 
 /** Drawer link item used in DropDown and in MenuDrawer on mobile
  */

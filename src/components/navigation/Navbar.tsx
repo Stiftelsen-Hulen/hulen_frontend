@@ -4,7 +4,6 @@ import { Box, IconButton, useMediaQuery, SvgIcon } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import { LanguageSelector } from '../language/LanguageSelector'
-import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { useTheme } from '@mui/material/styles'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import { Fragment, useState } from 'react'
@@ -44,7 +43,6 @@ const StyledNavLinksWrapper = styled(Box)({
  */
 const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent }) => {
   const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState<boolean>(false)
-  const { language } = useLanguage()
   const theme = useTheme()
   // MuI has an easy accessible tool for doing media queries. This can also be done in the SX prop as {width: {xs: value, md: value}}
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
@@ -56,11 +54,10 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
     return (
       <Fragment key={idx}>
         {element.subNavElements?.length ? (
-          <NavDropDown navElement={element} language={language}></NavDropDown>
+          <NavDropDown navElement={element} />
         ) : (
           <NavLink
             navElement={element}
-            language={language}
             isCurrentPath={isCurrentPath}
             onClick={() => setIsMenuDrawerOpen(false)}
           ></NavLink>
@@ -101,7 +98,6 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
       <MenuDrawer
         navElements={navbarElements.navElements}
         isOpen={isMenuDrawerOpen}
-        language={language}
         onClose={() => setIsMenuDrawerOpen(false)}
       />
     </StyledNavbarWrapper>

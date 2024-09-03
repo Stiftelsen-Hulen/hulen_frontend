@@ -1,4 +1,3 @@
-import type { SupportedLanguageTypes } from '@/configs'
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { SanityNavElement } from '@/types/sanity'
 import { ArrowDownward, ArrowDropDown } from '@mui/icons-material'
@@ -7,23 +6,23 @@ import { usePathname } from 'next/navigation'
 import type { MouseEventHandler } from 'react'
 import { useRef, useState, useEffect } from 'react'
 import { DrawerLinkItem } from './DrawerLinkItem'
+import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 
 /** Navigation Dropdown component used in navigation and on mobile devices in MenuDrawer
  *
  */
 export const NavDropDown = ({
   navElement,
-  language,
   isMobile = false,
   onClick,
 }: {
   navElement: SanityNavElement
-  language: SupportedLanguageTypes
   isMobile?: boolean
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }) => {
   const dropdownRef = useRef<HTMLUListElement>(null)
   const currentPath = usePathname()
+  const { language } = useLanguage()
   const [open, setOpen] = useState(false)
 
   const isCurrentParentPath = currentPath.startsWith(navElement.subUrl)
@@ -112,7 +111,7 @@ export const NavDropDown = ({
         >
           {navElement.subNavElements.map((subElement, i) => (
             <ListItem disableGutters key={i}>
-              <DrawerLinkItem navElement={subElement} onClick={onClick} language={language} />
+              <DrawerLinkItem navElement={subElement} onClick={onClick} />
             </ListItem>
           ))}
         </List>

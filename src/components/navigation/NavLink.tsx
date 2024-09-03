@@ -1,6 +1,6 @@
-import type { SupportedLanguageTypes } from '@/configs'
 import { hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { SanityNavElement } from '@/types/sanity'
+import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { ArrowDownward } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import Link from 'next/link'
@@ -8,15 +8,15 @@ import type { MouseEventHandler } from 'react'
 
 export const NavLink = ({
   navElement,
-  language,
   isCurrentPath,
   onClick,
 }: {
   navElement: SanityNavElement
-  language: SupportedLanguageTypes
   isCurrentPath: boolean
   onClick: MouseEventHandler
 }) => {
+  const { language } = useLanguage()
+
   return (
     <Link
       href={navElement.subUrl}

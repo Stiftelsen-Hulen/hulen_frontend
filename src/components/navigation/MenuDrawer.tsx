@@ -1,4 +1,3 @@
-import type { LanguageOptions } from '@/types/language'
 import type { SanityNavElement } from '@/types/sanity'
 import { Box, Drawer, IconButton, Stack, SvgIcon } from '@mui/material'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
@@ -12,11 +11,9 @@ import { DrawerLinkItem } from './DrawerLinkItem'
 export const MenuDrawer = ({
   isOpen,
   onClose,
-  language,
   navElements,
 }: {
   isOpen: boolean
-  language: LanguageOptions
   onClose: () => void
   navElements: SanityNavElement[]
 }) => {
@@ -38,9 +35,9 @@ export const MenuDrawer = ({
         {navElements.map((element, idx) => (
           <Fragment key={idx}>
             {element.subNavElements?.length ? (
-              <NavDropDown navElement={element} onClick={onClose} language={language} isMobile />
+              <NavDropDown navElement={element} onClick={onClose} isMobile />
             ) : (
-              <DrawerLinkItem navElement={element} onClick={onClose} language={language} />
+              <DrawerLinkItem navElement={element} onClick={onClose} />
             )}
           </Fragment>
         ))}

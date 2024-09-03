@@ -1,6 +1,6 @@
-import type { SupportedLanguageTypes } from '@/configs'
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { SanityNavElement } from '@/types/sanity'
+import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Typography } from '@mui/material'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -11,13 +11,12 @@ import type { MouseEventHandler } from 'react'
 export const DrawerLinkItem = ({
   navElement,
   onClick,
-  language,
 }: {
   navElement: SanityNavElement
   onClick?: MouseEventHandler<HTMLAnchorElement>
-  language: SupportedLanguageTypes
 }) => {
   const currentPath = usePathname()
+  const { language } = useLanguage()
 
   return (
     <Link

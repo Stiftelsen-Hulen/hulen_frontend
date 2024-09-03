@@ -24,12 +24,12 @@ export const NavDropDown = ({
   const currentPath = usePathname()
   const { language } = useLanguage()
   const theme = useTheme()
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   const isCurrentParentPath = currentPath.startsWith(navElement.subUrl)
 
-  const toggleOpen = () => {
-    setOpen((prev) => !prev)
+  function toggleOpen() {
+    setIsOpen((prev) => !prev)
   }
 
   //ids for HTML elements used in aria-tags
@@ -40,18 +40,18 @@ export const NavDropDown = ({
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
       if (e.key == 'Escape') {
-        setOpen(false)
+        setIsOpen(false)
       }
     }
-    if (open) {
+    if (isOpen) {
       window.addEventListener('keydown', close)
     }
 
     return () => window.removeEventListener('keydown', close)
-  }, [open])
+  }, [isOpen])
 
   return (
-    <ClickAwayListener onClickAway={() => setOpen(false)}>
+    <ClickAwayListener onClickAway={() => setIsOpen(false)}>
       <Stack sx={{ position: 'relative', alignItems: 'center' }}>
         {!isMobile && (
           //Only show arrow on desktop navigation menu
@@ -63,7 +63,7 @@ export const NavDropDown = ({
           onClick={toggleOpen}
           disableRipple
           aria-controls={menuId}
-          aria-expanded={open}
+          aria-expanded={isOpen}
           sx={{
             background: isCurrentParentPath && isMobile ? theme.palette.secondary.main : undefined,
             color: isCurrentParentPath && isMobile ? theme.palette.background.default : undefined,
@@ -85,14 +85,14 @@ export const NavDropDown = ({
             minWidth: '100%',
             transformOrigin: 'top',
             transition: 'height .2s ease',
-            visibility: open ? 'visible' : 'hidden',
-            height: open ? dropdownRef.current?.scrollHeight : '0px',
+            visibility: isOpen ? 'visible' : 'hidden',
+            height: isOpen ? dropdownRef.current?.scrollHeight : '0px',
           }}
           disablePadding
         >
           {navElement.subNavElements.map((subElement, i) => (
             <ListItem disableGutters key={i}>
-              <DrawerLinkItem navElement={subElement} onClick={onClick} />
+              <DrawerLinkItem navElement={subElement} onClick={(e) => onClick?.(e)} />
             </ListItem>
           ))}
         </List>

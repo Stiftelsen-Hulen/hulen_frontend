@@ -7,6 +7,7 @@ import { Footer } from '../footer/Footer'
 import { SanityNavBarContent } from '@/types/sanity'
 import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import { PropsWithChildren } from 'react'
+import { SkipLink } from '../navigation/SkipLink'
 
 /**
  * Defines the client-side layout(code run on end-user´s device).
@@ -29,11 +30,21 @@ export const ClientLayout = ({
           alignItems: 'center',
           height: '100%',
           width: '100%',
-        }}>
+        }}
+      >
+        <SkipLink />
         <NavigationBar navbarElements={headerData} />
         <Box
-          component={"main"}
-          sx={{ marginTop: { xs: '2rem', md: '4rem' }, width: '100%', marginBottom: '1rem', height: '100%' }}>
+          component={'main'}
+          id='maincontent'
+          sx={{
+            marginTop: { xs: '2rem', md: '4rem' },
+            width: '100%',
+            marginBottom: '1rem',
+            height: '100%',
+          }}
+          tabIndex={-1}
+        >
           {children}
         </Box>
         <Footer footerElements={footerData} />

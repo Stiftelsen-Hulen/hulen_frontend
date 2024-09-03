@@ -71,7 +71,7 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
       component={'nav'} //Enhances accessibility with semantic HTML structure.
       flexDirection={isMobile ? 'column' : 'row'}
     >
-      <Link href={'/'}>
+      <Link href={'/'} aria-hidden>
         <Image
           src={navbarElements.navbarLogo.asset.url}
           alt={navbarElements.navbarLogo.altText.no}

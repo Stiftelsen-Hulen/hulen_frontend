@@ -27,12 +27,13 @@ export const NavDropDown = ({
 
   const isCurrentParentPath = currentPath.startsWith(navElement.subUrl)
 
-  const handleBtnClick = () => {
+  const toggleOpen = () => {
     setOpen((prev) => !prev)
   }
 
-  const ariaBtnId = navElement.title[language].replace(' ', '').toLowerCase() + '-btn'
-  const ariaMenuId = navElement.title[language].replace(' ', '').toLowerCase() + '-menu'
+  //ids for HTML elements used in aria-tags
+  const buttonId = navElement.title[language].replace(' ', '').toLowerCase() + '-btn'
+  const menuId = navElement.title[language].replace(' ', '').toLowerCase() + '-menu'
 
   //Close dropdown if escape key is pressed
   useEffect(() => {
@@ -52,7 +53,7 @@ export const NavDropDown = ({
     <ClickAwayListener onClickAway={() => setOpen(false)}>
       <Box sx={{ position: 'relative' }}>
         <Button
-          id={ariaBtnId}
+          id={buttonId}
           sx={{
             color: hulen_yellow_text,
             display: 'flex',
@@ -65,9 +66,9 @@ export const NavDropDown = ({
               outline: 'revert',
             },
           }}
-          onClick={handleBtnClick}
+          onClick={toggleOpen}
           disableRipple
-          aria-controls={ariaMenuId}
+          aria-controls={menuId}
           aria-expanded={open}
         >
           <ArrowDownward
@@ -91,9 +92,9 @@ export const NavDropDown = ({
           </Typography>
         </Button>
         <List
-          id={ariaMenuId}
+          id={menuId}
           ref={dropdownRef}
-          aria-labelledby={ariaBtnId}
+          aria-labelledby={buttonId}
           sx={{
             backgroundColor: hulen_black,
             position: isMobile ? 'relative' : 'absolute',

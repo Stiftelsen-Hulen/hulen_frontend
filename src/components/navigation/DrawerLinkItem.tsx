@@ -12,7 +12,7 @@ export const DrawerLinkItem = ({
   onClick,
 }: {
   navElement: SanityNavElement
-  onClick?: MouseEventHandler<HTMLAnchorElement>
+  onClick: MouseEventHandler<HTMLAnchorElement>
 }) => {
   const currentPath = usePathname()
   const { language } = useLanguage()

@@ -3,7 +3,7 @@ import { ArrowDownward, ArrowDropDown } from '@mui/icons-material'
 import { Button, ClickAwayListener, List, ListItem, Stack } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { usePathname } from 'next/navigation'
-import type { MouseEventHandler } from 'react'
+import type { MouseEvent, MouseEventHandler } from 'react'
 import { useRef, useState, useEffect } from 'react'
 import { DrawerLinkItem } from './DrawerLinkItem'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
@@ -30,6 +30,11 @@ export const NavDropDown = ({
 
   function toggleOpen() {
     setIsOpen((prev) => !prev)
+  }
+
+  function onDrawerLinkClick(e: MouseEvent<HTMLAnchorElement>) {
+    toggleOpen()
+    onClick?.(e)
   }
 
   //ids for HTML elements used in aria-tags
@@ -92,7 +97,7 @@ export const NavDropDown = ({
         >
           {navElement.subNavElements.map((subElement, i) => (
             <ListItem disableGutters key={i}>
-              <DrawerLinkItem navElement={subElement} onClick={(e) => onClick?.(e)} />
+              <DrawerLinkItem navElement={subElement} onClick={onDrawerLinkClick} />
             </ListItem>
           ))}
         </List>

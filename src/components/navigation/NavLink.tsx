@@ -18,7 +18,7 @@ export const NavLink = ({
 
   return (
     <Stack alignItems='center'>
-      <ArrowDownward style={{ visibility: isCurrentPath ? 'visible' : 'hidden' }} />
+      <ArrowDownward sx={{ visibility: isCurrentPath ? 'visible' : 'hidden' }} />
       <LinkWrapper href={navElement.subUrl} variant='menuLink' passHref onClick={onClick}>
         {navElement.title[language]}
       </LinkWrapper>

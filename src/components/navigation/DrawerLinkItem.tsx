@@ -25,7 +25,7 @@ export const DrawerLinkItem = ({
       href={navElement.subUrl}
       variant='menuLink'
       passHref
-      style={{
+      sx={{
         width: '100%',
         textAlign: 'left',
         //Set background and text color when this is the current active path

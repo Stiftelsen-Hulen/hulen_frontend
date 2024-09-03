@@ -54,7 +54,7 @@ const theme = createTheme({
     h5: { fontSize: '1.813rem' },
     body1: {
       fontSize: '1.375rem',
-      fontWeight: '300'
+      fontWeight: '300',
     },
     link: {
       color: 'white',
@@ -127,6 +127,29 @@ const theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: 'menuLinkButton', disableRipple: true },
+          style: {
+            textDecoration: 'none',
+            textTransform: 'none',
+            color: hulen_yellow_text,
+            transition: '0.3s',
+            padding: '0.25rem',
+            fontSize: '1.5rem',
+            lineHeight: 1.334,
+            fontWeight: 300,
+            borderRadius: 0,
+            width: '100%',
+            justifyContent: 'flex-start',
+            '&:focus-visible': {
+              outline: 'revert',
+            },
+            '&:hover': {
+              backgroundColor: hulen_yellow,
+              color: hulen_black,
+            },
+          },
+        },
       ],
     },
     MuiPaper: {
@@ -140,6 +163,22 @@ const theme = createTheme({
             borderLeftColor: hulen_yellow_text,
             minWidth: '18.75rem',
             maxWidth: '80%',
+          },
+        },
+      ],
+    },
+    MuiLink: {
+      variants: [
+        {
+          props: { variant: 'menuLink' },
+          style: {
+            textDecoration: 'none',
+            color: hulen_yellow_text,
+            transition: '0.3s',
+            padding: '0.25rem',
+            fontSize: '1.5rem',
+            lineHeight: 1.334,
+            fontWeight: 300,
           },
         },
       ],

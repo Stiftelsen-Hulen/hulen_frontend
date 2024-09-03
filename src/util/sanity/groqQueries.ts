@@ -13,7 +13,7 @@ const languageOptions = supportedLanguages.join(',')
 // Cheat sheet: https://www.sanity.io/docs/query-cheat-sheet
 //////////
 
-export const getNavigationElementsGroq = `*[_type == "navBarProps"][0] {navElements[]{subUrl, title{${languageOptions}}}, navbarLogo{ asset->{
+export const getNavigationElementsGroq = `*[_type == "navBarProps"][0] {navElements[]{subUrl, title{${languageOptions}}, subNavElements[]{subUrl, title{${languageOptions}}}}, navbarLogo{ asset->{
   url,
 },
 altText{

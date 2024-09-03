@@ -1,24 +1,23 @@
 'use client'
-import { SanityNavBarContent } from '@/types/sanity'
-import { Box, IconButton, Typography, useMediaQuery, SvgIcon } from '@mui/material'
+import type { SanityNavBarContent } from '@/types/sanity'
+import { Box, IconButton, useMediaQuery, SvgIcon } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import { LanguageSelector } from '../language/LanguageSelector'
-import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { useTheme } from '@mui/material/styles'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { MenuDrawer } from '.'
 import { usePathname } from 'next/navigation'
-import { hulen_yellow, hulen_yellow_text } from '@/styles'
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import { styled } from '@mui/system'
+import { NavDropDown } from './NavDropDown'
+import { NavLink } from './NavLink'
 const LOGO_HEIGHT_BASE = 120
 const LOGO_WIDTH_BASE = 143
 
 const StyledNavbarWrapper = styled(Box)({
-  display: "flex",
+  display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
@@ -32,8 +31,7 @@ const StyledNavLinksWrapper = styled(Box)({
   marginBottom: '1rem',
   flexWrap: 'wrap',
   justifyContent: 'flex-end',
-  alignItems: 'end'
-
+  alignItems: 'end',
 })
 
 /** The navbar handles all the global navigation. This means rendering the hulen logo and menu elements.
@@ -45,7 +43,6 @@ const StyledNavLinksWrapper = styled(Box)({
  */
 const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent }) => {
   const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState<boolean>(false)
-  const { language } = useLanguage()
   const theme = useTheme()
   // MuI has an easy accessible tool for doing media queries. This can also be done in the SX prop as {width: {xs: value, md: value}}
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
@@ -55,30 +52,17 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
     const isCurrentPath = element.subUrl === currentPath
 
     return (
-      <Link
-        href={element.subUrl}
-        key={idx}
-        passHref
-        style={{
-          transition: '0.3s',
-          padding: '0.25rem',
-          fontSize: '1.5rem',
-          lineHeight: 1.334,
-          fontWeight: 300,
-          cursor: 'pointer',
-          color: hulen_yellow_text,
-          textDecoration: 'none',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <ArrowDownwardIcon style={{ color: isCurrentPath ? hulen_yellow : 'initial' }} />
-        <Typography variant='menuLink' onClick={() => setIsMenuDrawerOpen(false)}>
-          {element.title[language]}
-        </Typography>
-      </Link>
+      <Fragment key={idx}>
+        {element.subNavElements?.length ? (
+          <NavDropDown navElement={element} />
+        ) : (
+          <NavLink
+            navElement={element}
+            isCurrentPath={isCurrentPath}
+            onClick={() => setIsMenuDrawerOpen(false)}
+          ></NavLink>
+        )}
+      </Fragment>
     )
   })
 
@@ -96,30 +80,27 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
         />
       </Link>
       <StyledNavLinksWrapper sx={{ justifyContent: { xs: 'center', md: 'end' } }}>
-        {
-          isMobile ? (
-            <IconButton
-              onClick={() => setIsMenuDrawerOpen(true)}
-              sx={{ fontSize: '3rem' }}
-              aria-label='Open menu button'
-            >
-              <SvgIcon fontSize='inherit' component={MenuRoundedIcon} />
-            </IconButton>
-          ) : (
-            <>
-              {renderNavBarElements}
-              <LanguageSelector />
-            </>
-          )
-        }
+        {isMobile ? (
+          <IconButton
+            onClick={() => setIsMenuDrawerOpen(true)}
+            sx={{ fontSize: '3rem' }}
+            aria-label='Open menu button'
+          >
+            <SvgIcon fontSize='inherit' component={MenuRoundedIcon} />
+          </IconButton>
+        ) : (
+          <>
+            {renderNavBarElements}
+            <LanguageSelector />
+          </>
+        )}
       </StyledNavLinksWrapper>
       <MenuDrawer
         navElements={navbarElements.navElements}
         isOpen={isMenuDrawerOpen}
-        language={language}
         onClose={() => setIsMenuDrawerOpen(false)}
       />
-    </StyledNavbarWrapper >
+    </StyledNavbarWrapper>
   )
 }
 

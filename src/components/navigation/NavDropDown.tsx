@@ -1,7 +1,7 @@
-import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { SanityNavElement } from '@/types/sanity'
 import { ArrowDownward, ArrowDropDown } from '@mui/icons-material'
-import { Box, Button, ClickAwayListener, List, ListItem, Typography } from '@mui/material'
+import { Button, ClickAwayListener, List, ListItem, Stack } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import { usePathname } from 'next/navigation'
 import type { MouseEventHandler } from 'react'
 import { useRef, useState, useEffect } from 'react'
@@ -23,6 +23,7 @@ export const NavDropDown = ({
   const dropdownRef = useRef<HTMLUListElement>(null)
   const currentPath = usePathname()
   const { language } = useLanguage()
+  const theme = useTheme()
   const [open, setOpen] = useState(false)
 
   const isCurrentParentPath = currentPath.startsWith(navElement.subUrl)
@@ -51,61 +52,41 @@ export const NavDropDown = ({
 
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <Box sx={{ position: 'relative' }}>
+      <Stack sx={{ position: 'relative', alignItems: 'center' }}>
+        {!isMobile && (
+          //Only show arrow on desktop navigation menu
+          <ArrowDownward sx={{ visibility: isCurrentParentPath ? 'visible' : 'hidden' }} />
+        )}
         <Button
           id={buttonId}
-          sx={{
-            color: hulen_yellow_text,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '0.25rem',
-            textTransform: 'none',
-            width: '100%',
-            '&:focus-visible': {
-              outline: 'revert',
-            },
-          }}
+          variant='menuLinkButton'
           onClick={toggleOpen}
           disableRipple
           aria-controls={menuId}
           aria-expanded={open}
+          sx={{
+            background: isCurrentParentPath && isMobile ? theme.palette.secondary.main : undefined,
+            color: isCurrentParentPath && isMobile ? theme.palette.background.default : undefined,
+          }}
         >
-          <ArrowDownward
-            style={{
-              color: isCurrentParentPath ? hulen_yellow : 'initial',
-              display: isMobile ? 'none' : 'block',
-            }}
-          />
-          <Typography
-            variant='menuLink'
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: isMobile && isCurrentParentPath ? hulen_yellow : hulen_black,
-              color: isMobile && isCurrentParentPath ? hulen_black : 'inherit',
-              width: '100%',
-            }}
-          >
-            {navElement.title[language]}
-            <ArrowDropDown />
-          </Typography>
+          {navElement.title[language]}
+          <ArrowDropDown />
         </Button>
         <List
           id={menuId}
           ref={dropdownRef}
           aria-labelledby={buttonId}
           sx={{
-            backgroundColor: hulen_black,
+            backgroundColor: theme.palette.background.default,
             position: isMobile ? 'relative' : 'absolute',
             top: isMobile ? '0' : '100%',
             left: '0',
+            overflow: 'hidden',
             minWidth: '100%',
-            visibility: open ? 'visible' : 'hidden',
-            height: open ? dropdownRef.current?.scrollHeight : '0px',
             transformOrigin: 'top',
             transition: 'height .2s ease',
-            overflow: 'hidden',
+            visibility: open ? 'visible' : 'hidden',
+            height: open ? dropdownRef.current?.scrollHeight : '0px',
           }}
           disablePadding
         >
@@ -115,7 +96,7 @@ export const NavDropDown = ({
             </ListItem>
           ))}
         </List>
-      </Box>
+      </Stack>
     </ClickAwayListener>
   )
 }

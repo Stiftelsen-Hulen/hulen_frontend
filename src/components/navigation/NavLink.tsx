@@ -1,10 +1,9 @@
-import { hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { SanityNavElement } from '@/types/sanity'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { ArrowDownward } from '@mui/icons-material'
-import { Typography } from '@mui/material'
-import Link from 'next/link'
+import { Stack } from '@mui/material'
 import type { MouseEventHandler } from 'react'
+import { LinkWrapper } from './LinkWrapper'
 
 export const NavLink = ({
   navElement,
@@ -18,28 +17,11 @@ export const NavLink = ({
   const { language } = useLanguage()
 
   return (
-    <Link
-      href={navElement.subUrl}
-      passHref
-      style={{
-        transition: '0.3s',
-        padding: '0.25rem',
-        fontSize: '1.5rem',
-        lineHeight: 1.334,
-        fontWeight: 300,
-        cursor: 'pointer',
-        color: hulen_yellow_text,
-        textDecoration: 'none',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <ArrowDownward style={{ color: isCurrentPath ? hulen_yellow : 'initial' }} />
-      <Typography variant='menuLink' onClick={onClick}>
+    <Stack alignItems='center'>
+      <ArrowDownward style={{ visibility: isCurrentPath ? 'visible' : 'hidden' }} />
+      <LinkWrapper href={navElement.subUrl} variant='menuLink' passHref onClick={onClick}>
         {navElement.title[language]}
-      </Typography>
-    </Link>
+      </LinkWrapper>
+    </Stack>
   )
 }

@@ -40,6 +40,7 @@ declare module '@mui/material/Button' {
     tertiary: true
     positionButton: true
     linkButton: true
+    menuLinkButton: true
   }
 }
 

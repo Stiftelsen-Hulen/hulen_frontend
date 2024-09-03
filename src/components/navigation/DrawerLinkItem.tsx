@@ -1,10 +1,9 @@
-import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { SanityNavElement } from '@/types/sanity'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
-import { Typography } from '@mui/material'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { MouseEventHandler } from 'react'
+import { LinkWrapper } from './LinkWrapper'
+import { useTheme } from '@mui/material/styles'
 
 /** Drawer link item used in DropDown and in MenuDrawer on mobile
  */
@@ -17,32 +16,26 @@ export const DrawerLinkItem = ({
 }) => {
   const currentPath = usePathname()
   const { language } = useLanguage()
+  const theme = useTheme()
+
+  const isCurrentPath = currentPath == navElement.subUrl
 
   return (
-    <Link
+    <LinkWrapper
       href={navElement.subUrl}
+      variant='menuLink'
       passHref
       style={{
-        textDecoration: 'none',
-        cursor: 'pointer',
         width: '100%',
+        textAlign: 'left',
+        //Set background and text color when this is the current active path
+        background: isCurrentPath ? theme.palette.secondary.main : undefined,
+        color: isCurrentPath ? theme.palette.background.default : undefined,
       }}
       onClick={onClick}
       role='link'
     >
-      <Typography
-        variant='menuLink'
-        sx={{
-          minWidth: '100%',
-          padding: '0.25rem',
-          display: 'block',
-          textAlign: 'left',
-          background: navElement.subUrl === currentPath ? hulen_yellow : hulen_black,
-          color: navElement.subUrl === currentPath ? hulen_black : hulen_yellow_text,
-        }}
-      >
-        {navElement.title[language]}
-      </Typography>
-    </Link>
+      {navElement.title[language]}
+    </LinkWrapper>
   )
 }

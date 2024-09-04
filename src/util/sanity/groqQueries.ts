@@ -85,3 +85,7 @@ export const getTechInfoPageGroq = `*[_type == "techInfo"][0]{
   emailDescription{${languageOptions}},
   header{${languageOptions}},
 }`
+
+export function getTranslationObjectGroq(identifier: string) {
+  return `*[_type == "translationObject" && identifier == "${identifier}"][0]{identifier,content{${languageOptions}}}`
+}

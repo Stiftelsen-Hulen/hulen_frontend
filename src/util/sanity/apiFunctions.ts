@@ -1,4 +1,4 @@
-import { SanityNavBarContent } from '@/types/sanity'
+import type { SanityNavBarContent } from '@/types/sanity'
 import {
   getAboutUsPageGroq,
   getContactPageGroq,
@@ -8,14 +8,16 @@ import {
   getNavigationElementsGroq,
   getNoPageFoundGroq,
   getTechInfoPageGroq,
+  getTranslationObjectGroq,
 } from './groqQueries'
 import { sanityClient } from './sanityClient'
-import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
-import { Sanity404Page } from '@/types/sanity/pageNotFound'
-import { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
-import { SanityContactPageContent } from '@/types/sanity/contact'
-import { JoinUsSanityContent } from '@/types/sanity/joinUsPage'
-import { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
+import type { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
+import type { Sanity404Page } from '@/types/sanity/pageNotFound'
+import type { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
+import type { SanityContactPageContent } from '@/types/sanity/contact'
+import type { JoinUsSanityContent } from '@/types/sanity/joinUsPage'
+import type { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
+import type { TranslationObject } from '@/types/sanity/translationObject'
 
 export async function getSanityNavigationElements() {
   const navigationElements = await sanityClient.fetch(getNavigationElementsGroq)
@@ -62,6 +64,12 @@ export async function getJoinUsPageContent() {
 export async function getTechInfoPageContent() {
   const techInfoPageContent = await sanityClient.fetch(getTechInfoPageGroq)
   console.log('api data : ', techInfoPageContent)
+
   return techInfoPageContent as TechInfoPageContent
 }
 
+export async function getTranslationObject(identifier: string) {
+  const translationObject = await sanityClient.fetch(getTranslationObjectGroq(identifier))
+
+  return translationObject as TranslationObject
+}

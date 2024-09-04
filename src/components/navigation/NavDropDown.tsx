@@ -1,12 +1,12 @@
 import type { SanityNavElement } from '@/types/sanity'
+import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { ArrowDownward, ArrowDropDown } from '@mui/icons-material'
 import { Button, ClickAwayListener, List, ListItem, Stack } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { usePathname } from 'next/navigation'
 import type { MouseEvent, MouseEventHandler } from 'react'
-import { useRef, useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { DrawerLinkItem } from './DrawerLinkItem'
-import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 
 /** Navigation Dropdown component used in navigation and on mobile devices in MenuDrawer
  *
@@ -21,6 +21,8 @@ export const NavDropDown = ({
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }) => {
   const dropdownRef = useRef<HTMLUListElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const currentPath = usePathname()
   const { language } = useLanguage()
   const theme = useTheme()
@@ -41,11 +43,12 @@ export const NavDropDown = ({
   const buttonId = navElement.title[language].replace(' ', '').toLowerCase() + '-btn'
   const menuId = navElement.title[language].replace(' ', '').toLowerCase() + '-menu'
 
-  //Close dropdown if escape key is pressed
+  //Close dropdown if escape key is pressed and the dropdown is in focus
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
-      if (e.key == 'Escape') {
+      if (e.key == 'Escape' && containerRef.current?.contains(document.activeElement)) {
         setIsOpen(false)
+        buttonRef.current?.focus()
       }
     }
     if (isOpen) {
@@ -57,13 +60,14 @@ export const NavDropDown = ({
 
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
-      <Stack sx={{ position: 'relative', alignItems: 'center' }}>
+      <Stack sx={{ position: 'relative', alignItems: 'center' }} ref={containerRef}>
         {!isMobile && (
           //Only show arrow on desktop navigation menu
           <ArrowDownward sx={{ visibility: isCurrentParentPath ? 'visible' : 'hidden' }} />
         )}
         <Button
           id={buttonId}
+          ref={buttonRef}
           variant='menuLinkButton'
           onClick={toggleOpen}
           disableRipple
@@ -80,7 +84,6 @@ export const NavDropDown = ({
         <List
           id={menuId}
           ref={dropdownRef}
-          aria-labelledby={buttonId}
           sx={{
             backgroundColor: theme.palette.background.default,
             position: isMobile ? 'relative' : 'absolute',

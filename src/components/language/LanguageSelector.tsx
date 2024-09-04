@@ -1,17 +1,17 @@
 'use client'
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
-import { styled } from '@mui/system'
-import { LanguageOptions } from '@/types/language'
+import type { LanguageOptions } from '@/types/language'
+import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import LanguageIcon from '@mui/icons-material/Language'
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { styled } from '@mui/system'
 
 const StyledSelect = styled(Select)({
   minHeight: '0rem!important',
   height: '2rem!important',
   display: 'flex',
-  alignItems: "flex-start",
-  paddingLeft: "0.25rem",
+  alignItems: 'flex-start',
+  paddingLeft: '0.25rem',
   svg: {
     fill: hulen_yellow_text,
     padding: 0,
@@ -28,6 +28,9 @@ const StyledSelect = styled(Select)({
     padding: 0,
     height: '1.4rem!important', //Race condition defines CSS priority order, some sinning required
     overflow: 'visible!important',
+    '&:focus-visible': {
+      outline: 'revert',
+    },
   },
   input: {
     display: 'none',
@@ -39,6 +42,9 @@ const StyledMenuItem = styled(MenuItem)({
   '&:hover': {
     backgroundColor: hulen_yellow,
     color: hulen_black,
+  },
+  '&:focus-visible': {
+    outline: 'revert',
   },
   fontWeight: 300,
   '&.Mui-selected': {
@@ -64,23 +70,25 @@ const StyledLanguageWrapper = styled(Box)({
  * The Language selector is a dropdown menu for changing the language of the entire website.
  * As of now we have the language options norwegian and English
  * Learn more about localizing content here: https://www.sanity.io/docs/localization
- * @returns a selected 
+ * @returns a selected
  */
 export const LanguageSelector = () => {
   const { changeLanguage, language } = useLanguage()
 
-  const labels: Record<LanguageOptions, string> = { "en": "Language", "no": "Språk" }
+  const labels: Record<LanguageOptions, string> = { en: 'Language', no: 'Språk' }
 
   return (
     <StyledLanguageWrapper>
       <LanguageIcon />
       <FormControl>
-        <InputLabel id="language-select-label" style={{ display: "none" }}>{labels[language]}</InputLabel>
+        <InputLabel id='language-select-label' style={{ display: 'none' }}>
+          {labels[language]}
+        </InputLabel>
         <StyledSelect
           onChange={changeLanguage}
           value={language ?? 'en'}
           MenuProps={{ PaperProps: { sx: { backgroundColor: 'black' } } }}
-          labelId="language-select-label"
+          labelId='language-select-label'
         >
           <StyledMenuItem value='no'>Norsk</StyledMenuItem>
           <StyledMenuItem value='en'>English</StyledMenuItem>

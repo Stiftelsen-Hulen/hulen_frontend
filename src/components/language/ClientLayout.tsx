@@ -1,12 +1,14 @@
 'use client'
 
+import type { SanityNavBarContent } from '@/types/sanity'
+import type { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
+import type { TranslationObject } from '@/types/sanity/translationObject'
 import { LanguageProvider } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack } from '@mui/material'
-import NavigationBar from '../navigation/Navbar'
+import type { PropsWithChildren } from 'react'
 import { Footer } from '../footer/Footer'
-import { SanityNavBarContent } from '@/types/sanity'
-import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
-import { PropsWithChildren } from 'react'
+import NavigationBar from '../navigation/Navbar'
+import { SkipLink } from '../navigation/SkipLink'
 
 /**
  * Defines the client-side layout(code run on end-user´s device).
@@ -17,8 +19,13 @@ import { PropsWithChildren } from 'react'
 export const ClientLayout = ({
   headerData,
   footerData,
+  skipLinkData,
   children,
-}: PropsWithChildren<{ headerData: SanityNavBarContent; footerData: SanityFooterElements[] }>) => {
+}: PropsWithChildren<{
+  headerData: SanityNavBarContent
+  footerData: SanityFooterElements[]
+  skipLinkData: TranslationObject
+}>) => {
   return (
     <LanguageProvider>
       <Stack
@@ -29,11 +36,21 @@ export const ClientLayout = ({
           alignItems: 'center',
           height: '100%',
           width: '100%',
-        }}>
+        }}
+      >
+        <SkipLink translationContent={skipLinkData} />
         <NavigationBar navbarElements={headerData} />
         <Box
-          component={"main"}
-          sx={{ marginTop: { xs: '2rem', md: '4rem' }, width: '100%', marginBottom: '1rem', height: '100%' }}>
+          component={'main'}
+          id='maincontent'
+          sx={{
+            marginTop: { xs: '2rem', md: '4rem' },
+            width: '100%',
+            marginBottom: '1rem',
+            height: '100%',
+          }}
+          tabIndex={-1}
+        >
           {children}
         </Box>
         <Footer footerElements={footerData} />

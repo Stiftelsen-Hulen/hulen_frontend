@@ -1,16 +1,17 @@
 'use client'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import type { SanityNavBarContent } from '@/types/sanity'
-import { Box, IconButton, useMediaQuery, SvgIcon } from '@mui/material'
+import { useLanguage } from '@/util/LanguageContext/LanguageContext'
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
+import { Box, IconButton, SvgIcon, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { styled } from '@mui/system'
 import Image from 'next/image'
 import Link from 'next/link'
-import { LanguageSelector } from '../language/LanguageSelector'
-import { useTheme } from '@mui/material/styles'
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
+import { usePathname } from 'next/navigation'
 import { Fragment, useState } from 'react'
 import { MenuDrawer } from '.'
-import { usePathname } from 'next/navigation'
-import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
-import { styled } from '@mui/system'
+import { LanguageSelector } from '../language/LanguageSelector'
 import { NavDropDown } from './NavDropDown'
 import { NavLink } from './NavLink'
 const LOGO_HEIGHT_BASE = 120
@@ -47,6 +48,7 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
   // MuI has an easy accessible tool for doing media queries. This can also be done in the SX prop as {width: {xs: value, md: value}}
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const currentPath = usePathname()
+  const { language } = useLanguage()
 
   const renderNavBarElements = navbarElements.navElements.map((element, idx) => {
     const isCurrentPath = element.subUrl === currentPath
@@ -71,10 +73,10 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
       component={'nav'} //Enhances accessibility with semantic HTML structure.
       flexDirection={isMobile ? 'column' : 'row'}
     >
-      <Link href={'/'}>
+      <Link href={'/'} aria-hidden>
         <Image
           src={navbarElements.navbarLogo.asset.url}
-          alt={navbarElements.navbarLogo.altText.no}
+          alt={navbarElements.navbarLogo.altText[language]}
           width={isMobile ? LOGO_WIDTH_BASE * 2 : LOGO_WIDTH_BASE * 2.3}
           height={isMobile ? LOGO_HEIGHT_BASE * 2 : LOGO_HEIGHT_BASE * 2.3}
         />
@@ -83,7 +85,12 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
         {isMobile ? (
           <IconButton
             onClick={() => setIsMenuDrawerOpen(true)}
-            sx={{ fontSize: '3rem' }}
+            sx={{
+              fontSize: '3rem',
+              '&:focus-visible': {
+                outline: 'revert',
+              },
+            }}
             aria-label='Open menu button'
           >
             <SvgIcon fontSize='inherit' component={MenuRoundedIcon} />

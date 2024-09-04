@@ -34,6 +34,7 @@ export const DrawerLinkItem = ({
       }}
       onClick={onClick}
       role='link'
+      aria-current={isCurrentPath ? 'page' : undefined}
     >
       {navElement.title[language]}
     </LinkWrapper>

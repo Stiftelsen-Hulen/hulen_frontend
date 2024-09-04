@@ -1,17 +1,18 @@
-import * as React from 'react'
-import ThemeRegistry from '@/util/ThemeRegistry/ThemeRegistry'
-import { getSanityNavigationElements, getFooterElements } from '@/util/sanity'
 import { ClientLayout } from '@/components/language/ClientLayout'
+import ThemeRegistry from '@/util/ThemeRegistry/ThemeRegistry'
+import { getFooterElements, getSanityNavigationElements, getTranslationObject } from '@/util/sanity'
+import * as React from 'react'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headerData = await getSanityNavigationElements()
   const footerData = await getFooterElements()
+  const skipLinkData = await getTranslationObject('SkipLink')
 
   return (
     <html lang='en'>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <ThemeRegistry>
-          <ClientLayout headerData={headerData} footerData={footerData}>
+          <ClientLayout headerData={headerData} footerData={footerData} skipLinkData={skipLinkData}>
             {children}
           </ClientLayout>
         </ThemeRegistry>

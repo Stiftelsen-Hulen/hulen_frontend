@@ -1,12 +1,13 @@
 'use client'
 
+import type { SanityNavBarContent } from '@/types/sanity'
+import type { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
+import type { TranslationObject } from '@/types/sanity/translationObject'
 import { LanguageProvider } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack } from '@mui/material'
-import NavigationBar from '../navigation/Navbar'
+import type { PropsWithChildren } from 'react'
 import { Footer } from '../footer/Footer'
-import { SanityNavBarContent } from '@/types/sanity'
-import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
-import { PropsWithChildren } from 'react'
+import NavigationBar from '../navigation/Navbar'
 import { SkipLink } from '../navigation/SkipLink'
 
 /**
@@ -18,8 +19,13 @@ import { SkipLink } from '../navigation/SkipLink'
 export const ClientLayout = ({
   headerData,
   footerData,
+  skipLinkData,
   children,
-}: PropsWithChildren<{ headerData: SanityNavBarContent; footerData: SanityFooterElements[] }>) => {
+}: PropsWithChildren<{
+  headerData: SanityNavBarContent
+  footerData: SanityFooterElements[]
+  skipLinkData: TranslationObject
+}>) => {
   return (
     <LanguageProvider>
       <Stack
@@ -32,7 +38,7 @@ export const ClientLayout = ({
           width: '100%',
         }}
       >
-        <SkipLink />
+        <SkipLink translationContent={skipLinkData} />
         <NavigationBar navbarElements={headerData} />
         <Box
           component={'main'}

@@ -1,5 +1,5 @@
 'use client'
-import type { LanguageOptions } from '@/types/language'
+import type { TranslationObject } from '@/types/sanity/translationObject'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { styled } from '@mui/system'
 import Link from 'next/link'
@@ -20,7 +20,7 @@ const StyledLink = styled(Link)({
  * The SkipLink component allows keyboard and screen reader users to skip directly to the main content.
  * Place it at the top of the <body> to ensure it's the first tabbable element on the page.
  */
-export const SkipLink = () => {
+export const SkipLink = ({ translationContent }: { translationContent: TranslationObject }) => {
   const { language } = useLanguage()
 
   const moveFocus = () => {
@@ -29,14 +29,9 @@ export const SkipLink = () => {
     mainContent?.focus()
   }
 
-  const content: Record<LanguageOptions, string> = {
-    en: 'Skip to main content',
-    no: 'Hopp til hovedinnhold',
-  }
-
   return (
     <StyledLink href='#maincontent' onClick={moveFocus}>
-      {content[language]}
+      {translationContent.content[language]}
     </StyledLink>
   )
 }

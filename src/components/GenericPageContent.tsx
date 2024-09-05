@@ -1,6 +1,5 @@
 'use client'
 
-import type { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import type {
   PortableTextComponentProps,
@@ -13,11 +12,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { PortableTextBlock } from '@portabletext/types'
 import type { LocaleImage } from '@/types/sanity'
+import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/genericPageProps'
 
-export const GenericPagePropsRenderer = ({
+export const HulenPortableText = ({
   genericSanityPageProps,
 }: {
-  genericSanityPageProps: GenericPageProps
+  genericSanityPageProps: LocalePortableTextBlock
 }) => {
   const { language } = useLanguage()
   const serializers: Partial<PortableTextReactComponents> = {
@@ -67,10 +67,11 @@ export const GenericPagePropsRenderer = ({
       ),
     },
   }
+  console.log(genericSanityPageProps)
 
   return (
     <Stack alignItems={'center'}>
-      {genericSanityPageProps.locale[language].map((sanityBlock) => (
+      {genericSanityPageProps[language].map((sanityBlock) => (
         <PortableText key={sanityBlock._key} value={sanityBlock} components={serializers} />
       ))}
     </Stack>
@@ -98,7 +99,7 @@ export const SanityLocaleImageComponent = ({
           layout='responsive'
           src={imageProps.value.Image.asset.url ?? ''}
           alt={imageProps.value.altText ?? ''}
-          width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25'}
+          width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem'}
           height={imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25rem'}
         />
       </Box>
@@ -114,8 +115,8 @@ export const SanityLocaleImageComponent = ({
         }}
         src={imageProps.value.Image.asset.url ?? ''}
         alt={imageProps.value.altText ?? ''}
-        width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25'}
-        height={imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25'}
+        width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem'}
+        height={imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25rem'}
       />
     </Link>
   )

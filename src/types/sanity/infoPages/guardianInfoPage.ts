@@ -1,16 +1,11 @@
-import { LanguageOptions } from "@/types/language/LanguageOptions"
-import { PortableTextBlock } from '@portabletext/types'
-import { SupportedLanguageTypes } from "@/configs"
+import type { LanguageOptions } from '@/types/language/LanguageOptions'
+import type { SanityImage } from '../sanityImage'
+import type { LocalePortableTextBlock } from '../genericPage/genericPageProps'
 
 export interface GuardianInfoPageContent {
   header: Record<LanguageOptions, string>
-  intro: Record<LanguageOptions, PortableTextBlock>
+  intro: LocalePortableTextBlock
   subHeading: Record<LanguageOptions, string>
-  description: Record<LanguageOptions, PortableTextBlock>
-  guardianImage: {
-    altText: Record<SupportedLanguageTypes, string>
-    asset: {
-      url: string
-    }
-  }
+  description: LocalePortableTextBlock
+  guardianImage: SanityImage
 }

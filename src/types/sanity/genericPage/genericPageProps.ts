@@ -1,6 +1,8 @@
-import { LanguageOptions } from '@/types/language'
-import { PortableTextBlock } from '@portabletext/types'
+import type { LanguageOptions } from '@/types/language'
+import type { PortableTextBlock } from '@portabletext/types'
+
+export type LocalePortableTextBlock = Record<LanguageOptions, PortableTextBlock[]>
 
 export interface GenericPageProps {
-  locale: Record<LanguageOptions, PortableTextBlock[]>
+  locale: LocalePortableTextBlock
 }

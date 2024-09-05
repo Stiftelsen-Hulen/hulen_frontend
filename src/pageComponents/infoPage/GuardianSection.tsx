@@ -1,14 +1,15 @@
 'use client'
 
-import { DEFAULT_LAYOUT_MAXWIDTH } from "@/configs/constants"
-import { GuardianInfoPageContent } from "@/types/sanity/infoPages/guardianInfoPage"
-import { useLanguage } from "@/util/LanguageContext/LanguageContext"
+import { HulenPortableText } from '@/components/GenericPageContent'
+import { SanityImageComponent } from '@/components/sanity'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import type { GuardianInfoPageContent } from '@/types/sanity/infoPages/guardianInfoPage'
+import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack, Typography } from '@mui/material'
-import { PortableText } from "@portabletext/react"
-import Image from 'next/image'
 
 export const GuardianSection = ({ content }: { content: GuardianInfoPageContent }) => {
   const { language } = useLanguage()
+
   return (
     <Stack sx={{ alignItems: 'center', padding: '2rem', width: '100%' }}>
       <Stack
@@ -26,24 +27,26 @@ export const GuardianSection = ({ content }: { content: GuardianInfoPageContent 
             <Typography variant='h1' fontWeight={700} width={'100%'}>
               {content.header[language]}
             </Typography>
-            <PortableText value={content.intro[language]} />
+            <HulenPortableText genericSanityPageProps={content.intro} />
             <Typography variant='h4' fontWeight={700} width={'100%'}>
               {content.subHeading[language]}
             </Typography>
-            <Stack sx={{ flexDirection: "row" }}>
-              <Image
-                src={content.guardianImage.asset.url ?? ''}
-                alt={''}
-                width={500}
-                height={600}
-              />
-              <Stack sx={{ flexDirection: "column", textAlign: "left" }}>
-                <PortableText value={content.description[language]} />
+            <Stack sx={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <SanityImageComponent imageData={content.guardianImage} width={500} />
+              <Stack
+                sx={{
+                  flexDirection: 'column',
+                  textAlign: 'left',
+                  '& a': { color: 'white' },
+                  width: '100%',
+                }}
+              >
+                <HulenPortableText genericSanityPageProps={content.description} />
               </Stack>
             </Stack>
           </Box>
-        </Stack >
-      </Stack >
-    </Stack >
+        </Stack>
+      </Stack>
+    </Stack>
   )
 }

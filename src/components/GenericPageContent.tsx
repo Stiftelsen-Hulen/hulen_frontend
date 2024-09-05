@@ -2,15 +2,17 @@
 
 import type { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
-import {
-  PortableText,
+import type {
   PortableTextComponentProps,
   PortableTextReactComponents,
+  PortableTextTypeComponentProps,
 } from '@portabletext/react'
+import { PortableText } from '@portabletext/react'
 import { Box, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PortableTextBlock } from '@portabletext/types'
+import type { PortableTextBlock } from '@portabletext/types'
+import type { LocaleImage } from '@/types/sanity'
 
 export const GenericPagePropsRenderer = ({
   genericSanityPageProps,
@@ -20,8 +22,7 @@ export const GenericPagePropsRenderer = ({
   const { language } = useLanguage()
   const serializers: Partial<PortableTextReactComponents> = {
     types: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      localeImage: (localeImageProps: any) => (
+      localeImage: (localeImageProps: PortableTextTypeComponentProps<LocaleImage>) => (
         <SanityLocaleImageComponent imageProps={localeImageProps} />
       ),
     },
@@ -76,8 +77,11 @@ export const GenericPagePropsRenderer = ({
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const SanityLocaleImageComponent = ({ imageProps }: { imageProps: any }) => {
+export const SanityLocaleImageComponent = ({
+  imageProps,
+}: {
+  imageProps: PortableTextTypeComponentProps<LocaleImage>
+}) => {
   if (imageProps?.value == undefined || imageProps.value?.Image?.asset.metadata == undefined) {
     return <p>error rendering image, wrong config</p>
   }

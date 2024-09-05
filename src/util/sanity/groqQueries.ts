@@ -27,7 +27,9 @@ altText{
   ${supportedLanguages.join(',')}
 } }}`
 
-export const getFooterElementsGroq = `*[_type == "footerElements"] | order(sortOrder) {sortOrder, footerElement{${languageOptions}}}`
+export const getFooterElementsGroq = `*[_type == "footerElements"] | order(sortOrder) {sortOrder, footerElement{${supportedLanguages
+  .map((language) => `${language}[]{..., Image{asset ->  {url, metadata}}}`)
+  .join(',')}}}`
 
 export const getHomePageGroq = `*[_type == "pageProps" && title =="home"][0] { ..., locale{${supportedLanguages
   .map((language) => `${language}[]{..., Image{asset ->  {url, metadata}}}`)

@@ -14,3 +14,9 @@ export interface SanityImage {
     }
   }
 }
+
+export interface LocaleImage {
+  Image: SanityImage
+  altText: string
+  linkUrl: string
+}

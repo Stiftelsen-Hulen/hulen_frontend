@@ -1,11 +1,17 @@
 'use client'
 import { hulen_yellow_text } from '@/styles'
-import { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
+import type { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack } from '@mui/material'
 import { styled } from '@mui/system'
-import { PortableText } from '@portabletext/react'
 import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import type {
+  PortableTextReactComponents,
+  PortableTextTypeComponentProps,
+} from '@portabletext/react'
+import { PortableText } from '@portabletext/react'
+import { SanityLocaleImageComponent } from '../GenericPageContent'
+import type { LocaleImage } from '@/types/sanity'
 
 const StyledStack = styled(Stack)({
   p: {
@@ -14,12 +20,17 @@ const StyledStack = styled(Stack)({
   '&>*': {
     margin: 0,
   },
+  '& h2': {
+    textTransform: 'uppercase',
+    fontSize: '1.5rem',
+  },
+  '& img': {
+    maxWidth: '8rem',
+  },
 })
 
 const StyledFooterWrapper = styled(Box)({
-  paddingTop: '2rem',
-  marginTop: 'auto',
-  paddingBottom: '2rem',
+  padding: '2rem 1rem',
   display: 'flex',
   gap: '2rem',
   width: '100%',
@@ -27,10 +38,8 @@ const StyledFooterWrapper = styled(Box)({
   flexWrap: 'wrap',
   maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
 })
-const StyledFooterBorder = styled(Stack)({
-  paddingTop: '2rem',
-  marginTop: 'auto',
-  paddingBottom: '2rem',
+const StyledFooterBorder = styled(Box)({
+  padding: '2rem 1rem',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -39,19 +48,26 @@ const StyledFooterBorder = styled(Stack)({
   borderTopStyle: 'double',
   borderTopColor: hulen_yellow_text,
 })
+
 /**
  * A Footer is located at the bottom of a webpage, containing information such as contact details, or links to important pages.
  * For accessibility purposes, defined by the HTML <footer> tag.
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 export const Footer = ({ footerElements }: { footerElements: SanityFooterElements[] }) => {
   const { language } = useLanguage()
+  const serializers: Partial<PortableTextReactComponents> = {
+    types: {
+      localeImage: (localeImageProps: PortableTextTypeComponentProps<LocaleImage>) => (
+        <SanityLocaleImageComponent imageProps={localeImageProps} />
+      ),
+    },
+  }
 
   return (
-    <StyledFooterBorder>
+    <StyledFooterBorder component={'footer'}>
       <StyledFooterWrapper
-        component={"footer"}
         sx={{
           flexDirection: { xs: 'column', sm: 'row' },
           alignItems: { xs: 'center', sm: 'default' },
@@ -59,7 +75,7 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
       >
         {footerElements.map((footerElement) => (
           <StyledStack key={footerElement.sortOrder}>
-            <PortableText value={footerElement.footerElement[language]} />
+            <PortableText value={footerElement.footerElement[language]} components={serializers} />
           </StyledStack>
         ))}
       </StyledFooterWrapper>

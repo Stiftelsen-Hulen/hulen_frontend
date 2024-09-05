@@ -6,14 +6,18 @@ import Link from 'next/link'
 
 const StyledLink = styled(Link)({
   color: 'white',
+  backgroundColor: 'black',
   position: 'absolute',
   textAlign: 'center',
   left: '50%',
   top: 0,
-  transform: 'translateY(-100%)',
   transition: 'transform 0.2s',
+
+  //Center and move up
+  transform: 'translate(-50%, -100%)',
   '&:focus': {
-    transform: 'translateY(25%)',
+    //Keep centered and move into view
+    transform: 'translate(-50%, 25%)',
   },
 })
 /**

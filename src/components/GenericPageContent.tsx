@@ -67,7 +67,6 @@ export const HulenPortableText = ({
       ),
     },
   }
-  console.log(genericSanityPageProps)
 
   return (
     <Stack alignItems={'center'}>

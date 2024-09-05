@@ -28,10 +28,8 @@ export const GuardianSection = ({ content }: { content: GuardianInfoPageContent 
               {content.header[language]}
             </Typography>
             <HulenPortableText genericSanityPageProps={content.intro} />
-            <Typography variant='h4' fontWeight={700} width={'100%'}>
-              {content.subHeading[language]}
-            </Typography>
-            <Stack sx={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+            <Stack sx={{ flexDirection: 'row' }}>
               <SanityImageComponent imageData={content.guardianImage} width={500} />
               <Stack
                 sx={{
@@ -41,6 +39,9 @@ export const GuardianSection = ({ content }: { content: GuardianInfoPageContent 
                   width: '100%',
                 }}
               >
+                <Typography variant='h4' fontWeight={700} width={'100%'} textAlign={'center'}>
+                  {content.subHeading[language]}
+                </Typography>
                 <HulenPortableText genericSanityPageProps={content.description} />
               </Stack>
             </Stack>

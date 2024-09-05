@@ -91,3 +91,12 @@ export const getTechInfoPageGroq = `*[_type == "techInfo"][0]{
 export function getTranslationObjectGroq(identifier: string) {
   return `*[_type == "translationObject" && identifier == "${identifier}"][0]{identifier,content{${languageOptions}}}`
 }
+export const getGuardianInfoPageGroq = `*[_type == "guardianInfo"][0]{
+  header{${languageOptions}},
+  intro{${languageOptions}},
+  subHeading{${languageOptions}},
+  description{${languageOptions}},
+  guardianImage{
+      asset ->  {url, metadata}
+    },
+}`

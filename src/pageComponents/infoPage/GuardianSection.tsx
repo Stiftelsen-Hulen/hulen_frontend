@@ -29,7 +29,7 @@ export const GuardianSection = ({ content }: { content: GuardianInfoPageContent 
             </Typography>
             <HulenPortableText genericSanityPageProps={content.intro} />
 
-            <Stack sx={{ flexDirection: 'row' }}>
+            <Stack sx={{ flexDirection: { xs: 'column', sm: 'row' } }} gap={5}>
               <SanityImageComponent imageData={content.guardianImage} width={500} />
               <Stack
                 sx={{

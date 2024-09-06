@@ -1,8 +1,7 @@
 'use client'
 import { ContactCard } from '@/components/cards'
-import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import { hulen_yellow_text } from '@/styles'
-import { SanityContactPageContent } from '@/types/sanity/contact'
+import type { SanityContactPageContent } from '@/types/sanity/contact'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Grid, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
@@ -10,15 +9,15 @@ import { PortableText } from '@portabletext/react'
 /**
  * Defines the layout of the content from Sanity Studio on the Contact page.
  * Contact info is listed in a grid that adjust the number of columns based on the screen size.
- * Read more about mui grids: https://mui.com/material-ui/react-grid/ 
+ * Read more about mui grids: https://mui.com/material-ui/react-grid/
  * @param content from sanity studio
- * @returns 
+ * @returns
  */
 export const ContactPageContent = ({ content }: { content: SanityContactPageContent }) => {
   const { language } = useLanguage()
 
   return (
-    <Stack maxWidth={DEFAULT_LAYOUT_MAXWIDTH}>
+    <>
       <Stack alignItems={'center'} gap='1rem' sx={{ '&>*': { margin: 0, textAlign: 'center' } }}>
         <PortableText value={content.headerInfoBlock[language]} />
         <Stack alignItems={'center'}>
@@ -39,6 +38,6 @@ export const ContactPageContent = ({ content }: { content: SanityContactPageCont
           </Grid>
         ))}
       </Grid>
-    </Stack>
+    </>
   )
 }

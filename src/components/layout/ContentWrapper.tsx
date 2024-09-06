@@ -13,6 +13,7 @@ export const ContentWrapper = ({ children }: PropsWithChildren) => {
           width: '100%',
           maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
           alignItems: 'center',
+          gap: '2rem',
           wordBreak: 'break-word',
         }}
       >

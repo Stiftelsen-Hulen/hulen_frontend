@@ -1,10 +1,10 @@
+import { ContentWrapper } from '@/components/layout/ContentWrapper'
 import { TicketPageContent } from '@/pageComponents/TicketPageContent'
-import { Stack } from '@mui/material'
 
 export default function TicketsPage() {
   return (
-    <Stack alignItems={'center'}>
+    <ContentWrapper>
       <TicketPageContent />
-    </Stack>
+    </ContentWrapper>
   )
 }

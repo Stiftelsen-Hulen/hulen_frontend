@@ -1,13 +1,12 @@
 import type { SanityNavBarContent } from '@/types/sanity'
 import {
-  getAboutUsPageGroq,
   getContactPageGroq,
   getFooterElementsGroq,
   getGuardianInfoPageGroq,
-  getHomePageGroq,
   getJoinUsPageGroq,
   getNavigationElementsGroq,
   getNoPageFoundGroq,
+  getPagePropsGroq,
   getTechInfoPageGroq,
   getTranslationObjectGroq,
 } from './groqQueries'
@@ -40,15 +39,21 @@ export async function get404PageContent() {
 }
 
 export async function getHomePageContent() {
-  const homePageContent = await sanityClient.fetch(getHomePageGroq)
+  const homePageContent = await sanityClient.fetch(getPagePropsGroq('home'))
 
   return homePageContent as GenericPageProps
 }
 
 export async function getAboutUsContent() {
-  const aboutUsPageContent = await sanityClient.fetch(getAboutUsPageGroq)
+  const aboutUsPageContent = await sanityClient.fetch(getPagePropsGroq('aboutUs'))
 
   return aboutUsPageContent as GenericPageProps
+}
+
+export async function getAccessibilityPageProps() {
+  const accessibilityPageContent = await sanityClient.fetch(getPagePropsGroq('accessibility'))
+
+  return accessibilityPageContent as GenericPageProps
 }
 
 export async function getContactPageContent() {

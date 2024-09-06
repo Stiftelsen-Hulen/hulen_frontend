@@ -7,8 +7,6 @@ export default async function GuardianPage() {
   const data: GuardianInfoPageContent = await getGuardianInfoPageContent()
 
   return (
-    <Box>
-      <GuardianSection content={data} />
-    </Box>
+    <GuardianSection content={data} />
   )
 }

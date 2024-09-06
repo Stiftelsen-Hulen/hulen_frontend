@@ -1,22 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hulen Frontend
+
+This is an improved version of the frontend for [hulen.no](https://www.hulen.no). The content is from [Hulen Studio (sanity)](https://github.com/Daedalusish/hulen_sanity).
+
 
 ## Getting Started
+1. Install Node Version Manager (NVM) Version 20. (Recommend not to do this directly but through NVM [guide](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/).
+2. Clone the repository
+   ```bash
+   git clone https://github.com/Daedalusish/hulen_frontend.git
+   ```
+3. Install the dependencies
+   ```bash
+   npm install
+   ```
+4. Run the project
+   ```bash
+   npm run dev
+   ```
+5. Open (http://localhost:XXXX) with your browser to see the result.  
 
-First, run the development server:
+## Technologies used
+- [Next.js](https://nextjs.org) with [Typescript](https://www.typescriptlang.org)
+- [Material UI](https://mui.com/material-ui/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Infrastructure
+Descriptions of some of the important folders:
+- src/app: The main source code containing the different pages
+- src/components: Reusable UI components
+- src/pageComponents: Page specific components
+- src/styles: Global styles
+- src/types: Typescript definitions
+- src/utils: Helper funcions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
+The project is deployed in [Vercel](https://vercel.com). 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[Link to webpage](https://hulen-frontend-hl7e-ps05all6b-daedalusishs-projects.vercel.app).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+
+## Contact
+Maintainer: [XXXX](mailto:XXXXX)
+
+
+
 
 ## Learn More
 

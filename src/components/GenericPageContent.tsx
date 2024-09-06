@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 'use client'
 
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
@@ -7,12 +8,13 @@ import type {
   PortableTextTypeComponentProps,
 } from '@portabletext/react'
 import { PortableText } from '@portabletext/react'
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { PortableTextBlock } from '@portabletext/types'
 import type { LocaleImage } from '@/types/sanity'
 import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/genericPageProps'
+import type { ComponentProps } from 'react'
 
 export const HulenPortableText = ({
   genericSanityPageProps,
@@ -86,37 +88,29 @@ export const SanityLocaleImageComponent = ({
     return <p>error rendering image, wrong config</p>
   }
 
+  const nextImageProps: ComponentProps<typeof Image> = {
+    src: imageProps.value.Image.asset.url ?? '',
+    alt: imageProps.value.altText ?? '',
+    width: imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem',
+    height: imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25rem',
+  }
+
   if (imageProps.value.linkUrl === undefined) {
     return (
-      <Box
-        sx={{
-          width: imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem',
-          height: imageProps.value.Image.asset.metadata.dimensions.height ?? '625rem',
+      <Image
+        style={{
+          width: '100%',
+          maxWidth: imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem',
+          height: 'auto',
         }}
-      >
-        <Image
-          layout='responsive'
-          src={imageProps.value.Image.asset.url ?? ''}
-          alt={imageProps.value.altText ?? ''}
-          width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem'}
-          height={imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25rem'}
-        />
-      </Box>
+        {...nextImageProps}
+      />
     )
   }
 
   return (
     <Link href={imageProps.value.linkUrl}>
-      <Image
-        style={{
-          width: '100%',
-          height: 'auto',
-        }}
-        src={imageProps.value.Image.asset.url ?? ''}
-        alt={imageProps.value.altText ?? ''}
-        width={imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem'}
-        height={imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25rem'}
-      />
+      <Image {...nextImageProps} style={{ width: '100%', height: 'auto' }} />
     </Link>
   )
 }

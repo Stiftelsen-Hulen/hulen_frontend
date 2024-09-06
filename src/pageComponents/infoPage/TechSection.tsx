@@ -23,7 +23,7 @@ export const TechSection = ({ content }: { content: TechInfoPageContent }) => {
           {content.email}
         </Typography>
       </Box>
-      <Grid container spacing={4} paddingY='4rem' maxWidth={'45rem'} margin={'auto'}>
+      <Grid container spacing='2rem' paddingY='4rem' maxWidth={'45rem'} margin={'auto'}>
         {content.categories.map((category, i) => (
           <Grid item xs={12} sm={6} key={i}>
             <TechCategory category={category}></TechCategory>

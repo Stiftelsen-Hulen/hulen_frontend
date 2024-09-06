@@ -1,12 +1,11 @@
 import { HulenPortableText } from '@/components/GenericPageContent'
-import { ContentWrapper } from '@/components/layout/ContentWrapper'
 import { getHomePageContent } from '@/util/sanity'
 
 export default async function HomePage() {
   const data = await getHomePageContent()
 
   return (
-    <ContentWrapper>
+    <>
       <HulenPortableText genericSanityPageProps={data.locale} />
       <iframe
         title='Frame section containing Hulen TicTok'
@@ -16,6 +15,6 @@ export default async function HomePage() {
         frameBorder='0'
         src='https://www.tiktok.com/embed/v2/6981771083049340166?lang=en-US&amp;referrer=https%3A%2F%2Fwww.hulen.no%2F'
       />
-    </ContentWrapper>
+    </>
   )
 }

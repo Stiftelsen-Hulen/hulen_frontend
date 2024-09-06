@@ -1,12 +1,11 @@
 import { HulenPortableText } from '@/components/GenericPageContent'
-import { ContentWrapper } from '@/components/layout/ContentWrapper'
 import { getAboutUsContent } from '@/util/sanity'
 
 export default async function AboutUsPage() {
   const data = await getAboutUsContent()
 
   return (
-    <ContentWrapper>
+    <>
       <HulenPortableText genericSanityPageProps={data.locale} />
       <iframe
         loading='lazy'
@@ -16,6 +15,6 @@ export default async function AboutUsPage() {
         width='100%'
         height='400'
       />
-    </ContentWrapper>
+    </>
   )
 }

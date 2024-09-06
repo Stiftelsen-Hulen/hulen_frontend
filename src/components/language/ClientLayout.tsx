@@ -4,11 +4,12 @@ import type { SanityNavBarContent } from '@/types/sanity'
 import type { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import type { TranslationObject } from '@/types/sanity/translationObject'
 import { LanguageProvider } from '@/util/LanguageContext/LanguageContext'
-import { Box, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import type { PropsWithChildren } from 'react'
 import { Footer } from '../footer/Footer'
 import NavigationBar from '../navigation/Navbar'
 import { SkipLink } from '../navigation/SkipLink'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 
 /**
  * Defines the client-side layout(code run on end-user´s device).
@@ -40,19 +41,25 @@ export const ClientLayout = ({
       >
         <SkipLink translationContent={skipLinkData} />
         <NavigationBar navbarElements={headerData} />
-        <Box
+        <Stack
           component={'main'}
           id='maincontent'
           sx={{
             marginTop: { xs: '2rem', md: '4rem' },
             width: '100%',
+            marginX: 'auto',
+            maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
             marginBottom: '1rem',
+            padding: '2rem',
             height: '100%',
+            alignItems: 'center',
+            gap: '2rem',
+            wordBreak: 'break-word',
           }}
           tabIndex={-1}
         >
           {children}
-        </Box>
+        </Stack>
         <Footer footerElements={footerData} />
       </Stack>
     </LanguageProvider>

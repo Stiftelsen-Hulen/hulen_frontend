@@ -97,6 +97,8 @@ export const getGuardianInfoPageGroq = `*[_type == "guardianInfo"][0]{
   subHeading{${languageOptions}},
   description{${languageOptions}},
   guardianImage{
-      asset ->  {url, metadata}
+    Image{asset ->  {url, metadata}
     },
+    altText{${languageOptions}}
+  }
 }`

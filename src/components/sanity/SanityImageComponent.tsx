@@ -11,11 +11,13 @@ import Image from 'next/image'
 export const SanityImageComponent = ({
   imageData,
   width,
+  alt
 }: {
   imageData: SanityImage
   width?: number
+  alt: string
 }) => {
-  const calcWidth = () => {
+  function calcWidth() {
     if (width) {
       return width
     }
@@ -23,7 +25,7 @@ export const SanityImageComponent = ({
     return imageData.asset.metadata.dimensions.width
   }
 
-  const calcHeight = () => {
+  function calcHeight() {
     if (width) {
       return width / imageData.asset.metadata.dimensions.aspectRatio
     }
@@ -38,7 +40,7 @@ export const SanityImageComponent = ({
         placeholder='blur'
         blurDataURL={imageData.asset.metadata.blurHash}
         src={imageData.asset.url ?? ''}
-        alt={'todo'}
+        alt={alt}
         width={calcWidth()}
         height={calcHeight()}
       />

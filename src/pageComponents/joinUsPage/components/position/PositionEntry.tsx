@@ -37,7 +37,7 @@ export const PositionEntry = ({ position }: { position: Position }) => {
           <PortableText value={position.description[language]} />
         </Stack>
       </Stack>
-      {image && <SanityImageComponent imageData={image} width={368} />}
+      {image && <SanityImageComponent imageData={image} width={368} alt={''}/>}
     </Box>
   )
 }

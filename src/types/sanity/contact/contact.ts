@@ -1,4 +1,4 @@
-import { SupportedLanguageTypes } from '@/configs'
+import type { SupportedLanguageTypes } from '@/configs'
 
 export interface ContactInfo {
   title: Record<SupportedLanguageTypes, string>

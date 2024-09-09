@@ -1,4 +1,4 @@
-import { SupportedLanguageTypes } from '@/configs'
+import type { SupportedLanguageTypes } from '@/configs'
 
 export interface SanityNavBarContent {
   navElements: SanityNavElement[]

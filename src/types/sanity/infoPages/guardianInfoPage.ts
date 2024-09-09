@@ -1,6 +1,6 @@
-import type { LanguageOptions } from '@/types/language/LanguageOptions'
+import type { LanguageOptions } from '@/types/language'
+import type { LocalePortableTextBlock } from '../genericPage'
 import type { SanityImageWithLocaleAlt } from '../sanityImage'
-import type { LocalePortableTextBlock } from '../genericPage/genericPageProps'
 
 export interface GuardianInfoPageContent {
   header: Record<LanguageOptions, string>

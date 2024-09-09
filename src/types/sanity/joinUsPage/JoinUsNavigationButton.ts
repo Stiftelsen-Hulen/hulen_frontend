@@ -1,4 +1,4 @@
-import { LanguageOptions } from '@/types/language'
+import type { LanguageOptions } from '@/types/language'
 
 export interface JoinUsNavigationButton {
   label: Record<LanguageOptions, string>

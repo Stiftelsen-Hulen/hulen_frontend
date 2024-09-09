@@ -1,7 +1,7 @@
 'use client'
 
 import type { LanguageOptions } from '@/types/language'
-import React, { createContext, useState, useContext, useCallback } from 'react'
+import React, { createContext, useState, useContext, useCallback, useEffect } from 'react'
 
 interface LanguageContextProps {
   language: LanguageOptions
@@ -24,6 +24,10 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   const changeLanguage = useCallback(() => {
     setLanguage((current) => (current === 'en' ? 'no' : 'en'))
   }, [])
+
+  useEffect(() => {
+    document.documentElement.lang = language
+  }, [language])
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage }}>

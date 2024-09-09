@@ -1,4 +1,4 @@
-import { ClientLayout } from '@/components/language/ClientLayout'
+import { ClientLayout } from '@/components/layout'
 import ThemeRegistry from '@/util/ThemeRegistry/ThemeRegistry'
 import { getFooterElements, getSanityNavigationElements, getTranslationObject } from '@/util/sanity'
 import * as React from 'react'

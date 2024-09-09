@@ -1,7 +1,6 @@
 'use client'
 
-import { HulenPortableText } from '@/components/GenericPageContent'
-import { SanityImageComponent } from '@/components/sanity'
+import { HulenPortableText, SanityImageComponent } from '@/components/sanity'
 import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
 import type { GuardianInfoPageContent } from '@/types/sanity/infoPages/guardianInfoPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
@@ -14,7 +13,7 @@ export const GuardianSection = ({ content }: { content: GuardianInfoPageContent 
     <Stack
       sx={{
         width: '100%',
-        mx:'auto',
+        mx: 'auto',
         padding: '2rem',
         maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
         gap: '2rem',
@@ -29,8 +28,15 @@ export const GuardianSection = ({ content }: { content: GuardianInfoPageContent 
         </Typography>
         <HulenPortableText genericSanityPageProps={content.intro} />
 
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, paddingTop: '2rem' }} gap={'2.5rem'}>
-          <SanityImageComponent imageData={content.guardianImage.Image} alt={content.guardianImage.altText[language]} width={500} />
+        <Box
+          sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, paddingTop: '2rem' }}
+          gap={'2.5rem'}
+        >
+          <SanityImageComponent
+            imageData={content.guardianImage.Image}
+            alt={content.guardianImage.altText[language]}
+            width={500}
+          />
           <Stack
             sx={{
               flexDirection: 'column',

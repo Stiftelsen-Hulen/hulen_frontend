@@ -1,12 +1,12 @@
-import { BenefitsSectionContent } from '@/types/sanity/joinUsPage'
+import type { BenefitsSectionContent } from '@/types/sanity/joinUsPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 /**
  * The layout for the benefit section on the Join us Page
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }) => {
   const { language } = useLanguage()

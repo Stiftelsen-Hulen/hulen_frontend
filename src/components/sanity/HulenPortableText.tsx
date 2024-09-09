@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 'use client'
 
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
@@ -9,12 +8,12 @@ import type {
 } from '@portabletext/react'
 import { PortableText } from '@portabletext/react'
 import { Stack, Typography } from '@mui/material'
-import Image from 'next/image'
 import Link from 'next/link'
 import type { PortableTextBlock } from '@portabletext/types'
 import type { LocaleImage } from '@/types/sanity'
 import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/genericPageProps'
 import type { ComponentProps } from 'react'
+import { SanityImageComponent } from '.'
 
 export const HulenPortableText = ({
   genericSanityPageProps,
@@ -88,29 +87,18 @@ export const SanityLocaleImageComponent = ({
     return <p>error rendering image, wrong config</p>
   }
 
-  const nextImageProps: ComponentProps<typeof Image> = {
-    src: imageProps.value.Image.asset.url ?? '',
+  const imageComponentProps: ComponentProps<typeof SanityImageComponent> = {
     alt: imageProps.value.altText ?? '',
-    width: imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem',
-    height: imageProps.value.Image.asset.metadata.dimensions.height ?? '6.25rem',
+    imageData: imageProps.value.Image,
   }
 
   if (imageProps.value.linkUrl === undefined) {
-    return (
-      <Image
-        style={{
-          width: '100%',
-          maxWidth: imageProps.value.Image.asset.metadata.dimensions.width ?? '6.25rem',
-          height: 'auto',
-        }}
-        {...nextImageProps}
-      />
-    )
+    return <SanityImageComponent {...imageComponentProps} />
   }
 
   return (
     <Link href={imageProps.value.linkUrl}>
-      <Image {...nextImageProps} style={{ width: '100%', height: 'auto' }} />
+      <SanityImageComponent {...imageComponentProps} />
     </Link>
   )
 }

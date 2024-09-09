@@ -10,7 +10,7 @@ import type {
   PortableTextTypeComponentProps,
 } from '@portabletext/react'
 import { PortableText } from '@portabletext/react'
-import { SanityLocaleImageComponent } from '../GenericPageContent'
+import { SanityLocaleImageComponent } from '../sanity'
 import type { LocaleImage } from '@/types/sanity'
 
 const StyledStack = styled(Stack)({

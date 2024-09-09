@@ -1,4 +1,4 @@
-import { TicketPageContent } from '@/pageComponents/TicketPageContent'
+import { TicketPageContent } from '@/pageComponents/ticketPage'
 
 export default function TicketsPage() {
   return <TicketPageContent />

@@ -3,9 +3,8 @@ import type { PositionDescriptionSection } from '@/types/sanity/joinUsPage'
 import { Box, Stack, Typography } from '@mui/material'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { PortableText } from '@portabletext/react'
-import { PositionButtons } from '../position/PositionButtons'
-import { PositionEntry } from '../position/PositionEntry'
 import Image from 'next/image'
+import { PositionButtons, PositionEntry } from '../position'
 
 /**
  * Section for positions on join us page, includes:

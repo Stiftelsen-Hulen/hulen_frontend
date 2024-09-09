@@ -1,4 +1,4 @@
-import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs'
 import { hulen_black, hulen_yellow_text } from '@/styles'
 import type { JoinSanitySection } from '@/types/sanity/joinUsPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'

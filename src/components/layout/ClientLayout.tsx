@@ -9,7 +9,7 @@ import type { PropsWithChildren } from 'react'
 import { Footer } from '../footer/Footer'
 import NavigationBar from '../navigation/Navbar'
 import { SkipLink } from '../navigation/SkipLink'
-import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs'
 
 /**
  * Defines the client-side layout(code run on end-user´s device).

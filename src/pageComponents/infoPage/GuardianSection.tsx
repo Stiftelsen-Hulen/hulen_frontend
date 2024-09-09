@@ -1,7 +1,7 @@
 'use client'
 
 import { HulenPortableText, SanityImageComponent } from '@/components/sanity'
-import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs'
 import type { GuardianInfoPageContent } from '@/types/sanity/infoPages/guardianInfoPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack, Typography } from '@mui/material'

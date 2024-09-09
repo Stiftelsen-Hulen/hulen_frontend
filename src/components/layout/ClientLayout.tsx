@@ -3,7 +3,7 @@
 import type { SanityNavBarContent } from '@/types/sanity'
 import type { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import type { TranslationObject } from '@/types/sanity/translationObject'
-import { LanguageProvider } from '@/util/LanguageContext/LanguageContext'
+import { LanguageProvider } from '@/util/LanguageContext'
 import { Stack } from '@mui/material'
 import type { PropsWithChildren } from 'react'
 import { Footer } from '../footer/Footer'

@@ -1,5 +1,5 @@
-import { Position } from '@/types/sanity/joinUsPage/position'
-import { PositionDescriptionSection } from '@/types/sanity/joinUsPage'
+import type { Position } from '@/types/sanity/joinUsPage/position'
+import type { PositionDescriptionSection } from '@/types/sanity/joinUsPage'
 import { Box, Stack, Typography } from '@mui/material'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { PortableText } from '@portabletext/react'
@@ -13,7 +13,13 @@ import Image from 'next/image'
  * Postition Buttons
  * Position entries
  */
-export const PositionSection = ({ content, positions }: { content: PositionDescriptionSection, positions: Position[] }) => {
+export const PositionSection = ({
+  content,
+  positions,
+}: {
+  content: PositionDescriptionSection
+  positions: Position[]
+}) => {
   const { language } = useLanguage()
 
   return (
@@ -45,6 +51,5 @@ export const PositionSection = ({ content, positions }: { content: PositionDescr
         ))}
       </Stack>
     </Stack>
-
   )
 }

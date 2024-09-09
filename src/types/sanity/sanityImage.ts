@@ -1,3 +1,5 @@
+import { LanguageOptions } from "../language"
+
 export interface SanityImage {
   asset: {
     url: string
@@ -19,4 +21,9 @@ export interface LocaleImage {
   Image: SanityImage
   altText: string
   linkUrl: string
+}
+
+export interface SanityImageWithLocaleAlt {
+  altText: Record<LanguageOptions, string>
+  Image: SanityImage
 }

@@ -3,6 +3,7 @@ import {
   getAboutUsPageGroq,
   getContactPageGroq,
   getFooterElementsGroq,
+  getGuardianInfoPageGroq,
   getHomePageGroq,
   getJoinUsPageGroq,
   getNavigationElementsGroq,
@@ -18,6 +19,7 @@ import type { SanityContactPageContent } from '@/types/sanity/contact'
 import type { JoinUsSanityContent } from '@/types/sanity/joinUsPage'
 import type { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
 import type { TranslationObject } from '@/types/sanity/translationObject'
+import type { GuardianInfoPageContent } from '@/types/sanity/infoPages/guardianInfoPage'
 
 export async function getSanityNavigationElements() {
   const navigationElements = await sanityClient.fetch(getNavigationElementsGroq)
@@ -72,4 +74,10 @@ export async function getTranslationObject(identifier: string) {
   const translationObject = await sanityClient.fetch(getTranslationObjectGroq(identifier))
 
   return translationObject as TranslationObject
+}
+
+export async function getGuardianInfoPageContent() {
+  const guardianInfoPageContent = await sanityClient.fetch(getGuardianInfoPageGroq)
+
+  return guardianInfoPageContent as GuardianInfoPageContent
 }

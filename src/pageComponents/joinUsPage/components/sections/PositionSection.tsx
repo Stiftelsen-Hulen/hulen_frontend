@@ -22,7 +22,7 @@ export const PositionSection = ({
   const { language } = useLanguage()
 
   return (
-    <Stack sx={{ alignItems: 'center', gap: '2rem', width: '100%' }}>
+    <Stack sx={{ alignItems: 'center', gap: '2rem', width: '100%' }} id='positions'>
       <Stack sx={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
         <Box
           sx={{

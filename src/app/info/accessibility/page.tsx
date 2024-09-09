@@ -1,9 +1,8 @@
-import { Box, Typography } from '@mui/material'
+import { HulenPortableText } from '@/components/GenericPageContent'
+import { getAccessibilityPageProps } from '@/util/sanity'
 
 export default async function AccessibilityPage() {
-  return (
-    <Box>
-      <Typography>HELLO WORLD FROM Accessibility</Typography>
-    </Box>
-  )
+  const data = await getAccessibilityPageProps()
+
+  return <HulenPortableText genericSanityPageProps={data.locale} />
 }

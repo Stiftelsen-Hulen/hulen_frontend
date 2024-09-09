@@ -5,7 +5,7 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
 
 ## Getting Started
 
-1. Install Node Version Manager (NVM) Version 20. (Recommended not to do this directly but through NVM [guide](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/).
+1. Install Node Version 20. (Recommended to use NVM to do this, for more info on NVM see (https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/).
 
 2. Clone the repository
    ```bash
@@ -20,29 +20,29 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
    ```bash
    npm run dev
    ```
-6. Open (http://localhost:XXXX) with your browser to see the result.  
+6. Open http://localhost:3000 with your browser to see the result.  
 
 
 ## Technologies used
 
 - [React](https://react.dev) version 18.2.21
-- [Next.js](https://nextjs.org) version 13.4.19 with [Typescript](https://www.typescriptlang.org) version 
+- [Next.js](https://nextjs.org) version 13.4.19 with [Typescript](https://www.typescriptlang.org) version 5.2.2
 - [Material UI](https://mui.com/material-ui/)
 
 
 ## Infrastructure
 
 Descriptions of some of the main folders:
-- src/app: The main source code containing the different pages
-- src/components: Reusable UI components
-- src/pageComponents: Page specific components
-- src/styles: Global styles
-- src/types: Typescript definitions
-- src/utils: Helper funcions
+- `src/app/`: The main source code containing the different pages
+- `src/components/`: Reusable UI components
+- `src/pageComponents/`: Page specific components
+- `src/styles/`: Global styles
+- `src/types/`: Typescript definitions
+- `src/utils/`: Helper funcions
 
 ### index.ts
 
-You'll find all over the project "index.ts" files. These are to bundle together the exports of different files. We do this to declutter our import statements and make things a little prettier. They aren't required, but they do help in maintaining the project.
+You'll find all over the project `index.ts` files. These are to bundle together the exports of different files. We do this to declutter our import statements and make things a little prettier. They aren't required, but they do help in maintaining the project.
 
 
 ## Deployment
@@ -119,8 +119,8 @@ Like this:
 `<SomeComponent style={{color:hulen_yellow}}>`
 
 ### Get content from Sanity
-The data from Sanity Studio is accessed with [GROQ queries](https://www.sanity.io/docs/how-queries-work) in the `groqQueries.ts` file.
-The queries are fetched in the `apiFunctions.ts` file.
+The data from Sanity Studio is accessed with [GROQ queries](https://www.sanity.io/docs/how-queries-work) in the `src/util/sanity/groqQueries.ts` file.
+The queries are fetched in the `src/util/sanity/apiFunctions.ts` file.
 
 
 ## Contact

@@ -1,10 +1,10 @@
 import type { Position } from '@/types/sanity/joinUsPage/position'
 import type { PositionDescriptionSection } from '@/types/sanity/joinUsPage'
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { PortableText } from '@portabletext/react'
-import Image from 'next/image'
 import { PositionButtons, PositionEntry } from '../position'
+import { SanityImageComponent } from '@/components/sanity'
 
 /**
  * Section for positions on join us page, includes:
@@ -24,20 +24,7 @@ export const PositionSection = ({
   return (
     <Stack sx={{ alignItems: 'center', gap: '2rem', width: '100%' }} id='positions'>
       <Stack sx={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-        <Box
-          sx={{
-            width: content.descImage.asset.metadata.dimensions.width ?? '6.25rem',
-            height: content.descImage.asset.metadata.dimensions.height ?? '6.25rem',
-          }}
-        >
-          <Image
-            layout='responsive'
-            src={content.descImage.asset.url ?? ''}
-            alt={''}
-            width={content.descImage.asset.metadata.dimensions.width ?? '6.25rem'}
-            height={content.descImage.asset.metadata.dimensions.height ?? '6.25rem'}
-          />
-        </Box>
+        <SanityImageComponent imageData={content.descImage} alt={''} />
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />
       </Stack>

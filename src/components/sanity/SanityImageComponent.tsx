@@ -11,7 +11,7 @@ import Image from 'next/image'
 export const SanityImageComponent = ({
   imageData,
   width,
-  alt
+  alt,
 }: {
   imageData: SanityImage
   width?: number
@@ -36,13 +36,16 @@ export const SanityImageComponent = ({
   return (
     <Box width='100%' height='100%' maxWidth={`${calcWidth()}px`} maxHeight={`${calcHeight()}px`}>
       <Image
-        layout='responsive'
         placeholder='blur'
         blurDataURL={imageData.asset.metadata.blurHash}
         src={imageData.asset.url ?? ''}
         alt={alt}
         width={calcWidth()}
         height={calcHeight()}
+        style={{
+          width: '100%',
+          height: 'auto',
+        }}
       />
     </Box>
   )

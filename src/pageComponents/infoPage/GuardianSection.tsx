@@ -20,7 +20,7 @@ export const GuardianSection = ({ content }: { content: GuardianInfoPageContent 
         gap={'2.5rem'}
       >
         <SanityImageComponent
-          imageData={content.guardianImage.Image}
+          imageData={content.guardianImage}
           alt={content.guardianImage.altText[language]}
           width={500}
         />

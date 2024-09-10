@@ -14,18 +14,17 @@ const languageOptions = supportedLanguages.join(',')
 //////////
 
 export const getNavigationElementsGroq = `*[_type == "navBarProps"][0] {navElements[]{subUrl, title{${languageOptions}}, subNavElements[]{subUrl, title{${languageOptions}}}}, navbarLogo{ asset->{
-  url,
+  url,metadata
 },
 altText{
   ${supportedLanguages.join(',')}
 } }}`
 
-export const getNoPageFoundGroq = `*[_type == "notFoundPage"][0] {infotext{${languageOptions}},backbuttonlabel{${languageOptions}}, notFoundImage{ asset->{
-  url,
-},
-altText{
-  ${supportedLanguages.join(',')}
-} }}`
+export const getNoPageFoundGroq = `*[_type == "notFoundPage"][0] {infotext{${languageOptions}},backbuttonlabel{${languageOptions}},
+notFoundImage{
+asset -> {url, metadata},
+altText{${languageOptions}}
+}}`
 
 export const getFooterElementsGroq = `*[_type == "footerElements"] | order(sortOrder) {sortOrder, footerElement{${supportedLanguages
   .map((language) => `${language}[]{..., Image{asset ->  {url, metadata}}}`)
@@ -73,7 +72,8 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
     category,
     description{${languageOptions}},
     descImage{
-      asset -> {url, metadata}
+      asset -> {url, metadata},
+      altText{${languageOptions}}
     }
   }
 }`
@@ -98,7 +98,7 @@ export const getGuardianInfoPageGroq = `*[_type == "guardianInfo"][0]{
   subHeading{${languageOptions}},
   description{${languageOptions}},
   guardianImage{
-    Image{asset -> {url, metadata}},
+    asset -> {url, metadata},
     altText{${languageOptions}}
   }
 }`

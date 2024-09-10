@@ -1,13 +1,9 @@
 import type { SupportedLanguageTypes } from '@/configs'
+import type { SanityImageWithLocaleAlt } from '../sanityImage'
 
 export interface SanityNavBarContent {
   navElements: SanityNavElement[]
-  navbarLogo: {
-    altText: Record<SupportedLanguageTypes, string>
-    asset: {
-      url: string
-    }
-  }
+  navbarLogo: SanityImageWithLocaleAlt
 }
 
 export interface SanityNavElement {

@@ -61,7 +61,5 @@ export async function getTranslationObject(identifier: string) {
 }
 
 export async function getGuardianInfoPageContent() {
-  const guardianInfoPageContent = await sanityClient.fetch(getGuardianInfoPageGroq)
-
-  return guardianInfoPageContent as GuardianInfoPageContent
+  return await sanityClient.fetch<GuardianInfoPageContent>(getGuardianInfoPageGroq)
 }

@@ -46,7 +46,7 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
     content{${languageOptions}}, 
     header{${languageOptions}}, 
     descImage{
-      asset ->  {url, metadata}
+      asset -> {url, metadata}
     }, 
   },
   ingress{ ${languageOptions} },
@@ -56,14 +56,14 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
     emailPreface{${languageOptions}},
     header{${languageOptions}},
     icon{
-      asset ->  {url, metadata}
+      asset -> {url, metadata}
     }, 
   },
   positionPreface{
     header{${languageOptions}},
     content{${languageOptions}},
     descImage{
-      asset ->  {url, metadata}
+      asset -> {url, metadata}
     }, 
   },
   navigationButtons[]{label{${languageOptions}},section },
@@ -73,7 +73,7 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
     category,
     description{${languageOptions}},
     descImage{
-      asset ->  {url, metadata}
+      asset -> {url, metadata}
     }
   }
 }`
@@ -98,14 +98,13 @@ export const getGuardianInfoPageGroq = `*[_type == "guardianInfo"][0]{
   subHeading{${languageOptions}},
   description{${languageOptions}},
   guardianImage{
-    Image{asset ->  {url, metadata}
-    },
+    Image{asset -> {url, metadata}},
     altText{${languageOptions}}
   }
 }`
 
 export function getPagePropsGroq(title: string) {
   return `*[_type == "pageProps" && title == "${title}"][0] { ..., locale{${supportedLanguages
-    .map((language) => `${language}[]{..., Image{asset ->  {url, metadata}}}`)
+    .map((language) => `${language}[]{..., Image{asset -> {url, metadata}}}`)
     .join(',')} }}`
 }

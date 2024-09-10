@@ -19,36 +19,38 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
 
   return (
     <>
-      <Typography variant='h1' fontWeight={700} width={'100%'} textAlign={'center'}>
-        {content.pageTitle[language]}
-      </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '1rem',
-          width: '100%',
-          flexDirection: { xs: 'column', sm: 'row' },
-        }}
-      >
-        {content.navigationButtons.map((buttonProps) => (
-          <Button
-            key={buttonProps.section}
-            variant='linkButton'
-            onClick={() => scrollToSection(buttonProps.section)}
-          >
-            {buttonProps.label[language]}
-          </Button>
-        ))}
-      </Box>
-      <Box
-        sx={{
-          width: { xs: '100%', md: '50%' },
-          alignSelf: 'start',
-          textAlign: { xs: 'center', md: 'left' },
-        }}
-      >
-        <PortableText value={content.ingress[language]} />
+      <Box>
+        <Typography variant='h1' fontWeight={700} width={'100%'} textAlign={'center'}>
+          {content.pageTitle[language]}
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1rem',
+            width: '100%',
+            flexDirection: { xs: 'column', sm: 'row' },
+          }}
+        >
+          {content.navigationButtons.map((buttonProps) => (
+            <Button
+              key={buttonProps.section}
+              variant='linkButton'
+              onClick={() => scrollToSection(buttonProps.section)}
+            >
+              {buttonProps.label[language]}
+            </Button>
+          ))}
+        </Box>
+        <Box
+          sx={{
+            width: { xs: '100%', md: '50%' },
+            alignSelf: 'start',
+            textAlign: { xs: 'center', md: 'left' },
+          }}
+        >
+          <PortableText value={content.ingress[language]} />
+        </Box>
       </Box>
       <PositionSection content={content.positionPreface} positions={content.positions} />
       <BenefitsSection content={content.benefitsSection} />

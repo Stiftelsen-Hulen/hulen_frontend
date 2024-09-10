@@ -2,7 +2,7 @@
 import { ContactCard } from '@/pageComponents/contactPage/components'
 import type { SanityContactPageContent } from '@/types/sanity/contact'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
-import { Grid, Stack, Typography } from '@mui/material'
+import { Box, Grid, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 
 /**
@@ -16,7 +16,7 @@ export const ContactPageContent = ({ content }: { content: SanityContactPageCont
   const { language } = useLanguage()
 
   return (
-    <>
+    <Box>
       <Stack alignItems={'center'} gap='1rem' sx={{ '&>*': { margin: 0, textAlign: 'center' } }}>
         <PortableText value={content.headerInfoBlock[language]} />
         <Stack alignItems={'center'}>
@@ -33,6 +33,6 @@ export const ContactPageContent = ({ content }: { content: SanityContactPageCont
           </Grid>
         ))}
       </Grid>
-    </>
+    </Box>
   )
 }

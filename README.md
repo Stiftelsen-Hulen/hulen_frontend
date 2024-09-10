@@ -15,12 +15,19 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
    ```bash
    npm install
    ```
-4. Create a .env file in root and add the environment variables.
-5. Run the project
+4. Steps to create the .env file with environment variables.
+   - Copy the `.env.example` file
+      ```bash
+         cp .env.example .env
+      ```
+   - Edit the `.env` file and replace the placeholders with the appropriate credentials.
+        1. SANITY_STUDIO_PROJECT_ID: Log in to [Sanity.io](https://www.sanity.io), navigate to the **Projects**, select the **Hulen** project and copy the **PROJECT ID**.
+        2. NEXT_PUBLIC_SANITY_DATASET: In the **Project Dashboard**, go to **Datasets** and use the title of the chosen dataset. 
+6. Run the project
    ```bash
    npm run dev
    ```
-6. Open http://localhost:3000 with your browser to see the result.  
+7. Open http://localhost:3000 with your browser to see the result.  
 
 
 ## Technologies used

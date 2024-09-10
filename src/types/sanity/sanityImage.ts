@@ -1,4 +1,4 @@
-import { LanguageOptions } from "../language"
+import type { LanguageOptions } from '../language'
 
 export interface SanityImage {
   asset: {

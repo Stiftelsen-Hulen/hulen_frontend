@@ -1,5 +1,5 @@
-import { PortableTextBlock } from '@portabletext/types'
-import { LanguageOptions } from '@/types/language'
+import type { LanguageOptions } from '@/types/language'
+import type { PortableTextBlock } from '@portabletext/types'
 
 export interface SanityFooterElements {
   sortOrder: number

@@ -1,6 +1,6 @@
-import { LanguageOptions } from '@/types/language'
-import { PortableTextBlock } from '@portabletext/types'
-import { SanityImage } from '..'
+import type { LanguageOptions } from '@/types/language'
+import type { PortableTextBlock } from '@portabletext/types'
+import type { SanityImage } from '..'
 
 export interface JoinSanitySection {
   content: Record<LanguageOptions, PortableTextBlock>

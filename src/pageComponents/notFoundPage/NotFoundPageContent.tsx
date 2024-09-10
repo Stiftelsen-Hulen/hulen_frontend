@@ -1,6 +1,6 @@
 'use client'
 import { hulen_black, hulen_yellow_text } from '@/styles'
-import { Sanity404Page } from '@/types/sanity/pageNotFound'
+import type { Sanity404Page } from '@/types/sanity/pageNotFound'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
@@ -15,7 +15,11 @@ const TypographyAsButton = styled(Typography)({
   fontWeight: 'bold',
 })
 
-export const Page404Content = ({ notFoundImage, infotext, backbuttonlabel }: Sanity404Page) => {
+export const NotFoundPageContent = ({
+  notFoundImage,
+  infotext,
+  backbuttonlabel,
+}: Sanity404Page) => {
   const { language } = useLanguage()
 
   return (

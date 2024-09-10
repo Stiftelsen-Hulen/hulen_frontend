@@ -1,4 +1,4 @@
-import { HulenPortableText } from '@/components/GenericPageContent'
+import { HulenPortableText } from '@/components/sanity'
 import { getAboutUsContent } from '@/util/sanity'
 
 export default async function AboutUsPage() {

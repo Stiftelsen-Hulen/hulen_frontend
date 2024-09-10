@@ -1,13 +1,13 @@
-import { LanguageOptions } from '@/types/language'
-import {
+import type { LanguageOptions } from '@/types/language'
+import type { PortableTextBlock } from '@portabletext/types'
+import type {
   BenefitsSectionContent,
   JoinSanitySection,
   JoinUsNavigationButton,
   PositionDescriptionSection,
 } from '.'
-import { PortableTextBlock } from '@portabletext/types'
-import { Position } from './position'
-import { SanityImage } from '..'
+import type { SanityImage } from '..'
+import type { Position } from './position'
 
 export interface JoinUsSanityContent {
   benefitsSection: BenefitsSectionContent

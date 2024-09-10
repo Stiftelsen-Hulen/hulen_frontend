@@ -1,9 +1,9 @@
 'use client'
-import { TechCategory } from '@/components/infoPage'
 import { hulen_yellow_text } from '@/styles/theme'
 import type { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Grid, Typography } from '@mui/material'
+import { TechCategory } from './components'
 
 export const TechSection = ({ content }: { content: TechInfoPageContent }) => {
   const { language } = useLanguage()

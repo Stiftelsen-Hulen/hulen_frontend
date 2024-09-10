@@ -1,5 +1,5 @@
 'use client'
-import { ContactCard } from '@/components/cards'
+import { ContactCard } from '@/pageComponents/contactPage/components'
 import { hulen_yellow_text } from '@/styles'
 import type { SanityContactPageContent } from '@/types/sanity/contact'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'

@@ -4,13 +4,13 @@ import type { SanityFooterElements } from '@/types/sanity/footerElements/footerE
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack } from '@mui/material'
 import { styled } from '@mui/system'
-import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs'
 import type {
   PortableTextReactComponents,
   PortableTextTypeComponentProps,
 } from '@portabletext/react'
 import { PortableText } from '@portabletext/react'
-import { SanityLocaleImageComponent } from '../GenericPageContent'
+import { SanityLocaleImageComponent } from '../sanity'
 import type { LocaleImage } from '@/types/sanity'
 
 const StyledStack = styled(Stack)({

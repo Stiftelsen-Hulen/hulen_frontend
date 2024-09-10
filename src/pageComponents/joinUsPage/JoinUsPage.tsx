@@ -5,9 +5,7 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Button, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 import { scrollToSection } from '@/util/helpers'
-import { BenefitsSection } from './components/sections/BenefitsSection'
-import { JoinUsSection } from './components/sections/JoinUsSection'
-import { PositionSection } from './components/sections/PositionSection'
+import { PositionSection, BenefitsSection, JoinUsSection } from './components/sections'
 
 /**
  * Renders the content for the join us page, inclueds:

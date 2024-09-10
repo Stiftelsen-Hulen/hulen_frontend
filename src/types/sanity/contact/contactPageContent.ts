@@ -1,7 +1,7 @@
-import { LanguageOptions } from '@/types/language'
-import { PortableTextBlock } from '@portabletext/types'
-import { ContactInfo } from './contact'
-import { SupportedLanguageTypes } from '@/configs'
+import type { SupportedLanguageTypes } from '@/configs'
+import type { LanguageOptions } from '@/types/language'
+import type { PortableTextBlock } from '@portabletext/types'
+import type { ContactInfo } from './contact'
 
 export interface SanityContactPageContent {
   contactList: ContactInfo[]

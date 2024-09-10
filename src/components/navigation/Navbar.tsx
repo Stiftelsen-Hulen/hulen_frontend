@@ -1,5 +1,5 @@
 'use client'
-import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs/constants'
+import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs'
 import type { SanityNavBarContent } from '@/types/sanity'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'

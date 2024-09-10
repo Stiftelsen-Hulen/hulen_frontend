@@ -1,6 +1,6 @@
 'use client'
 
-import { LanguageOptions } from '@/types/language'
+import type { LanguageOptions } from '@/types/language'
 import React, { createContext, useState, useContext, useCallback } from 'react'
 
 interface LanguageContextProps {

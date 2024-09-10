@@ -1,4 +1,4 @@
-import { ContactPageContent } from '@/pageComponents/ContactPage'
+import { ContactPageContent } from '@/pageComponents/contactPage/ContactPage'
 import { getContactPageContent } from '@/util/sanity'
 
 export default async function ContactPage() {

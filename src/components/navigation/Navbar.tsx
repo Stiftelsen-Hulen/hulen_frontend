@@ -6,15 +6,14 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import { Box, IconButton, SvgIcon, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { styled } from '@mui/system'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment, useState } from 'react'
 import { MenuDrawer } from '.'
 import { LanguageSelector } from '../language/LanguageSelector'
+import { SanityImageComponent } from '../sanity'
 import { NavDropDown } from './NavDropDown'
 import { NavLink } from './NavLink'
-const LOGO_HEIGHT_BASE = 120
 const LOGO_WIDTH_BASE = 143
 
 const StyledNavbarWrapper = styled(Box)({
@@ -73,12 +72,17 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
       component={'nav'} //Enhances accessibility with semantic HTML structure.
       flexDirection={isMobile ? 'column' : 'row'}
     >
-      <Link href={'/'} aria-hidden>
-        <Image
-          src={navbarElements.navbarLogo.asset.url}
+      <Link
+        href={'/'}
+        style={{
+          width: isMobile ? LOGO_WIDTH_BASE * 2 : LOGO_WIDTH_BASE * 2.3,
+          flexShrink: 0,
+        }}
+        aria-hidden
+      >
+        <SanityImageComponent
+          imageData={navbarElements.navbarLogo}
           alt={navbarElements.navbarLogo.altText[language]}
-          width={isMobile ? LOGO_WIDTH_BASE * 2 : LOGO_WIDTH_BASE * 2.3}
-          height={isMobile ? LOGO_HEIGHT_BASE * 2 : LOGO_HEIGHT_BASE * 2.3}
         />
       </Link>
       <StyledNavLinksWrapper sx={{ justifyContent: { xs: 'center', md: 'end' } }}>

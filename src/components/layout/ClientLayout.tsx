@@ -47,8 +47,10 @@ export const ClientLayout = ({
           sx={{
             marginTop: { xs: '2rem', md: '4rem' },
             width: '100%',
-            marginX: 'auto',
-            maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
+            '&>*': {
+              maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
+              marginX: 'auto',
+            },
             marginBottom: '1rem',
             padding: '2rem',
             height: '100%',

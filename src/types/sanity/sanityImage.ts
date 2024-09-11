@@ -23,7 +23,6 @@ export interface LocaleImage {
   linkUrl: string
 }
 
-export interface SanityImageWithLocaleAlt {
+export interface SanityImageWithLocaleAlt extends SanityImage {
   altText: Record<LanguageOptions, string>
-  Image: SanityImage
 }

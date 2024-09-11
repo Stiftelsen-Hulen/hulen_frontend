@@ -1,9 +1,8 @@
 'use client'
 import { ContactCard } from '@/pageComponents/contactPage/components'
-import { hulen_yellow_text } from '@/styles'
 import type { SanityContactPageContent } from '@/types/sanity/contact'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
-import { Grid, Stack, Typography } from '@mui/material'
+import { Box, Grid, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 
 /**
@@ -17,16 +16,12 @@ export const ContactPageContent = ({ content }: { content: SanityContactPageCont
   const { language } = useLanguage()
 
   return (
-    <>
+    <Box>
       <Stack alignItems={'center'} gap='1rem' sx={{ '&>*': { margin: 0, textAlign: 'center' } }}>
         <PortableText value={content.headerInfoBlock[language]} />
         <Stack alignItems={'center'}>
           <Typography variant='overline'>{content.booking.title[language]}</Typography>
-          <Typography
-            component={'a'}
-            href={`mailto:${content.booking.email}`}
-            sx={{ color: 'white', textDecorationColor: hulen_yellow_text }}
-          >
+          <Typography variant='link' component={'a'} href={`mailto:${content.booking.email}`}>
             {content.booking.email}
           </Typography>
         </Stack>
@@ -38,6 +33,6 @@ export const ContactPageContent = ({ content }: { content: SanityContactPageCont
           </Grid>
         ))}
       </Grid>
-    </>
+    </Box>
   )
 }

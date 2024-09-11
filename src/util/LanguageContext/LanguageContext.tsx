@@ -46,9 +46,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
   const changeLanguage = useCallback((lang: LanguageOptions) => {
     setLanguage(lang)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('language', lang)
-    }
+    localStorage.setItem('language', lang)
   }, [])
 
   if (!isHydrated) {

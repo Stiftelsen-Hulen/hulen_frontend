@@ -21,20 +21,29 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   const [language, setLanguage] = useState<LanguageOptions>('no')
   const [isHydrated, setIsHydrated] = useState(false)
 
+  /**
+   * If the language is stored in localStorage, use that, else use the browser language.
+   * Hydration is done to prevent a flash of the wrong language on the page.
+   */
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedLanguage = sessionStorage.getItem('language') as LanguageOptions
-      if (storedLanguage) {
-        setLanguage(storedLanguage)
+    const storedLanguage = localStorage.getItem('language') as LanguageOptions
+    if (storedLanguage) {
+      setLanguage(storedLanguage)
+    } else if (navigator.language) {
+      const lang = navigator.language
+      if (lang === 'nb' || lang === 'nn') {
+        setLanguage('no')
+      } else {
+        setLanguage('en')
       }
-      setIsHydrated(true)
     }
+    setIsHydrated(true)
   }, [])
 
   const changeLanguage = useCallback((lang: LanguageOptions) => {
     setLanguage(lang)
     if (typeof window !== 'undefined') {
-      sessionStorage.setItem('language', lang)
+      localStorage.setItem('language', lang)
     }
   }, [])
 

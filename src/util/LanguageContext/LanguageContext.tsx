@@ -1,11 +1,10 @@
 'use client'
-
 import type { LanguageOptions } from '@/types/language'
 import React, { createContext, useState, useContext, useCallback } from 'react'
 
 interface LanguageContextProps {
   language: LanguageOptions
-  changeLanguage: () => void
+  changeLanguage: (lang: LanguageOptions) => void
 }
 
 // Initialize context with default values (they won't actually be used as the real values are provided by the provider)
@@ -19,10 +18,20 @@ export const useLanguage = () => {
 }
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<LanguageOptions>('no')
+  const [language, setLanguage] = useState<LanguageOptions>(() => {
+    if (typeof window !== 'undefined') {
+      return (sessionStorage.getItem('language') as LanguageOptions) || 'en'
+    }
 
-  const changeLanguage = useCallback(() => {
-    setLanguage((current) => (current === 'en' ? 'no' : 'en'))
+    return 'en'
+  })
+
+  const changeLanguage = useCallback((lang: LanguageOptions) => {
+    setLanguage(lang)
+    if (typeof window !== 'undefined') {
+      console.log('Setting language to: ', lang)
+      sessionStorage.setItem('language', lang)
+    }
   }, [])
 
   return (

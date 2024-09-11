@@ -15,12 +15,26 @@ import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/generic
 import type { ComponentProps } from 'react'
 import { SanityImageComponent } from '.'
 
+/**
+ * Serializes the rich text content from a Sanity Text Block into React components.
+ * The content from sanity follows the PortableText specification (https://portabletext.org/).
+ *
+ * For more information on using PortableText with React,
+ * see: https://github.com/portabletext/react-portabletext#portabletextreact
+ */
 export const HulenPortableText = ({
   genericSanityPageProps,
 }: {
   genericSanityPageProps: LocalePortableTextBlock
 }) => {
   const { language } = useLanguage()
+
+  /**
+   * The serializers define the appropriate components for the different block types.
+   *
+   * We map the content into the appropriate MUI components so that the content styling
+   * follows the defined theme.
+   */
   const serializers: Partial<PortableTextReactComponents> = {
     types: {
       localeImage: (localeImageProps: PortableTextTypeComponentProps<LocaleImage>) => (
@@ -78,6 +92,9 @@ export const HulenPortableText = ({
   )
 }
 
+/**
+ * Converts a LocaleImage type defined in Sanity into a SanityImageComponent.
+ */
 export const SanityLocaleImageComponent = ({
   imageProps,
 }: {

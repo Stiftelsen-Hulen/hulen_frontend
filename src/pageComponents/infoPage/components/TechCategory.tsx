@@ -1,6 +1,10 @@
-import { TechCategories } from '@/types/sanity/infoPages'
+import type { TechCategories } from '@/types/sanity/infoPages'
 import { List, ListItem, Stack, Typography } from '@mui/material'
 
+/**
+ * Component for displaying a Tech Category with a list of items.
+ * Intended to be used on the Tech Info page
+ */
 export const TechCategory = ({ category }: { category: TechCategories }) => {
   return (
     <Stack>

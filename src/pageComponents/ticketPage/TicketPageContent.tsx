@@ -1,3 +1,7 @@
+/**
+ * Renders the content for the Ticket page
+ * Contains an iframe that shows the next events at hulen from ticketco
+ */
 export const TicketPageContent = () => {
   return (
     <iframe

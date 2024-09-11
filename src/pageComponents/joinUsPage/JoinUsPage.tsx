@@ -8,7 +8,7 @@ import { scrollToSection } from '@/util/helpers'
 import { PositionSection, BenefitsSection, JoinUsSection } from './components/sections'
 
 /**
- * Renders the content for the join us page, inclueds:
+ * Renders the content for the join us page, includes:
  * Title, navigation buttons, and ingress text
  * Position section
  * Benefit section

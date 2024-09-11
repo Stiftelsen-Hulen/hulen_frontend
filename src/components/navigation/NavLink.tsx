@@ -5,6 +5,10 @@ import { Stack } from '@mui/material'
 import type { MouseEventHandler } from 'react'
 import { LinkWrapper } from './LinkWrapper'
 
+/**
+ * Navigation Link
+ * Shows an arrow above the link if isCurrentPath is true
+ */
 export const NavLink = ({
   navElement,
   isCurrentPath,

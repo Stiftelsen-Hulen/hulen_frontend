@@ -5,7 +5,8 @@ import type { MouseEventHandler } from 'react'
 import { LinkWrapper } from './LinkWrapper'
 import { useTheme } from '@mui/material/styles'
 
-/** Drawer link item used in DropDown and in MenuDrawer on mobile
+/**
+ * Link item used in NavDropDown and in the mobile MenuDrawer
  */
 export const DrawerLinkItem = ({
   navElement,

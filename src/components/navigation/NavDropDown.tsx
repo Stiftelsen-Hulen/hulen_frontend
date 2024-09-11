@@ -8,8 +8,8 @@ import type { MouseEvent, MouseEventHandler } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { DrawerLinkItem } from './DrawerLinkItem'
 
-/** Navigation Dropdown component used in navigation and on mobile devices in MenuDrawer
- *
+/**
+ * Navigation Dropdown component used in navigation and on mobile devices in MenuDrawer
  */
 export const NavDropDown = ({
   navElement,

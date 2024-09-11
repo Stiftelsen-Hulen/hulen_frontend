@@ -40,6 +40,10 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     setIsHydrated(true)
   }, [])
 
+  useEffect(() => {
+    document.documentElement.lang = language
+  }, [language])
+
   const changeLanguage = useCallback((lang: LanguageOptions) => {
     setLanguage(lang)
     if (typeof window !== 'undefined') {
@@ -50,11 +54,6 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   if (!isHydrated) {
     return null
   }
-
-  useEffect(() => {
-    document.documentElement.lang = language
-  }, [language])
-
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage }}>

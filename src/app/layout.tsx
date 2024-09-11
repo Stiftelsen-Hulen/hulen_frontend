@@ -9,7 +9,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const skipLinkData = await getTranslationObject('SkipLink')
 
   return (
-    <html lang='en'>
+    <html>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <ThemeRegistry>
           <ClientLayout headerData={headerData} footerData={footerData} skipLinkData={skipLinkData}>

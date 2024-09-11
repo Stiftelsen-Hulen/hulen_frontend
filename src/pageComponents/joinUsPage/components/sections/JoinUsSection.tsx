@@ -1,10 +1,10 @@
+import { SanityImageComponent } from '@/components/sanity'
 import { DEFAULT_LAYOUT_MAXWIDTH } from '@/configs'
 import { hulen_black, hulen_yellow_text } from '@/styles'
 import type { JoinSanitySection } from '@/types/sanity/joinUsPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Link, Paper, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
-import Image from 'next/image'
 
 /** Section on the Join Us page
  */
@@ -17,7 +17,10 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
         backgroundColor: hulen_yellow_text,
         borderRadius: '0rem',
         padding: '4rem',
-        width: '100vw',
+        width: 'calc(100% + 4rem)',
+        position: 'relative',
+        left: '-2rem',
+        maxWidth: 'none',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -34,20 +37,7 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
           maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
         }}
       >
-        <Box
-          sx={{
-            width: content.icon.asset.metadata.dimensions.width ?? '6.25rem',
-            height: content.icon.asset.metadata.dimensions.height ?? '6.25rem',
-          }}
-        >
-          <Image
-            layout='responsive'
-            src={content.icon.asset.url ?? ''}
-            alt={''}
-            width={content.icon.asset.metadata.dimensions.width ?? '6.25rem'}
-            height={content.icon.asset.metadata.dimensions.height ?? '6.25rem'}
-          />
-        </Box>
+        <SanityImageComponent imageData={content.icon} alt='' />
         <Typography variant='h2' sx={{ color: hulen_black, fontWeight: 700 }}>
           {content.header[language]}
         </Typography>

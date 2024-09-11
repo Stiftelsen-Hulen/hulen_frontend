@@ -55,6 +55,10 @@ const theme = createTheme({
     body1: {
       fontSize: '1.375rem',
       fontWeight: '300',
+      '&>a': {
+        color: 'white',
+        textDecorationColor: hulen_yellow_text,
+      },
     },
     link: {
       color: 'white',

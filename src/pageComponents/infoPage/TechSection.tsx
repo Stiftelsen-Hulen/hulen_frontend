@@ -1,5 +1,4 @@
 'use client'
-import { hulen_yellow_text } from '@/styles/theme'
 import type { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Grid, Typography } from '@mui/material'
@@ -15,11 +14,7 @@ export const TechSection = ({ content }: { content: TechInfoPageContent }) => {
           {content.header[language]}
         </Typography>
         <Typography variant='body1'>{content.emailDescription[language]}</Typography>
-        <Typography
-          component={'a'}
-          href={`mailto:${content.email}`}
-          sx={{ color: 'white', textDecorationColor: hulen_yellow_text }}
-        >
+        <Typography variant='link' component={'a'} href={`mailto:${content.email}`}>
           {content.email}
         </Typography>
       </Box>

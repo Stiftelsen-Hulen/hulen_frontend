@@ -1,10 +1,10 @@
 'use client'
+import { SanityImageComponent } from '@/components/sanity'
 import { hulen_black, hulen_yellow_text } from '@/styles'
 import type { Sanity404Page } from '@/types/sanity/pageNotFound'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import Image from 'next/image'
 import Link from 'next/link'
 
 const TypographyAsButton = styled(Typography)({
@@ -24,10 +24,9 @@ export const NotFoundPageContent = ({
 
   return (
     <Stack alignItems={'center'} gap='2rem'>
-      <Image
-        src={notFoundImage.asset.url}
+      <SanityImageComponent
+        imageData={notFoundImage}
         width={360}
-        height={360}
         alt={notFoundImage.altText[language]}
       />
       <Typography textAlign={'center'}>{infotext[language]}</Typography>

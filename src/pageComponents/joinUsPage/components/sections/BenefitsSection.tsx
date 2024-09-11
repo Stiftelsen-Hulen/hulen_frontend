@@ -1,8 +1,8 @@
+import { SanityImageComponent } from '@/components/sanity'
 import type { BenefitsSectionContent } from '@/types/sanity/joinUsPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
-import Image from 'next/image'
 /**
  * The layout for the benefit section on the Join us Page
  * @param param0
@@ -22,20 +22,7 @@ export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }
       id='benefits'
     >
       <Stack sx={{ maxWidth: { xs: '100%', md: '50%' }, alignItems: 'center', gap: '2rem' }}>
-        <Box
-          sx={{
-            width: content.descImage.asset.metadata.dimensions.width ?? '6.25rem',
-            height: content.descImage.asset.metadata.dimensions.height ?? '6.25rem',
-          }}
-        >
-          <Image
-            layout='responsive'
-            src={content.descImage.asset.url ?? ''}
-            alt={''}
-            width={content.descImage.asset.metadata.dimensions.width ?? '6.25rem'}
-            height={content.descImage.asset.metadata.dimensions.height ?? '6.25rem'}
-          />
-        </Box>
+        <SanityImageComponent imageData={content.descImage} alt='' />
         <Typography variant='h4' fontWeight={700} textAlign={'center'}>
           {content.header[language]}
         </Typography>

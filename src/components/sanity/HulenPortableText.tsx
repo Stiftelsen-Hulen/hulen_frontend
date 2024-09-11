@@ -12,7 +12,7 @@ import Link from 'next/link'
 import type { PortableTextBlock } from '@portabletext/types'
 import type { LocaleImage } from '@/types/sanity'
 import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/genericPageProps'
-import type { ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 import { SanityImageComponent } from '.'
 
 export const HulenPortableText = ({
@@ -21,6 +21,7 @@ export const HulenPortableText = ({
   genericSanityPageProps: LocalePortableTextBlock
 }) => {
   const { language } = useLanguage()
+
   const serializers: Partial<PortableTextReactComponents> = {
     types: {
       localeImage: (localeImageProps: PortableTextTypeComponentProps<LocaleImage>) => (

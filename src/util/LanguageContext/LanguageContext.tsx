@@ -1,6 +1,6 @@
 'use client'
 import type { LanguageOptions } from '@/types/language'
-import React, { createContext, useState, useContext, useCallback } from 'react'
+import React, { createContext, useState, useContext, useCallback, useEffect } from 'react'
 
 interface LanguageContextProps {
   language: LanguageOptions
@@ -9,7 +9,7 @@ interface LanguageContextProps {
 
 // Initialize context with default values (they won't actually be used as the real values are provided by the provider)
 const LanguageContext = createContext<LanguageContextProps>({
-  language: 'en',
+  language: 'no',
   changeLanguage: () => console.log('This is just an empty statement for declaration purposes'),
 })
 
@@ -18,21 +18,29 @@ export const useLanguage = () => {
 }
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<LanguageOptions>(() => {
-    if (typeof window !== 'undefined') {
-      return (sessionStorage.getItem('language') as LanguageOptions) || 'en'
-    }
+  const [language, setLanguage] = useState<LanguageOptions>('no')
+  const [isHydrated, setIsHydrated] = useState(false)
 
-    return 'en'
-  })
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedLanguage = sessionStorage.getItem('language') as LanguageOptions
+      if (storedLanguage) {
+        setLanguage(storedLanguage)
+      }
+      setIsHydrated(true)
+    }
+  }, [])
 
   const changeLanguage = useCallback((lang: LanguageOptions) => {
     setLanguage(lang)
     if (typeof window !== 'undefined') {
-      console.log('Setting language to: ', lang)
       sessionStorage.setItem('language', lang)
     }
   }, [])
+
+  if (!isHydrated) {
+    return null
+  }
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage }}>

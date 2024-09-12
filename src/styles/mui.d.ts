@@ -1,7 +1,6 @@
 /**  This file is for extending and overriding the global Material Ui typescript declarations.
-*  In laymen terms, extend the classes for when we want extra attributes or change some inherit behaviour.
-
-*/
+ *  In laymen terms, extend the classes for when we want extra attributes or change some inherit behaviour.
+ */
 
 /** ***************************************
  *  Typography overrides

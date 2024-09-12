@@ -15,11 +15,11 @@ import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/generic
 import { type ComponentProps } from 'react'
 import { SanityImageComponent } from '.'
 
-export const HulenPortableText = ({
+export function HulenPortableText({
   genericSanityPageProps,
 }: {
   genericSanityPageProps: LocalePortableTextBlock
-}) => {
+}) {
   const { language } = useLanguage()
 
   const serializers: Partial<PortableTextReactComponents> = {
@@ -79,11 +79,11 @@ export const HulenPortableText = ({
   )
 }
 
-export const SanityLocaleImageComponent = ({
+export function SanityLocaleImageComponent({
   imageProps,
 }: {
   imageProps: PortableTextTypeComponentProps<LocaleImage>
-}) => {
+}) {
   if (imageProps?.value == undefined || imageProps.value?.Image?.asset.metadata == undefined) {
     return <p>error rendering image, wrong config</p>
   }

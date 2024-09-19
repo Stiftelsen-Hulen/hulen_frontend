@@ -20,6 +20,10 @@ import {
 } from './groqQueries'
 import { sanityClient } from './sanityClient'
 
+/**
+ * This file contains utility functions to fetch data from Sanity using GROQ queries
+ */
+
 export async function getSanityNavigationElements() {
   return await sanityClient.fetch<SanityNavBarContent>(getNavigationElementsGroq)
 }

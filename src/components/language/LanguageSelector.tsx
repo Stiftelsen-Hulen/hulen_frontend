@@ -71,7 +71,6 @@ const StyledLanguageWrapper = styled(Box)({
  * The Language selector is a dropdown menu for changing the language of the entire website.
  * As of now we have the language options norwegian and English
  * Learn more about localizing content here: https://www.sanity.io/docs/localization
- * @returns a selected
  */
 export const LanguageSelector = () => {
   const { changeLanguage, language } = useLanguage()

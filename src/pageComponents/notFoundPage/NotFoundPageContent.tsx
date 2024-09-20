@@ -15,6 +15,10 @@ const TypographyAsButton = styled(Typography)({
   fontWeight: 'bold',
 })
 
+/**
+ * Renders the content for the page shown if the url points to a page that does not exist
+ * Contains an image, text and navigation button to go back home
+ */
 export const NotFoundPageContent = ({
   notFoundImage,
   infotext,

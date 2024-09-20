@@ -3,10 +3,8 @@ import { Box } from '@mui/material'
 import Image from 'next/image'
 
 /**
- * PositionSanityImage is a responsive image component that adapts its size based on the provided width.
+ * SanityImageComponent is a responsive image component that adapts its size based on the provided width.
  * If no width is provided, it dynamically calculates the width and height based on the aspect ratio of the image.
- * @param imageData type SanityImage
- * @param width type number, optional
  */
 export const SanityImageComponent = ({
   imageData,

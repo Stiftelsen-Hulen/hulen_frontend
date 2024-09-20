@@ -6,7 +6,8 @@ import { NavDropDown } from './NavDropDown'
 import { Fragment } from 'react'
 import { DrawerLinkItem } from './DrawerLinkItem'
 
-/** The menu drawer is the side menu we use for navigation when on mobile/small screens
+/**
+ * The menu drawer is the side menu we use for navigation when on mobile/small screens
  */
 export const MenuDrawer = ({
   isOpen,

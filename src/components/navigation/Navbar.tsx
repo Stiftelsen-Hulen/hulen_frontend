@@ -35,11 +35,8 @@ const StyledNavLinksWrapper = styled(Box)({
 })
 
 /** The navbar handles all the global navigation. This means rendering the hulen logo and menu elements.
- *  It will render a row of navigation buttons and language selector  if window width above md (900px (56.25rem) if i remember correctly)
+ *  It will render a row of navigation buttons and language selector if window width above md (900px (56.25rem) if i remember correctly)
  *  if not, it will render only the logo and a button for accessing a side drawer.
- *
- * @param param0
- * @returns
  */
 const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent }) => {
   const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState<boolean>(false)

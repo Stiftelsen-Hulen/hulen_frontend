@@ -4,6 +4,11 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Grid, Typography } from '@mui/material'
 import { TechCategory } from './components'
 
+/**
+ * Renders the content for the Tech Info page, includes:
+ * Title and contact info
+ * Categories section
+ */
 export const TechSection = ({ content }: { content: TechInfoPageContent }) => {
   const { language } = useLanguage()
 

@@ -5,6 +5,11 @@ import type { GuardianInfoPageContent } from '@/types/sanity/infoPages/guardianI
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Stack, Typography } from '@mui/material'
 
+/**
+ * Renders the content for the Guardian Info page, includes:
+ * Title, ingress
+ * Guardian content
+ */
 export const GuardianSection = ({ content }: { content: GuardianInfoPageContent }) => {
   const { language } = useLanguage()
 

@@ -1,16 +1,15 @@
 'use client'
-
 import type { LanguageOptions } from '@/types/language'
 import React, { createContext, useState, useContext, useCallback, useEffect } from 'react'
 
 interface LanguageContextProps {
   language: LanguageOptions
-  changeLanguage: () => void
+  changeLanguage: (lang: LanguageOptions) => void
 }
 
 // Initialize context with default values (they won't actually be used as the real values are provided by the provider)
 const LanguageContext = createContext<LanguageContextProps>({
-  language: 'en',
+  language: 'no',
   changeLanguage: () => console.log('This is just an empty statement for declaration purposes'),
 })
 
@@ -19,15 +18,39 @@ export const useLanguage = () => {
 }
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<LanguageOptions>('no')
+  const [language, setLanguage] = useState<LanguageOptions>()
 
-  const changeLanguage = useCallback(() => {
-    setLanguage((current) => (current === 'en' ? 'no' : 'en'))
+  /**
+   * If the language is stored in localStorage, use that, else use the browser language.
+   */
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('language') as LanguageOptions
+    if (storedLanguage) {
+      setLanguage(storedLanguage)
+    } else if (navigator.language) {
+      const lang = navigator.language
+      if (lang === 'nb' || lang === 'nn') {
+        setLanguage('no')
+      } else {
+        setLanguage('en')
+      }
+    }
   }, [])
 
   useEffect(() => {
-    document.documentElement.lang = language
+    if (language) {
+      document.documentElement.lang = language
+    }
   }, [language])
+
+  const changeLanguage = useCallback((lang: LanguageOptions) => {
+    setLanguage(lang)
+    localStorage.setItem('language', lang)
+  }, [])
+
+  if (!language) {
+    return null
+  }
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage }}>

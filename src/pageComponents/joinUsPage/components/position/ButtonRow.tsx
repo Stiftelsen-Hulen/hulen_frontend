@@ -1,6 +1,7 @@
-import { Position } from '@/types/sanity/joinUsPage/position'
+import type { Position } from '@/types/sanity/joinUsPage/position'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { scrollToSection } from '@/util/helpers'
+import { getTranslationObject } from '@/util/sanity'
 import { Box, Button, Stack, Typography } from '@mui/material'
 
 /**
@@ -9,26 +10,13 @@ import { Box, Button, Stack, Typography } from '@mui/material'
  * @param title type string
  * @param positions type array of job positions
  */
-export const ButtonRow = ({ title, positions }: { title: string; positions: Position[] }) => {
+export const ButtonRow = async ({ title, positions }: { title: string; positions: Position[] }) => {
   const { language } = useLanguage()
-
-  const getTranslatedTitle = () => {
-    if (title === 'night_shift') {
-      if (language == 'no') {
-        return 'Kveldstid'
-      }
-
-      return 'Evening'
-    } else if (language === 'no') {
-      return 'Utenfor åpningstid'
-    }
-
-    return 'Outside regular hours'
-  }
+  const titleTranslation = await getTranslationObject(title)
 
   return (
     <Stack sx={{ alignItems: 'center', gap: '1rem' }}>
-      <Typography variant='h4'>{getTranslatedTitle()}</Typography>
+      <Typography variant='h4'>{titleTranslation.content[language]}</Typography>
       <Box sx={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
         {positions.map((position, index) => (
           <Button

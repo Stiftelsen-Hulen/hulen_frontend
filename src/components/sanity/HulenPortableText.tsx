@@ -12,7 +12,7 @@ import Link from 'next/link'
 import type { PortableTextBlock } from '@portabletext/types'
 import type { LocaleImage } from '@/types/sanity'
 import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/genericPageProps'
-import type { ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 import { SanityImageComponent } from '.'
 
 /**
@@ -22,11 +22,11 @@ import { SanityImageComponent } from '.'
  * For more information on using PortableText with React,
  * see: https://github.com/portabletext/react-portabletext#portabletextreact
  */
-export const HulenPortableText = ({
+export function HulenPortableText({
   genericSanityPageProps,
 }: {
   genericSanityPageProps: LocalePortableTextBlock
-}) => {
+}) {
   const { language } = useLanguage()
 
   /**
@@ -95,11 +95,11 @@ export const HulenPortableText = ({
 /**
  * Converts a LocaleImage type defined in Sanity into a SanityImageComponent.
  */
-export const SanityLocaleImageComponent = ({
+export function SanityLocaleImageComponent({
   imageProps,
 }: {
   imageProps: PortableTextTypeComponentProps<LocaleImage>
-}) => {
+}) {
   if (imageProps?.value == undefined || imageProps.value?.Image?.asset.metadata == undefined) {
     return <p>error rendering image, wrong config</p>
   }

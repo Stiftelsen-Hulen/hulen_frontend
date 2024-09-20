@@ -1,15 +1,20 @@
-import { createTheme } from '@mui/material/styles' //this sometimes complains, ignore it.
+import { createTheme } from '@mui/material/styles' //This sometimes complains, ignore it.
 import { Sunflower } from 'next/font/google'
 
-//We use google fonts for the simple reason that they are free. You can easily add more fonts by doing as below, then inserting them to font families in the places you need them
-//Note that if someone ask you to add an adobe font, slap them.
+/**
+ * We use google fonts for the simple reason that they are free
+ * You can easily add more fonts by doing as below, then inserting them to font families in the places you need them
+ * Note that if someone ask you to add an adobe font, slap them.
+ **/
 const sunflower = Sunflower({
   weight: ['300', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
 })
 
-//Define all colours in project here. Aspire to not use them globally
+/**
+ * Define all colours in project here. Aspire to not use them globally
+ **/
 export const hulen_black = '#000000'
 export const hulen_yellow = '#F7BD13'
 export const hulen_yellow_text = '#FFD000'
@@ -22,6 +27,7 @@ export const hulen_yellow_text = '#FFD000'
 const theme = createTheme({
   //Palette is a predefined global "this are the colour settings" that MuI inherits from. Note that these values
   //are used by many MuI components as default values. We don't really use any of the fancy ones right now, but worth keeping in mind if adding later.
+
   palette: {
     background: {
       default: hulen_black,

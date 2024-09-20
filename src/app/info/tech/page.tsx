@@ -4,7 +4,6 @@ import { getTechInfoPageContent } from '@/util/sanity/apiFunctions'
 
 export default async function InfoPage() {
   const data: TechInfoPageContent = await getTechInfoPageContent()
-  console.log('Data infopage: ', data)
 
   return <TechSection content={data} />
 }

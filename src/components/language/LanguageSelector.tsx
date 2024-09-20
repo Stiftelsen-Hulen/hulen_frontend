@@ -3,6 +3,7 @@ import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { LanguageOptions } from '@/types/language'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import LanguageIcon from '@mui/icons-material/Language'
+import type { SelectChangeEvent } from '@mui/material'
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { styled } from '@mui/system'
 
@@ -76,6 +77,11 @@ export const LanguageSelector = () => {
 
   const labels: Record<LanguageOptions, string> = { en: 'Language', no: 'Språk' }
 
+  const handleLanguageChange = (event: SelectChangeEvent<unknown>) => {
+    const newLanguage = event.target.value as LanguageOptions
+    changeLanguage(newLanguage)
+  }
+
   return (
     <StyledLanguageWrapper>
       <LanguageIcon />
@@ -84,7 +90,7 @@ export const LanguageSelector = () => {
           {labels[language]}
         </InputLabel>
         <StyledSelect
-          onChange={changeLanguage}
+          onChange={handleLanguageChange}
           value={language ?? 'en'}
           MenuProps={{ PaperProps: { sx: { backgroundColor: 'black' } } }}
           labelId='language-select-label'

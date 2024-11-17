@@ -21,7 +21,7 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
          cp .env.example .env
       ```
    - Edit the `.env` file and replace the placeholders with the appropriate credentials.
-        1. SANITY_STUDIO_PROJECT_ID: Log in to [Sanity.io](https://www.sanity.io), navigate to the **Projects**, select the **Hulen** project and copy the **PROJECT ID**.
+        1. NEXT_PUBLIC_SANITY_PROJECT_ID: Log in to [Sanity.io](https://www.sanity.io), navigate to the **Projects**, select the **Hulen** project and copy the **PROJECT ID**.
         2. NEXT_PUBLIC_SANITY_DATASET: In the **Project Dashboard**, go to **Datasets** and use the title of the chosen dataset. 
 6. Run the project
    ```bash

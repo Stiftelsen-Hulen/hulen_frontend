@@ -27,7 +27,7 @@ const redirects = async () => {
     },
     {
       source: '/kalender',
-      destination: 'https://app.crescat.io/events',
+      destination: 'https://app.crescat.io/groups/aktive-interne',
       permanent: true,
       basePath: false
     }

@@ -21,7 +21,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   const [language, setLanguage] = useState<LanguageOptions>()
 
   /**
-   * If the language is stored in localStorage, use that, else use the browser language.
+   * If the language is stored in localStorage, use that, else use norwegian.
    */
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language') as LanguageOptions
@@ -29,10 +29,13 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
       setLanguage(storedLanguage)
     } else if (navigator.language) {
       const lang = navigator.language
-      if (lang === 'nb' || lang === 'nn') {
+      if (lang === 'en') {
+        setLanguage('en')
+      }
+      else if (lang === 'nb' || lang === 'nn') {
         setLanguage('no')
       } else {
-        setLanguage('en')
+        setLanguage('no')
       }
     }
   }, [])

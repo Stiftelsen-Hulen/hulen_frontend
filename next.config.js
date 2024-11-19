@@ -25,6 +25,12 @@ const redirects = async () => {
       destination: '/joinUs',
       permanent: true,
     },
+    {
+      source: '/kalender',
+      destination: 'https://app.crescat.io/events',
+      permanent: true,
+      basePath: false
+    }
   ]
 }
 

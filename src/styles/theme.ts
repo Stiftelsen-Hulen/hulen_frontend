@@ -1,12 +1,12 @@
 import { createTheme } from '@mui/material/styles' //This sometimes complains, ignore it.
-import { Sunflower } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 
 /**
  * We use google fonts for the simple reason that they are free
  * You can easily add more fonts by doing as below, then inserting them to font families in the places you need them
  * Note that if someone ask you to add an adobe font, slap them.
  **/
-const sunflower = Sunflower({
+const roboto = Roboto({
   weight: ['300', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
@@ -41,7 +41,7 @@ const theme = createTheme({
   },
   //Typography is all text elements
   typography: {
-    fontFamily: [sunflower.style.fontFamily, 'sans-serif'].join(','),
+    fontFamily: [roboto.style.fontFamily, 'sans-serif'].join(','),
     h1: {
       fontSize: '3.313rem',
       fontWeight: 700,

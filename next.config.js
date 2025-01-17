@@ -30,6 +30,54 @@ const redirects = async () => {
       destination: 'https://app.crescat.io/groups/aktive-interne',
       permanent: true,
       basePath: false
+    },
+    {
+      source: '/billetter',
+      destination: 'https://www.hulen.no/tickets',
+      permanent: true,
+      basePath: false
+    },
+    {
+      source: '/info/verge',
+      destination: 'https://www.hulen.no/info/guardian',
+      permanent: true,
+      basePath: false
+    },
+    {
+      source: '/verge',
+      destination: 'https://www.hulen.no/info/guardian',
+      permanent: true,
+      basePath: false
+    },
+    {
+      source: '/tech',
+      destination: 'https://www.hulen.no/info/tech',
+      permanent: true,
+      basePath: false
+    },
+    {
+      source: '/ledsager',
+      destination: 'https://www.hulen.no/info/accessibility',
+      permanent: true,
+      basePath: false
+    },
+    {
+      source: '/tilgjengelighet',
+      destination: 'https://www.hulen.no/info/accessibility',
+      permanent: true,
+      basePath: false
+    },
+    {
+      source: '/kontakt',
+      destination: 'https://www.hulen.no/kontakt',
+      permanent: true,
+      basePath: false
+    },
+    {
+      source: '/om',
+      destination: 'https://www.hulen.no/about',
+      permanent: true,
+      basePath: false
     }
   ]
 }

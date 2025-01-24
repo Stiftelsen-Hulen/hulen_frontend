@@ -33,7 +33,7 @@ export const PositionEntry = ({ position }: { position: Position }) => {
         >
           {position.title[language]}
         </Typography>
-        <Stack sx={{ textAlign: 'justify', width: '100%' }}>
+        <Stack sx={{ textAlign: 'justify sm:left', width: '100%' }}>
           <PortableText value={position.description[language]} />
         </Stack>
       </Stack>

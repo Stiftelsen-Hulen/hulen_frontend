@@ -27,6 +27,7 @@ const StyledStack = styled(Stack)({
   '& img': {
     maxWidth: '8rem',
   },
+  a: { color: 'white' },
 })
 
 const StyledFooterWrapper = styled(Box)({

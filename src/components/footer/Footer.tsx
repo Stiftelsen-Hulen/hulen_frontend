@@ -73,7 +73,7 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
       <StyledFooterWrapper
         sx={{
           flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: { xs: 'center', sm: 'default' },
+          alignItems: { xs: 'center', sm: 'flex-start' },
         }}
       >
         {footerElements.map((footerElement) => (

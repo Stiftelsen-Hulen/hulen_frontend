@@ -1,4 +1,4 @@
-import { Position, PositionShiftType } from '@/types/sanity/joinUsPage/position'
+import type { Position, PositionShiftType } from '@/types/sanity/joinUsPage/position'
 import { Stack } from '@mui/material'
 import { useMemo } from 'react'
 import { ButtonRow } from './ButtonRow'
@@ -6,11 +6,7 @@ import { ButtonRow } from './ButtonRow'
 /**
  * PositionButtons generates buttons for different job positions, and organizing them based on their shift type.
  */
-export const PositionButtons = ({
-  positions
-}: {
-  positions: Position[]
-}) => {
+export const PositionButtons = ({ positions }: { positions: Position[] }) => {
   const organized = useMemo(() => {
     const byType: Record<PositionShiftType, Position[]> = { night_shift: [], outside_regular: [] }
 

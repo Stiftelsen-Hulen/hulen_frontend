@@ -16,8 +16,8 @@ const roboto = Roboto({
  * Define all colours in project here. Aspire to not use them globally
  **/
 export const hulen_black = '#000000'
-export const hulen_yellow = '#F7BD13'
-export const hulen_yellow_text = '#FFD000'
+export const hulen_yellow = '#ffb600'
+export const hulen_yellow_text = '#ffb600'
 
 /** This is the global theme. Put styles that are global, i.e. stuff you want everywhere here.
  *  If adding new options (such as a new typography option, button variant), you will need to extend

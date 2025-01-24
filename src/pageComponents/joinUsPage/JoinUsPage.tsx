@@ -45,9 +45,9 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
         </Box>
         <Box
           sx={{
-            width: { xs: '100%', md: '50%' },
+            width: '100%',
             alignSelf: 'start',
-            textAlign: { xs: 'center', md: 'left' },
+            textAlign: { xs: 'left', md: 'center' },
           }}
         >
           <PortableText value={content.ingress[language]} />

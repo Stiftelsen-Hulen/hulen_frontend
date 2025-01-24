@@ -131,4 +131,10 @@ The queries are fetched in the `src/util/sanity/apiFunctions.ts` file.
 
 
 ## Contact
-Johnny Bjånesøy
+Maintained by:
+* Nikolai Hansen Gangstø
+* Erik Grunnaleite Ingebrigtsen
+* Halvor Brunt
+
+First developed by;
+* Johnny Bjånesøy

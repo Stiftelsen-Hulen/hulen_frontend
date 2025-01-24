@@ -45,19 +45,36 @@ const theme = createTheme({
     h1: {
       fontSize: '3.313rem',
       fontWeight: 700,
+      '@media (max-width: 600px)': {
+        fontSize: '2.5rem',
+      },
     },
     h2: {
       fontSize: '3rem',
       fontWeight: 700,
+      '@media (max-width: 600px)': {
+        fontSize: '2.375rem',
+      },
     },
     h3: {
       fontSize: '2.625rem',
       fontWeight: 700,
+      '@media (max-width: 600px)': {
+        fontSize: '2rem',
+      },
     },
     h4: {
       fontSize: '2rem',
+      '@media (max-width: 600px)': {
+        fontSize: '1.75rem',
+      },
     },
-    h5: { fontSize: '1.813rem' },
+    h5: {
+      fontSize: '1.813rem',
+      '@media (max-width: 600px)': {
+        fontSize: '1.5rem',
+      },
+    },
     body1: {
       fontSize: '1.375rem',
       fontWeight: '300',

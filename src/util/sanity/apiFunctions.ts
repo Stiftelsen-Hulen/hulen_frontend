@@ -4,7 +4,7 @@ import type { SanityFooterElements } from '@/types/sanity/footerElements/footerE
 import type { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
 import type { GuardianInfoPageContent } from '@/types/sanity/infoPages/guardianInfoPage'
 import type { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
-import type { JoinUsSanityContent } from '@/types/sanity/joinUsPage'
+import type { JoinUsSanityContent, Position } from '@/types/sanity/joinUsPage'
 import type { Sanity404Page } from '@/types/sanity/pageNotFound'
 import type { TranslationObject } from '@/types/sanity/translationObject'
 import {
@@ -17,8 +17,11 @@ import {
   getPagePropsGroq,
   getTechInfoPageGroq,
   getTranslationObjectGroq,
+  joinEmailFormApiResponse,
+  getPositionsGroq,
 } from './groqQueries'
 import { sanityClient } from './sanityClient'
+import type { JoinFormEmailResponse } from '@/types/sanity/joinFormEmailApiResponse'
 
 /**
  * This file contains utility functions to fetch data from Sanity using GROQ queries
@@ -66,4 +69,12 @@ export async function getTranslationObject(identifier: string) {
 
 export async function getGuardianInfoPageContent() {
   return await sanityClient.fetch<GuardianInfoPageContent>(getGuardianInfoPageGroq)
+}
+
+export async function getJoinFormEmailResponse() {
+  return await sanityClient.fetch<JoinFormEmailResponse>(joinEmailFormApiResponse)
+}
+
+export async function getPositions() {
+  return await sanityClient.fetch<Position[]>(getPositionsGroq)
 }

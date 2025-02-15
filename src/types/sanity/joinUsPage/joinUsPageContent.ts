@@ -8,6 +8,7 @@ import type {
 } from '.'
 import type { SanityImage } from '..'
 import type { Position } from './position'
+import type { JoinEmailFormContent } from './joinEmailForm'
 
 export interface JoinUsSanityContent {
   benefitsSection: BenefitsSectionContent
@@ -18,4 +19,5 @@ export interface JoinUsSanityContent {
   descImage: SanityImage
   positionPreface: PositionDescriptionSection
   navigationButtons: JoinUsNavigationButton[]
+  joinEmailForm: JoinEmailFormContent
 }

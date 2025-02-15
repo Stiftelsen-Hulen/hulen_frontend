@@ -9,7 +9,7 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
 
 2. Clone the repository
    ```bash
-   git clone https://github.com/Daedalusish/hulen_frontend.git
+   git clone https://github.com/Stiftelsen-Hulen/hulen_frontend.git
    ```
 3. Install the dependencies
    ```bash

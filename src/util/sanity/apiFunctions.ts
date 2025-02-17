@@ -52,7 +52,7 @@ export async function getSanityNavigationElements() {
 
 export async function getFooterElements() {
   const cacheKey = `getFooterElements`
-  const cachedSanity = sanityCache.get<SanityFooterElements>(cacheKey)
+  const cachedSanity = sanityCache.get<SanityFooterElements[]>(cacheKey)
   if (cachedSanity) {
     return cachedSanity
   }

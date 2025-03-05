@@ -1,5 +1,6 @@
 import type { JoinEmailFormContent } from '@/types/sanity/joinUsPage/joinEmailForm'
 import type { Position } from '@/types/sanity/joinUsPage/position'
+import { assert } from '@/util/helpers/assertAndValidate'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import type { SelectChangeEvent } from '@mui/material'
 import {
@@ -13,6 +14,9 @@ import {
   TextField,
 } from '@mui/material'
 import { useState } from 'react'
+
+const EmailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
 /**
  * The layout for the benefit section on the Join us Page
  * @param param0
@@ -26,6 +30,7 @@ export const JoinEmailForm = ({
   positions: Position[]
 }) => {
   const { language } = useLanguage()
+  const MaxInputFieldSize = 500
 
   const [formData, setFormData] = useState({
     userName: '',
@@ -36,6 +41,7 @@ export const JoinEmailForm = ({
     language: language,
   })
 
+  // Updates the key:value pairs in the form on change.
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -45,10 +51,32 @@ export const JoinEmailForm = ({
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  // Validates input and then submits the form to the Contact-Email Api
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const json = JSON.stringify(formData)
-    console.log(json)
+    let json: string
+    try {
+      e.preventDefault()
+      assertUserInputs(formData.userName, 'Name (Navn)')
+      assertUserInputs(formData.userEmail, 'Email (Epost)')
+      assert(EmailRegEx.test(formData.userEmail), 'Invalid Email format (Ugyldig epost format).')
+      assertUserInputs(formData.userAge, 'Age (Alder)')
+      assertUserInputs(formData.job, 'Job (Verv)')
+      assert(
+        positions.map((p) => p.title[language]).indexOf(formData.job) > -1,
+        'You must pick a valid job (Du må velge et gyldig verv).'
+      )
+      assertUserInputs(
+        formData.userMessage,
+        'Other relevant information (Annen relevant informasjon)'
+      )
+
+      json = JSON.stringify(formData)
+      console.log(json)
+    } catch (error) {
+      console.log(error)
+
+      return error
+    }
     let responseMessage
     try {
       const response = await fetch('/api/contact-email', {
@@ -57,9 +85,8 @@ export const JoinEmailForm = ({
         body: json,
       })
 
-      const result = await response.json() // TODO: use this value?
       console.log(response)
-      console.log(result)
+
       if (response.ok) {
         responseMessage = 'Email sent successfully!'
       } else {
@@ -71,6 +98,15 @@ export const JoinEmailForm = ({
       return responseMessage
     }
   }
+  function assertUserInputs(value: unknown, inputName: string): asserts value is string {
+    assert(typeof value === 'string', 'input must be a string')
+    assert(
+      value.length > 0 && value.length < MaxInputFieldSize,
+      `Input: ${inputName}.\n` +
+      `Input size must be less or equal to ${MaxInputFieldSize} characters.\n` +
+      `(Input størrelsen må være mindre eller lik ${MaxInputFieldSize} tegn).`
+    )
+  }
 
   return (
     <Paper elevation={3}>
@@ -79,14 +115,17 @@ export const JoinEmailForm = ({
           <p>{content.emailFormTitle[language]}</p>
           <FormControl fullWidth>
             <TextField
+              required
               name='userEmail'
               label={content.emailFormLabel[language]}
               onChange={handleChange}
               margin='normal'
+              type='email'
             ></TextField>
           </FormControl>
           <FormControl fullWidth>
             <TextField
+              required
               name='userName'
               label={content.nameFormLabel[language]}
               onChange={handleChange}
@@ -95,6 +134,7 @@ export const JoinEmailForm = ({
           </FormControl>
           <FormControl fullWidth>
             <TextField
+              required
               name='userAge'
               label={content.ageFormLabel[language]}
               type='number'
@@ -110,6 +150,7 @@ export const JoinEmailForm = ({
               Job
             </InputLabel>
             <NativeSelect
+              required
               name='job'
               id='demo-simple-select'
               value={formData.job}
@@ -124,6 +165,7 @@ export const JoinEmailForm = ({
           </FormControl>
           <FormControl fullWidth>
             <TextField
+              required
               name='userMessage'
               margin='normal'
               multiline

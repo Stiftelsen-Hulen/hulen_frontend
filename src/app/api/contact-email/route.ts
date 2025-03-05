@@ -10,10 +10,8 @@ const SMTP_HOST = process.env.SMTP_HOST
 const NODE_MAILER_MAIL = process.env.NODE_MAILER_MAIL
 const NODE_MAILER_PASS = process.env.NODE_MAILER_PASS
 const MAX_INPUT_LENGTH = 500
-// Asserting to enforce 'string'-type on .env values (dont mind the function name)
-assertUserInputStringasserts(SMTP_HOST, 100, '.env variable "SMTP_HOST" is invalid')
-assertUserInputStringasserts(NODE_MAILER_MAIL, 100, '.env variable "NODE_MAILER_MAIL" is invalid')
-assertUserInputStringasserts(NODE_MAILER_PASS, 100, '.env variable "NODE_MAILER_PASS" is invalid')
+
+const EmailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 const transporter = nodemailer.createTransport({
   host: SMTP_HOST,
@@ -44,7 +42,7 @@ export async function POST(request: Request) {
     console.log(userName_s, userEmail_s, age)
     const subject = '[HULEN CONTACT FORM]: ' + userName_s + ', ' + age.toString() + ': ' + job_s
     const message = `Personal information provided (oppgitt personlig informasjon):
-    Name (navn): ${userName_s}
+      Name (navn): ${userName_s}
       Age (alder):  ${age}
       Job (verv): ${job_s}
       Email (epost): ${userEmail_s}
@@ -107,22 +105,22 @@ function AssertInputs(
 ) {
   assertUserInputStringasserts(userName_s, 100, 'Name must be provided (Navn må være oppgitt)')
   assertUserInputStringasserts(userEmail_s, 100, 'Email must be provided (Epost må være oppgitt)')
+  assert(EmailRegEx.test(userEmail_s), 'Invalid Email format (Ugyldig epost format).')
   assertUserInputStringasserts(userAge, 3, 'Age must be provided (Alder må være oppgitt)')
-  const languageOptions = language as LanguageOptions
-
   const age = parseInt(userAge)
   assert(
-    isFinite(age) && typeof age === 'number' && 18 <= age && age <= 100,
+    typeof age === 'number' && isFinite(age) && 18 <= age && age <= 100,
     'Age must be a number (18-100)(Alder må være et tall (18-100)).'
   )
 
+  // Not validating that the job sent is valid, due to requiring an extra CDN API call on each call.
   assertUserInputStringasserts(
     job_s,
     MAX_INPUT_LENGTH,
     'Job must be provided (Verv må være oppgitt).'
   )
-
   assert(typeof userMessage_s === 'string' && userMessage_s.length < MAX_INPUT_LENGTH)
+  const languageOptions = language as LanguageOptions
 
   return { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions }
 }
@@ -132,10 +130,10 @@ function assertUserInputStringasserts(
   maxLength: number,
   msg?: string
 ): asserts value is string {
-  assert(typeof value === 'string' && value.length > 0 && value.length < maxLength, msg)
+  assert(typeof value === 'string' && value.length >= 0 && value.length < maxLength, msg)
   assert(
     value.length < maxLength,
     `All Inputs must be less or equal to ${maxLength} characters.` +
-    `(Alle input må være lik eller mindre enn ${maxLength} tegn)`
+    `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`
   )
 }

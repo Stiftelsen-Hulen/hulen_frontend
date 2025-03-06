@@ -5,7 +5,7 @@ import type Mail from 'nodemailer/lib/mailer'
 import type { LanguageOptions } from '@/types/language'
 import { assert } from '@/util/helpers/assertAndValidate'
 
-const FRIVILLIG_ANSVARLIG = 'halvor.brunt@gmail.com' // TODO remove
+const FRIVILLIG_ANSVARLIG = 'halvor.brunt@gmail.com' // TODO remove line
 const SMTP_HOST = process.env.SMTP_HOST
 const NODE_MAILER_MAIL = process.env.NODE_MAILER_MAIL
 const NODE_MAILER_PASS = process.env.NODE_MAILER_PASS
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   const req = await request.json()
   const { userName, userEmail, userAge, job, userMessage, language } = req
   const { emailResponseStatus, destinationEmailAddress } = await getJoinFormEmailResponse()
-  //const FRIVILLIG_ANSVARLIG = destinationEmailAddress
+  //const FRIVILLIG_ANSVARLIG = destinationEmailAddress // TODO: uncomment line
 
   try {
     const { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions } = AssertInputs(

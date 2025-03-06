@@ -1,3 +1,4 @@
+import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
 import type { JoinEmailFormContent } from '@/types/sanity/joinUsPage/joinEmailForm'
 import type { Position } from '@/types/sanity/joinUsPage/position'
 import { assert } from '@/util/helpers/assertAndValidate'
@@ -110,17 +111,29 @@ export const JoinEmailForm = ({
 
   return (
     <Paper elevation={3}>
-      <Stack>
-        <Box component='form' onSubmit={handleSubmit} id='contactForm'>
-          <p>{content.emailFormTitle[language]}</p>
+      <Stack sx={{ backgroundColor: hulen_black }}>
+        <Box
+          component='form'
+          onSubmit={handleSubmit}
+          id='contactForm'
+          sx={{
+            backgroundColor: hulen_black,
+            BorderColor: hulen_yellow,
+            border: '1px solid',
+            borderRadius: '16px',
+            padding: '1em',
+          }}
+        >
+          <p style={{ textDecorationLine: 'underline', fontSize: '1.5em' }}>
+            {content.emailFormTitle[language]}
+          </p>
           <FormControl fullWidth>
             <TextField
               required
-              name='userEmail'
-              label={content.emailFormLabel[language]}
+              name='email'
               onChange={handleChange}
+              label={content.emailFormLabel[language]}
               margin='normal'
-              type='email'
             ></TextField>
           </FormControl>
           <FormControl fullWidth>
@@ -141,23 +154,39 @@ export const JoinEmailForm = ({
               margin='normal'
               onChange={handleChange}
               defaultValue={20}
-              variant='filled'
               helperText='(18-100)'
             />
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel id='form-job-label' variant='standard'>
+            <InputLabel id='form-job-label' variant='standard' color='secondary'>
               Job
             </InputLabel>
             <NativeSelect
               required
               name='job'
               id='demo-simple-select'
+              variant='outlined'
               value={formData.job}
               onChange={handleChange}
+              sx={{
+                '& .MuiInputBase-input': {
+                  // position: 'relative',
+                  backgroundColor: hulen_black,
+                  border: '1px solid ' + hulen_yellow,
+                  // fontSize: 16,
+                  padding: '16px 26px 16px 12px',
+                  '&:focus': {
+                    borderColor: hulen_yellow,
+                  },
+                },
+              }}
             >
               {positions.map((position) => (
-                <option key={position.title[language]} value={position.title[language]}>
+                <option
+                  key={position.title[language]}
+                  value={position.title[language]}
+                  style={{ backgroundColor: '#282828', color: hulen_yellow_text }}
+                >
                   {position.title[language]}
                 </option>
               ))}
@@ -173,16 +202,18 @@ export const JoinEmailForm = ({
               onChange={handleChange}
             ></TextField>
           </FormControl>
-          <Button
-            color='secondary' // hulen yellow, see theme.ts
-            variant='positionButton'
-            disableElevation
-            onClick={(e) => {
-              handleSubmit(e).then((result) => alert(result))
-            }}
-          >
-            Submit
-          </Button>
+          <div style={{ marginTop: '5px', alignItems: 'end' }}>
+            <Button
+              color='secondary'
+              variant='positionButton'
+              disableElevation
+              onClick={(e) => {
+                handleSubmit(e).then((result) => alert(result))
+              }}
+            >
+              Submit
+            </Button>
+          </div>
         </Box>
       </Stack>
     </Paper>

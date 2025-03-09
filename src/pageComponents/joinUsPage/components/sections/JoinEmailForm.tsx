@@ -1,8 +1,8 @@
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
+import type { LanguageOptions } from '@/types/language'
 import type { JoinEmailFormContent } from '@/types/sanity/joinUsPage/joinEmailForm'
 import type { Position } from '@/types/sanity/joinUsPage/position'
 import { assert } from '@/util/helpers/assertAndValidate'
-import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import type { SelectChangeEvent } from '@mui/material'
 import {
   Box,
@@ -30,14 +30,15 @@ export const JoinEmailForm = ({
   content: JoinEmailFormContent
   positions: Position[]
 }) => {
-  const { language } = useLanguage()
+  const getLanguage = () => localStorage.getItem('language') as LanguageOptions
+  const language = getLanguage()
   const MaxInputFieldSize = 500
 
   const [formData, setFormData] = useState({
     userName: '',
     userEmail: '',
     userAge: '20',
-    job: positions[0].title[language],
+    job: positions[0].title[getLanguage()],
     userMessage: '',
     language: language,
   })
@@ -57,18 +58,20 @@ export const JoinEmailForm = ({
     let json: string
     try {
       e.preventDefault()
+      const language_localstorage = getLanguage()
       assertUserInputs(formData.userName, 'Name (Navn)')
       assertUserInputs(formData.userEmail, 'Email (Epost)')
       assert(EmailRegEx.test(formData.userEmail), 'Invalid Email format (Ugyldig epost format).')
       assertUserInputs(formData.userAge, 'Age (Alder)')
       assertUserInputs(formData.job, 'Job (Verv)')
       assert(
-        positions.map((p) => p.title[language]).indexOf(formData.job) > -1,
+        positions.map((p) => p.title[language_localstorage]).indexOf(formData.job) > -1,
         'You must pick a valid job (Du må velge et gyldig verv).'
       )
       assertUserInputs(
         formData.userMessage,
-        'Other relevant information (Annen relevant informasjon)'
+        'Other relevant information (Annen relevant informasjon)',
+        -1
       )
 
       json = JSON.stringify(formData)
@@ -99,10 +102,14 @@ export const JoinEmailForm = ({
       return responseMessage
     }
   }
-  function assertUserInputs(value: unknown, inputName: string): asserts value is string {
+  function assertUserInputs(
+    value: unknown,
+    inputName: string,
+    minSize = 0
+  ): asserts value is string {
     assert(typeof value === 'string', 'input must be a string')
     assert(
-      value.length > 0 && value.length < MaxInputFieldSize,
+      value.length > minSize && value.length < MaxInputFieldSize,
       `Input: ${inputName}.\n` +
       `Input size must be less or equal to ${MaxInputFieldSize} characters.\n` +
       `(Input størrelsen må være mindre eller lik ${MaxInputFieldSize} tegn).`
@@ -130,7 +137,7 @@ export const JoinEmailForm = ({
           <FormControl fullWidth>
             <TextField
               required
-              name='email'
+              name='userEmail'
               onChange={handleChange}
               label={content.emailFormLabel[language]}
               margin='normal'
@@ -170,10 +177,8 @@ export const JoinEmailForm = ({
               onChange={handleChange}
               sx={{
                 '& .MuiInputBase-input': {
-                  // position: 'relative',
                   backgroundColor: hulen_black,
                   border: '1px solid ' + hulen_yellow,
-                  // fontSize: 16,
                   padding: '16px 26px 16px 12px',
                   '&:focus': {
                     borderColor: hulen_yellow,

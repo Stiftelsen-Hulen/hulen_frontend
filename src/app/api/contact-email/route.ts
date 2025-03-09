@@ -5,7 +5,6 @@ import type Mail from 'nodemailer/lib/mailer'
 import type { LanguageOptions } from '@/types/language'
 import { assert } from '@/util/helpers/assertAndValidate'
 
-const FRIVILLIG_ANSVARLIG = 'halvor.brunt@gmail.com' // TODO remove line
 const SMTP_HOST = process.env.SMTP_HOST
 const NODE_MAILER_MAIL = process.env.NODE_MAILER_MAIL
 const NODE_MAILER_PASS = process.env.NODE_MAILER_PASS
@@ -21,13 +20,17 @@ const transporter = nodemailer.createTransport({
     user: NODE_MAILER_MAIL,
     pass: NODE_MAILER_PASS,
   },
+  disableFileAccess: true, // disables file access in message & attachment
+  disableUrlAccess: true, // disables URLs in content
 })
 
 export async function POST(request: Request) {
   const req = await request.json()
   const { userName, userEmail, userAge, job, userMessage, language } = req
   const { emailResponseStatus, destinationEmailAddress } = await getJoinFormEmailResponse()
-  //const FRIVILLIG_ANSVARLIG = destinationEmailAddress // TODO: uncomment line
+  // Frivillig ansvarlig mail is fetched from sanity. (why did I do that...)
+  // Replace "FRIVILLIG_ANSVARLIG" with personal email for testing / debug
+  const FRIVILLIG_ANSVARLIG = destinationEmailAddress
 
   try {
     const { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions } = AssertInputs(
@@ -61,6 +64,7 @@ export async function POST(request: Request) {
       subject: subject,
       text: message,
     }
+    // Mail function behaviour
     const sendMailPromise = () =>
       new Promise<string>((resolve, reject) => {
         transporter.sendMail(mailOptions, function (err) {
@@ -73,6 +77,7 @@ export async function POST(request: Request) {
         })
       })
 
+    // Sending the mail
     try {
       const mailResp = await sendMailPromise()
       console.log(mailResp)
@@ -82,12 +87,14 @@ export async function POST(request: Request) {
         { status: 200 }
       )
     } catch (err) {
+      // mail client fail
       return NextResponse.json(
         { error: err + '\n' + emailResponseStatus.error[languageOptions] },
         { status: 500 }
       )
     }
   } catch (err) {
+    // input validation fail
     console.log(err)
     const error = err as Error
 

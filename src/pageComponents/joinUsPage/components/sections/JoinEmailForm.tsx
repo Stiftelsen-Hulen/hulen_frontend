@@ -61,6 +61,7 @@ export const JoinEmailForm = ({
       const language_localstorage = getLanguage()
       assertUserInputs(formData.userName, 'Name (Navn)')
       assertUserInputs(formData.userEmail, 'Email (Epost)')
+      // NOTE: is only a format check. Cannot check if email is real. That would require verification links to be clickd by the user.
       assert(EmailRegEx.test(formData.userEmail), 'Invalid Email format (Ugyldig epost format).')
       assertUserInputs(formData.userAge, 'Age (Alder)')
       assertUserInputs(formData.job, 'Job (Verv)')
@@ -90,9 +91,8 @@ export const JoinEmailForm = ({
       })
 
       console.log(response)
-
       if (response.ok) {
-        responseMessage = 'Email sent successfully!'
+        responseMessage = 'Email sent! You should receive a confirmation email shortly.'
       } else {
         responseMessage = 'Something went wrong.'
       }

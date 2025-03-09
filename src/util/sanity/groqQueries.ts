@@ -96,13 +96,16 @@ export const getPositionsGroq = `*[_type == "joinUsPage"][0] {
       altText{${languageOptions}}
 }}}`
 
-export const joinEmailFormApiResponse = `*[_type == "joinEmailFormApiResponse"][0] {
-  contactFormDestinationEmail,
-  emailResponseStatus {
-    success{${languageOptions}},
-    error{${languageOptions}}
-    }
-}`
+export const joinEmailFormApi = `{ "positionsWrapper": *[_type == "joinUsPage"][0] {
+   positions[]{ 
+      title{no}}
+      },
+  "emailForm": *[_type == "joinEmailFormApiResponse"][0] {
+    emailResponseStatus {
+      success{no},
+      error{no}
+      }
+  }}`
 
 export const getTechInfoPageGroq = `*[_type == "techInfo"][0]{
   categories[]{

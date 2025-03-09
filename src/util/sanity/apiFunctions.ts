@@ -17,11 +17,11 @@ import {
   getPagePropsGroq,
   getTechInfoPageGroq,
   getTranslationObjectGroq,
-  joinEmailFormApiResponse,
+  joinEmailFormApi,
   getPositionsGroq,
 } from './groqQueries'
 import { sanityClient } from './sanityClient'
-import type { JoinFormEmailResponse } from '@/types/sanity/joinFormEmailApiResponse'
+import type { JoinFormEmailApi } from '@/types/sanity/joinFormEmailApi'
 import NodeCache from 'node-cache'
 
 /** Due to rapid increase in API calls noted in feb 2025, a throttle guard has been added.
@@ -175,8 +175,8 @@ export async function getGuardianInfoPageContent() {
   return sanityData
 }
 
-export async function getJoinFormEmailResponse() {
-  return await sanityClient.fetch<JoinFormEmailResponse>(joinEmailFormApiResponse)
+export async function getJoinFormEmailApi() {
+  return await sanityClient.fetch<JoinFormEmailApi>(joinEmailFormApi)
 }
 
 export async function getPositions() {

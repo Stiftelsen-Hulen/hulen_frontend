@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
-import { getJoinFormEmailResponse } from '@/util/sanity/apiFunctions'
+import { getJoinFormEmailApi } from '@/util/sanity/apiFunctions'
 import type Mail from 'nodemailer/lib/mailer'
 import type { LanguageOptions } from '@/types/language'
 import { assert } from '@/util/helpers/assertAndValidate'
@@ -27,10 +27,11 @@ const transporter = nodemailer.createTransport({
 export async function POST(request: Request) {
   const req = await request.json()
   const { userName, userEmail, userAge, job, userMessage, language } = req
-  const { emailResponseStatus, destinationEmailAddress } = await getJoinFormEmailResponse()
-  // Frivillig ansvarlig mail is fetched from sanity. (why did I do that...)
-  // Replace "FRIVILLIG_ANSVARLIG" with personal email for testing / debug
-  const FRIVILLIG_ANSVARLIG = destinationEmailAddress
+  const { positionsWrapper, emailForm } = await getJoinFormEmailApi()
+  const { emailResponseStatus } = emailForm
+  const positions = positionsWrapper.positions
+  // Replace "frivillig@hulen.no" with personal email for testing / debug
+  const FRIVILLIG_ANSVARLIG = 'frivillig@hulen.no'
 
   try {
     const { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions } = AssertInputs(
@@ -100,47 +101,49 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ error: error.message }, { status: 400 })
   }
-}
 
-function AssertInputs(
-  userName_s?: string,
-  userEmail_s?: string,
-  userAge?: string,
-  job_s?: string,
-  userMessage_s?: string,
-  language?: string
-) {
-  assertUserInputStringasserts(userName_s, 100, 'Name must be provided (Navn må være oppgitt)')
-  assertUserInputStringasserts(userEmail_s, 100, 'Email must be provided (Epost må være oppgitt)')
-  assert(EmailRegEx.test(userEmail_s), 'Invalid Email format (Ugyldig epost format).')
-  assertUserInputStringasserts(userAge, 3, 'Age must be provided (Alder må være oppgitt)')
-  const age = parseInt(userAge)
-  assert(
-    typeof age === 'number' && isFinite(age) && 18 <= age && age <= 100,
-    'Age must be a number (18-100)(Alder må være et tall (18-100)).'
-  )
+  function AssertInputs(
+    userName_s?: string,
+    userEmail_s?: string,
+    userAge?: string,
+    job_s?: string,
+    userMessage_s?: string,
+    language?: string
+  ) {
+    assertUserInputStringasserts(userName_s, 100, 'Name must be provided (Navn må være oppgitt)')
+    assertUserInputStringasserts(userEmail_s, 100, 'Email must be provided (Epost må være oppgitt)')
+    assert(EmailRegEx.test(userEmail_s), 'Invalid Email format (Ugyldig epost format).')
+    assertUserInputStringasserts(userAge, 3, 'Age must be provided (Alder må være oppgitt)')
+    const age = parseInt(userAge)
+    assert(
+      typeof age === 'number' && isFinite(age) && 18 <= age && age <= 100,
+      'Age must be a number (18-100)(Alder må være et tall (18-100)).'
+    )
+    assertUserInputStringasserts(
+      job_s,
+      MAX_INPUT_LENGTH,
+      'Job must be provided (Verv må være oppgitt).'
+    )
+    const languageOptions = language as LanguageOptions
+    assert(
+      positions.map((p) => p.title[languageOptions]).indexOf(job_s) > -1,
+      'You must pick a valid job (Du må velge et gyldig verv).'
+    )
+    assert(typeof userMessage_s === 'string' && userMessage_s.length < MAX_INPUT_LENGTH)
 
-  // Not validating that the job sent is valid, due to requiring an extra CDN API call on each call.
-  assertUserInputStringasserts(
-    job_s,
-    MAX_INPUT_LENGTH,
-    'Job must be provided (Verv må være oppgitt).'
-  )
-  assert(typeof userMessage_s === 'string' && userMessage_s.length < MAX_INPUT_LENGTH)
-  const languageOptions = language as LanguageOptions
+    return { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions }
+  }
 
-  return { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions }
-}
-
-function assertUserInputStringasserts(
-  value: unknown,
-  maxLength: number,
-  msg?: string
-): asserts value is string {
-  assert(typeof value === 'string' && value.length >= 0 && value.length < maxLength, msg)
-  assert(
-    value.length < maxLength,
-    `All Inputs must be less or equal to ${maxLength} characters.` +
-    `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`
-  )
+  function assertUserInputStringasserts(
+    value: unknown,
+    maxLength: number,
+    msg?: string
+  ): asserts value is string {
+    assert(typeof value === 'string' && value.length >= 0 && value.length < maxLength, msg)
+    assert(
+      value.length < maxLength,
+      `All Inputs must be less or equal to ${maxLength} characters.` +
+      `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`
+    )
+  }
 }

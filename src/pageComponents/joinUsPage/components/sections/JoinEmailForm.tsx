@@ -1,8 +1,8 @@
 import { hulen_black, hulen_yellow, hulen_yellow_text } from '@/styles'
-import type { LanguageOptions } from '@/types/language'
 import type { JoinEmailFormContent } from '@/types/sanity/joinUsPage/joinEmailForm'
 import type { Position } from '@/types/sanity/joinUsPage/position'
 import { assert } from '@/util/helpers/assertAndValidate'
+import { useLanguage } from '@/util/LanguageContext'
 import type { SelectChangeEvent } from '@mui/material'
 import {
   Box,
@@ -30,19 +30,22 @@ export const JoinEmailForm = ({
   content: JoinEmailFormContent
   positions: Position[]
 }) => {
-  const getLanguage = () => localStorage.getItem('language') as LanguageOptions
-  const language = getLanguage()
+  const { language } = useLanguage()
   const MaxInputFieldSize = 500
+
+  const IsAPosition = (pos: string) => positions.map((p) => p.title[language]).indexOf(pos) > -1
 
   const [formData, setFormData] = useState({
     userName: '',
     userEmail: '',
     userAge: '20',
-    job: positions[0].title[getLanguage()],
+    job: positions[0].title[language],
     userMessage: '',
     language: language,
   })
-
+  if (!IsAPosition(formData.job)) {
+    formData.job = positions[0].title[language]
+  }
   // Updates the key:value pairs in the form on change.
   const handleChange = (
     e:
@@ -50,6 +53,7 @@ export const JoinEmailForm = ({
       | SelectChangeEvent<string>
   ) => {
     const { name, value } = e.target
+    console.log(formData)
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
@@ -58,23 +62,20 @@ export const JoinEmailForm = ({
     let json: string
     try {
       e.preventDefault()
-      const language_localstorage = getLanguage()
       assertUserInputs(formData.userName, 'Name (Navn)')
       assertUserInputs(formData.userEmail, 'Email (Epost)')
       // NOTE: is only a format check. Cannot check if email is real. That would require verification links to be clickd by the user.
       assert(EmailRegEx.test(formData.userEmail), 'Invalid Email format (Ugyldig epost format).')
       assertUserInputs(formData.userAge, 'Age (Alder)')
       assertUserInputs(formData.job, 'Job (Verv)')
-      assert(
-        positions.map((p) => p.title[language_localstorage]).indexOf(formData.job) > -1,
-        'You must pick a valid job (Du må velge et gyldig verv).'
-      )
+      assert(IsAPosition(formData.job), 'You must pick a valid job (Du må velge et gyldig verv).')
       assertUserInputs(
         formData.userMessage,
         'Other relevant information (Annen relevant informasjon)',
         -1
       )
-
+      // Update language in case user changed language-context
+      formData.language = language
       json = JSON.stringify(formData)
       console.log(json)
     } catch (error) {

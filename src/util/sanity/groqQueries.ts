@@ -98,12 +98,12 @@ export const getPositionsGroq = `*[_type == "joinUsPage"][0] {
 
 export const joinEmailFormApi = `{ "positionsWrapper": *[_type == "joinUsPage"][0] {
    positions[]{ 
-      title{no}}
+      title{${languageOptions}}}
       },
   "emailForm": *[_type == "joinEmailFormApiResponse"][0] {
     emailResponseStatus {
-      success{no},
-      error{no}
+      success{${languageOptions}},
+      error{${languageOptions}}
       }
   }}`
 

@@ -210,6 +210,36 @@ const theme = createTheme({
         },
       ],
     },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          color: 'secondary',
+          '& .MuiOutlinedInput-root': {
+            // TextField root element style
+            borderColor: hulen_yellow_text,
+            color: 'secondary.main',
+            '& .MuiOutlinedInput-notchedOutline': {
+              // Child > Input border
+              borderColor: hulen_yellow_text,
+              borderWidth: '1px',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              // Child > input border when focused
+              borderColor: hulen_yellow_text,
+              borderWidth: '3px',
+            },
+          },
+          '& .MuiInputLabel-outlined': {
+            // Label
+            color: hulen_yellow_text,
+          },
+          '& .MuiFormHelperText-contained': {
+            // Help text
+            color: hulen_yellow_text,
+          },
+        },
+      },
+    },
   },
 })
 

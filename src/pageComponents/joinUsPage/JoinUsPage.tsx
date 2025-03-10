@@ -5,7 +5,12 @@ import { useLanguage } from '@/util/LanguageContext/LanguageContext'
 import { Box, Button, Typography } from '@mui/material'
 import { PortableText } from '@portabletext/react'
 import { scrollToSection } from '@/util/helpers'
-import { PositionSection, BenefitsSection, JoinUsSection } from './components/sections'
+import {
+  PositionSection,
+  BenefitsSection,
+  JoinUsSection,
+  JoinEmailForm,
+} from './components/sections'
 
 /**
  * Renders the content for the join us page, includes:
@@ -56,6 +61,7 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
       <PositionSection content={content.positionPreface} positions={content.positions} />
       <BenefitsSection content={content.benefitsSection} />
       <JoinUsSection content={content.joinSection} />
+      <JoinEmailForm content={content.joinEmailForm} positions={content.positions} />
     </>
   )
 }

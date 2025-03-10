@@ -75,8 +75,37 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
       asset -> {url, metadata},
       altText{${languageOptions}}
     }
+  },
+  joinEmailForm {
+    relevantInfoFormLabel{${languageOptions}},
+    nameFormLabel{${languageOptions}},
+    ageFormLabel{${languageOptions}},
+    emailFormLabel{${languageOptions}},
+    emailFormTitle{${languageOptions}},
+    jobFormLabel{${languageOptions}},
   }
 }`
+
+export const getPositionsGroq = `*[_type == "joinUsPage"][0] {
+ positions[]{ 
+    title{${languageOptions}},
+    category,
+    description{${languageOptions}},
+    descImage{
+      asset -> {url, metadata},
+      altText{${languageOptions}}
+}}}`
+
+export const joinEmailFormApi = `{ "positionsWrapper": *[_type == "joinUsPage"][0] {
+   positions[]{ 
+      title{${languageOptions}}}
+      },
+  "emailForm": *[_type == "joinEmailFormApiResponse"][0] {
+    emailResponseStatus {
+      success{${languageOptions}},
+      error{${languageOptions}}
+      }
+  }}`
 
 export const getTechInfoPageGroq = `*[_type == "techInfo"][0]{
   categories[]{

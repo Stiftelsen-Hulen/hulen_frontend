@@ -17,7 +17,20 @@ export const ButtonRow = async ({ title, positions }: { title: string; positions
   return (
     <Stack sx={{ alignItems: 'center', gap: '1rem' }}>
       <Typography variant='h4'>{titleTranslation.content[language]}</Typography>
-      <Box sx={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '0.5rem',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          // On mobile devices, stack buttons vertically
+          flexDirection: { xs: 'column', sm: 'row' },
+          // Adjust the width of the buttons on mobile to take full width
+          '& .MuiButton-root': {
+            width: { xs: '100%', sm: 'auto' },
+          },
+        }}
+      >
         {positions.map((position, index) => (
           <Button
             variant='positionButton'

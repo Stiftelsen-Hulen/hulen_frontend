@@ -42,10 +42,18 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
           imageData={content.icon}
           alt=''
           sx={{
-            width: '10vw',
-            maxWidth: '100%',
+            width: {
+              xs: '100px',
+              sm: '20vw',
+              md: '15vw',
+              lg: '200px',
+              xl: '250px'
+            },
             height: 'auto',
-          }} />
+            minWidth: '100px',
+            maxWidth: '300px',
+          }}
+        />
         <Typography variant='h2' sx={{ color: hulen_black, fontWeight: 700 }}>
           {content.header[language]}
         </Typography>

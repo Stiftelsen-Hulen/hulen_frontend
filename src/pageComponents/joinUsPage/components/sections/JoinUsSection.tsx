@@ -38,7 +38,14 @@ export const JoinUsSection = ({ content }: { content: JoinSanitySection }) => {
           maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
         }}
       >
-        <SanityImageComponent imageData={content.icon} alt='' />
+        <SanityImageComponent
+          imageData={content.icon}
+          alt=''
+          sx={{
+            width: '10vw',
+            maxWidth: '100%',
+            height: 'auto',
+          }} />
         <Typography variant='h2' sx={{ color: hulen_black, fontWeight: 700 }}>
           {content.header[language]}
         </Typography>

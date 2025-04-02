@@ -24,7 +24,14 @@ export const PositionSection = ({
   return (
     <Stack sx={{ alignItems: 'center', gap: '2rem', width: '100%' }} id='positions'>
       <Stack sx={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-        <SanityImageComponent imageData={content.descImage} alt={''} />
+        <SanityImageComponent
+          imageData={content.descImage}
+          alt={''}
+          sx={{
+            width: '10vw',
+            maxWidth: '100%',
+            height: 'auto',
+          }} />
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />
       </Stack>

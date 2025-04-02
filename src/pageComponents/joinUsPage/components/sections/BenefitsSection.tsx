@@ -22,7 +22,14 @@ export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }
       id='benefits'
     >
       <Stack sx={{ maxWidth: { xs: '100%', md: '50%' }, alignItems: 'center', gap: '2rem' }}>
-        <SanityImageComponent imageData={content.descImage} alt='' />
+        <SanityImageComponent
+          imageData={content.descImage}
+          alt=''
+          sx={{
+            width: '10vw',
+            maxWidth: '100%',
+            height: 'auto',
+          }} />
         <Typography variant='h4' fontWeight={700} textAlign={'center'}>
           {content.header[language]}
         </Typography>

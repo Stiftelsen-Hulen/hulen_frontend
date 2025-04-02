@@ -1,25 +1,24 @@
 import type { SanityImage } from '@/types/sanity'
-import { Box } from '@mui/material'
+import { Box, SxProps } from '@mui/material'
 import Image from 'next/image'
 
-/**
- * SanityImageComponent is a responsive image component that adapts its size based on the provided width.
- * If no width is provided, it dynamically calculates the width and height based on the aspect ratio of the image.
- */
+interface SanityImageComponentProps {
+  imageData: SanityImage
+  width?: number
+  alt: string
+  sx?: SxProps
+}
+
 export const SanityImageComponent = ({
   imageData,
   width,
   alt,
-}: {
-  imageData: SanityImage
-  width?: number
-  alt: string
-}) => {
+  sx,
+}: SanityImageComponentProps) => {
   function calcWidth() {
     if (width) {
       return width
     }
-
     return imageData.asset.metadata.dimensions.width
   }
 
@@ -27,12 +26,19 @@ export const SanityImageComponent = ({
     if (width) {
       return width / imageData.asset.metadata.dimensions.aspectRatio
     }
-
     return imageData.asset.metadata.dimensions.height
   }
 
   return (
-    <Box width='100%' height='100%' maxWidth={`${calcWidth()}px`} maxHeight={`${calcHeight()}px`}>
+    <Box
+      sx={{
+        width: '100%',
+        height: '100%',
+        maxWidth: `${calcWidth()}px`,
+        maxHeight: `${calcHeight()}px`,
+        ...sx, // Merge custom sx props
+      }}
+    >
       <Image
         placeholder='blur'
         blurDataURL={imageData.asset.metadata.blurHash}

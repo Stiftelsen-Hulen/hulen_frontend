@@ -80,6 +80,7 @@ export const getJoinUsPageGroq = `*[_type == "joinUsPage"][0] {
     relevantInfoFormLabel{${languageOptions}},
     nameFormLabel{${languageOptions}},
     ageFormLabel{${languageOptions}},
+    phoneFormLabel,
     emailFormLabel{${languageOptions}},
     emailFormTitle{${languageOptions}},
     jobFormLabel{${languageOptions}},

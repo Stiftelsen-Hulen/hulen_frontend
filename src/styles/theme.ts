@@ -210,6 +210,35 @@ const theme = createTheme({
         },
       ],
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: hulen_yellow_text,
+          backgroundColor: hulen_black,
+          '&.Mui-focused': {
+            color: hulen_yellow_text,
+          },
+        }
+      }
+    },
+    MuiNativeSelect: {
+      styleOverrides: {
+        root: {
+          '& .MuiNativeSelect-select': {
+            backgroundColor: hulen_black,
+            border: '1px solid ' + hulen_yellow,
+            padding: '16px 26px 16px 12px',
+            '&:focus': {
+              borderColor: hulen_yellow,
+            },
+            '& .Mui-focused': {
+              borderColor: hulen_yellow_text,
+              borderWidth: '3px',
+            },
+          },
+        }
+      }
+    },
     MuiTextField: {
       styleOverrides: {
         root: {

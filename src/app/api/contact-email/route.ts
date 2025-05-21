@@ -4,6 +4,7 @@ import { getJoinFormEmailApi } from '@/util/sanity/apiFunctions'
 import type Mail from 'nodemailer/lib/mailer'
 import type { LanguageOptions } from '@/types/language'
 import { assert } from '@/util/helpers/assertAndValidate'
+import isValidNumber from 'intl-tel-input'
 
 const SMTP_HOST = process.env.SMTP_HOST
 const NODE_MAILER_MAIL = process.env.NODE_MAILER_MAIL
@@ -26,7 +27,7 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(request: Request) {
   const req = await request.json()
-  const { userName, userEmail, userAge, job, userMessage, language } = req
+  const { userName, userEmail, userAge, phoneNumber, job, userMessage, language } = req
   const { positionsWrapper, emailForm } = await getJoinFormEmailApi()
   const { emailResponseStatus } = emailForm
   const positions = positionsWrapper.positions
@@ -34,14 +35,8 @@ export async function POST(request: Request) {
   const FRIVILLIG_ANSVARLIG = 'frivillig@hulen.no'
 
   try {
-    const { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions } = AssertInputs(
-      userName,
-      userEmail,
-      userAge,
-      job,
-      userMessage,
-      language
-    )
+    const { userName_s, userEmail_s, age, phoneNumber_s, job_s, userMessage_s, languageOptions } =
+      AssertInputs(userName, userEmail, userAge, phoneNumber, job, userMessage, language)
 
     console.log(userName_s, userEmail_s, age)
     const subject = '[HULEN CONTACT FORM]: ' + userName_s + ', ' + age.toString() + ': ' + job_s
@@ -50,6 +45,7 @@ export async function POST(request: Request) {
       Age (alder):  ${age}
       Job (verv): ${job_s}
       Email (epost): ${userEmail_s}
+      Phone number (telefon nummer): ${phoneNumber_s}
       
   Below is the provided message (nedenfor er melding gitt av brukeren):
   -----------------------------------------
@@ -106,6 +102,7 @@ export async function POST(request: Request) {
     userName_s?: string,
     userEmail_s?: string,
     userAge?: string,
+    phoneNumber_s?: string,
     job_s?: string,
     userMessage_s?: string,
     language?: string
@@ -119,9 +116,11 @@ export async function POST(request: Request) {
       typeof age === 'number' && isFinite(age) && 18 <= age && age <= 100,
       'Age must be a number (18-100)(Alder må være et tall (18-100)).'
     )
+    // intl-tel-input's phone number validation function depends on the frontend. In backend we assume that the phone number is the correct format. Only check for length abuse.
+    assertUserInputStringasserts(phoneNumber_s, MAX_INPUT_LENGTH, 'Phone number must be provided (Telefonnummer må være oppgitt).')
     assertUserInputStringasserts(
       job_s,
-      MAX_INPUT_LENGTH,
+      30,
       'Job must be provided (Verv må være oppgitt).'
     )
     const languageOptions = language as LanguageOptions
@@ -131,7 +130,7 @@ export async function POST(request: Request) {
     )
     assert(typeof userMessage_s === 'string' && userMessage_s.length < MAX_INPUT_LENGTH)
 
-    return { userName_s, userEmail_s, age, job_s, userMessage_s, languageOptions }
+    return { userName_s, userEmail_s, age, phoneNumber_s, job_s, userMessage_s, languageOptions }
   }
 
   function assertUserInputStringasserts(
@@ -142,7 +141,7 @@ export async function POST(request: Request) {
     assert(typeof value === 'string' && value.length >= 0 && value.length < maxLength, msg)
     assert(
       value.length < maxLength,
-      `All Inputs must be less or equal to ${maxLength} characters.` +
+      `Input must be less or equal to ${maxLength} characters.` +
       `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`
     )
   }

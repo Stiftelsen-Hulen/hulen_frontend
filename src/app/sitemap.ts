@@ -6,25 +6,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://hulen.no',
     },
     {
-      url: 'https://www.hulen.no/joinUs',
+      url: 'https://www.hulen.no/frivillig',
     },
     {
-      url: 'https://www.hulen.no/tickets',
+      url: 'https://www.hulen.no/billetter',
     },
     {
       url: 'https://www.hulen.no/info/tech',
     },
     {
-      url: 'https://www.hulen.no/info/guardian',
+      url: 'https://www.hulen.no/info/verge',
     },
     {
-      url: 'https://www.hulen.no/info/accessibility',
+      url: 'https://www.hulen.no/info/tilgjengelighet',
     },
     {
-      url: 'https://www.hulen.no/about',
+      url: 'https://www.hulen.no/om',
     },
     {
-      url: 'https://www.hulen.no/contact',
+      url: 'https://www.hulen.no/kontakt',
     },
   ]
 }

@@ -44,12 +44,43 @@ export const PositionSection = ({
   return (
     <Stack sx={{ alignItems: 'center', gap: '2rem', width: '100%' }} id='positions'>
       <Stack sx={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-        <SanityImageComponent imageData={content.descImage} alt={content.header[language] || 'Position section image'} />
+        <SanityImageComponent
+          imageData={content.descImage}
+          alt={content.header[language] || 'Position section image'}
+        />
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />
       </Stack>
 
-      <PositionButtons positions={positions} />
+      {window.innerWidth > 700 ? (
+        <PositionButtons positions={positions} />
+      ) : (
+        <div
+          className='positionLinks'
+          style={{
+            width: window.innerWidth < 700 ? '90%' : '66%',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
+          {positions.map((position, index) => (
+            <a
+              onClick={() => scrollToPosition(index)}
+              key={index}
+              style={{
+                cursor: 'pointer',
+                margin: '0px 3.33px',
+                display: 'inline-block',
+                transition: 'background-color 0.6s',
+                textDecoration: 'underline',
+              }}
+            >
+              {position.title[language]}
+            </a>
+          ))}
+        </div>
+      )}
 
       <Box
         sx={{

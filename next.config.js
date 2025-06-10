@@ -21,64 +21,76 @@ const nextConfig = {
 const redirects = async () => {
   return [
     {
-      source: '/frivillig',
-      destination: '/joinUs',
+      source: '/joinUs',
+      destination: '/frivillig',
       permanent: true,
     },
     {
       source: '/kalender',
       destination: 'https://app.crescat.io/groups/aktive-interne',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
-      source: '/billetter',
-      destination: 'https://www.hulen.no/tickets',
+      source: '/tickets',
+      destination: '/billetter',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
-      source: '/info/verge',
-      destination: 'https://www.hulen.no/info/guardian',
+      source: '/guardian',
+      destination: '/info/verge',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
-      source: '/verge',
-      destination: 'https://www.hulen.no/info/guardian',
+      source: '/info/guardian',
+      destination: '/info/verge',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
       source: '/tech',
-      destination: 'https://www.hulen.no/info/tech',
+      destination: '/info/tech',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
-      source: '/ledsager',
-      destination: 'https://www.hulen.no/info/accessibility',
+      source: '/companion',
+      destination: '/info/tilgjengelighet',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
-      source: '/tilgjengelighet',
-      destination: 'https://www.hulen.no/info/accessibility',
+      source: '/info/companion',
+      destination: '/info/tilgjengelighet',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
-      source: '/kontakt',
-      destination: 'https://www.hulen.no/kontakt',
+      source: '/accessibility',
+      destination: '/info/tilgjengelighet',
       permanent: true,
-      basePath: false
+      basePath: false,
     },
     {
-      source: '/om',
-      destination: 'https://www.hulen.no/about',
+      source: '/info/accessibility',
+      destination: '/info/tilgjengelighet',
       permanent: true,
-      basePath: false
-    }
+      basePath: false,
+    },
+    {
+      source: '/contact',
+      destination: '/kontakt',
+      permanent: true,
+      basePath: false,
+    },
+    {
+      source: '/about',
+      destination: '/om',
+      permanent: true,
+      basePath: false,
+    },
   ]
 }
 

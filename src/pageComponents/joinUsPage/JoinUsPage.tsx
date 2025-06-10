@@ -58,10 +58,10 @@ export const JoinUsPageContent = ({ content }: { content: JoinUsSanityContent })
           <PortableText value={content.ingress[language]} />
         </Box>
       </Box>
+      <JoinEmailForm content={content.joinEmailForm} positions={content.positions} />
       <PositionSection content={content.positionPreface} positions={content.positions} />
       <BenefitsSection content={content.benefitsSection} />
       <JoinUsSection content={content.joinSection} />
-      <JoinEmailForm content={content.joinEmailForm} positions={content.positions} />
     </>
   )
 }

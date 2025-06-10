@@ -46,7 +46,19 @@ export const PositionSection = ({
       <Stack sx={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
         <SanityImageComponent
           imageData={content.descImage}
-          alt={content.header[language] || 'Position section image'}
+          alt={''}
+          sx={{
+            width: {
+              xs: '100px',
+              sm: '20vw',
+              md: '15vw',
+              lg: '200px',
+              xl: '250px'
+            },
+            height: 'auto',
+            minWidth: '100px',
+            maxWidth: '300px',
+          }}
         />
         <Typography variant='h3'>{content.header[language]}</Typography>
         <PortableText value={content.content[language]} />

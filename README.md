@@ -33,7 +33,7 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
 ## Technologies used
 
 - [React](https://react.dev) version 18.2.21
-- [Next.js](https://nextjs.org) version 13.4.19 with [Typescript](https://www.typescriptlang.org) version 5.2.2
+- [Next.js](https://nextjs.org) version 13.5.10 with [Typescript](https://www.typescriptlang.org) version 5.2.2
 - [Material UI](https://mui.com/material-ui/)
 
 
@@ -41,6 +41,7 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
 
 Descriptions of some of the main folders:
 - `src/app/`: The main source code containing the different pages
+- `src/app/api/`: Api-endpoints
 - `src/components/`: Reusable UI components
 - `src/pageComponents/`: Page specific components
 - `src/styles/`: Global styles

@@ -19,7 +19,6 @@ import {
 import { useState } from 'react'
 import { no, en } from 'intl-tel-input/i18n'
 import IntlTelInput from 'intl-tel-input/reactWithUtils'
-import 'intl-tel-input/styles'
 import type { LanguageOptions } from '@/types/language'
 
 const EmailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -141,7 +140,7 @@ export const JoinEmailForm = ({
   }
 
   /*To override intlTelInput's css*/
-  const PhoneInputWrapper = styled('div')(({ theme }) => ({
+  const PhoneInputWrapper = styled('div')(() => ({
     width: '100%',
     marginTop: '4px',
     '& .iti': {
@@ -265,11 +264,11 @@ export const JoinEmailForm = ({
             onChangeValidity={(boolean) => (isValidPhoneNumber = boolean)}
             initOptions={{
               i18n: phonePluginLanguage(language) /*Translate phone-form to client-language */,
-              initialCountry: 'NO',
-              countryOrder: ['no', 'se', 'dk', 'fi', 'de', 'at', 'it', 'ea', 'fr'],
+              initialCountry: 'no',
+              countryOrder: ['no', 'se', 'dk', 'fi', 'de', 'at', 'it', 'fr'],
               // containerClass: 'MuiFormControl-root MuiFormControl-fullWidth ',
               strictMode: false /*only optional (leading) plus, and numbers */,
-              hiddenInput: (telInputName) => ({
+              hiddenInput: () => ({
                 /* Sends the full international phone number and the country code*/
                 phone: 'phone_full',
                 country: 'country_code',

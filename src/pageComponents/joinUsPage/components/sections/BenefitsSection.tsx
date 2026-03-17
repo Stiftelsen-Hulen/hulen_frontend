@@ -31,7 +31,7 @@ export const BenefitsSection = ({ content }: { content: BenefitsSectionContent }
               sm: '20vw',
               md: '15vw',
               lg: '200px',
-              xl: '250px'
+              xl: '250px',
             },
             height: 'auto',
             minWidth: '100px',

@@ -154,7 +154,7 @@ export const PositionSection = ({
           borderStyle: 'solid',
         }}
       >
-        {positions.map((pos, index) => pos.category === Dayshift && PositionEntry(pos))}
+        {positions.map((pos) => pos.category === Dayshift && PositionEntry(pos))}
       </Box>
 
       <Typography variant='h4'>
@@ -169,7 +169,7 @@ export const PositionSection = ({
           borderStyle: 'solid',
         }}
       >
-        {positions.map((pos, index) => pos.category === Nightshift && PositionEntry(pos))}
+        {positions.map((pos) => pos.category === Nightshift && PositionEntry(pos))}
       </Box>
     </Stack>
   )

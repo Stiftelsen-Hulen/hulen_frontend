@@ -31,8 +31,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
       const lang = navigator.language
       if (lang === 'en') {
         setLanguage('en')
-      }
-      else if (lang === 'nb' || lang === 'nn') {
+      } else if (lang === 'nb' || lang === 'nn') {
         setLanguage('no')
       } else {
         setLanguage('no')

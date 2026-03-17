@@ -1,5 +1,5 @@
 import type { SanityImage } from '@/types/sanity'
-import { Box, SxProps } from '@mui/material'
+import { Box, type SxProps } from '@mui/material'
 import Image from 'next/image'
 
 interface SanityImageComponentProps {
@@ -9,16 +9,12 @@ interface SanityImageComponentProps {
   sx?: SxProps
 }
 
-export const SanityImageComponent = ({
-  imageData,
-  width,
-  alt,
-  sx,
-}: SanityImageComponentProps) => {
+export const SanityImageComponent = ({ imageData, width, alt, sx }: SanityImageComponentProps) => {
   function calcWidth() {
     if (width) {
       return width
     }
+
     return imageData.asset.metadata.dimensions.width
   }
 
@@ -26,6 +22,7 @@ export const SanityImageComponent = ({
     if (width) {
       return width / imageData.asset.metadata.dimensions.aspectRatio
     }
+
     return imageData.asset.metadata.dimensions.height
   }
 

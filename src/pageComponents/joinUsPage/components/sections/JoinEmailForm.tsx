@@ -134,14 +134,12 @@ export const JoinEmailForm = ({
     assert(typeof value === 'string', 'input must be a string')
     assert(
       value.length > minSize && value.length < MaxInputFieldSize,
-      `Input: ${inputName}.\n` +
-      `Input size must be less or equal to ${MaxInputFieldSize} characters.\n` +
-      `(Input størrelsen må være mindre eller lik ${MaxInputFieldSize} tegn).`
+      `Input: ${inputName}.\nInput size must be less or equal to ${MaxInputFieldSize} characters.\n(Input størrelsen må være mindre eller lik ${MaxInputFieldSize} tegn).`
     )
   }
 
   /*To override intlTelInput's css*/
-  const PhoneInputWrapper = styled('div')(({ theme }) => ({
+  const PhoneInputWrapper = styled('div')(({ theme: _theme }) => ({
     width: '100%',
     marginTop: '4px',
     '& .iti': {
@@ -269,7 +267,7 @@ export const JoinEmailForm = ({
               countryOrder: ['no', 'se', 'dk', 'fi', 'de', 'at', 'it', 'fr'],
               // containerClass: 'MuiFormControl-root MuiFormControl-fullWidth ',
               strictMode: false /*only optional (leading) plus, and numbers */,
-              hiddenInput: (telInputName) => ({
+              hiddenInput: (_telInputName) => ({
                 /* Sends the full international phone number and the country code*/
                 phone: 'phone_full',
                 country: 'country_code',

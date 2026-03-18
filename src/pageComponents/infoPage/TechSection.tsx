@@ -1,7 +1,8 @@
 'use client'
 import type { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { TechCategory } from './components'
 
 /**
@@ -25,7 +26,7 @@ export const TechSection = ({ content }: { content: TechInfoPageContent }) => {
       </Box>
       <Grid container spacing='2rem' paddingY='4rem' maxWidth={'45rem'} margin={'auto'}>
         {content.categories.map((category, i) => (
-          <Grid item xs={12} sm={6} key={i}>
+          <Grid size={{ xs: 12, sm: 6 }} key={i}>
             <TechCategory category={category}></TechCategory>
           </Grid>
         ))}

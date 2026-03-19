@@ -4,7 +4,6 @@ import { getJoinFormEmailApi } from '@/util/sanity/apiFunctions'
 import type Mail from 'nodemailer/lib/mailer'
 import type { LanguageOptions } from '@/types/language'
 import { assert } from '@/util/helpers/assertAndValidate'
-import isValidNumber from 'intl-tel-input'
 
 const SMTP_HOST = process.env.SMTP_HOST
 const NODE_MAILER_MAIL = process.env.NODE_MAILER_MAIL
@@ -117,12 +116,12 @@ export async function POST(request: Request) {
       'Age must be a number (18-100)(Alder må være et tall (18-100)).'
     )
     // intl-tel-input's phone number validation function depends on the frontend. In backend we assume that the phone number is the correct format. Only check for length abuse.
-    assertUserInputStringasserts(phoneNumber_s, MAX_INPUT_LENGTH, 'Phone number must be provided (Telefonnummer må være oppgitt).')
     assertUserInputStringasserts(
-      job_s,
-      30,
-      'Job must be provided (Verv må være oppgitt).'
+      phoneNumber_s,
+      MAX_INPUT_LENGTH,
+      'Phone number must be provided (Telefonnummer må være oppgitt).'
     )
+    assertUserInputStringasserts(job_s, 30, 'Job must be provided (Verv må være oppgitt).')
     const languageOptions = language as LanguageOptions
     assert(
       positions.map((p) => p.title[languageOptions]).indexOf(job_s) > -1,
@@ -142,7 +141,7 @@ export async function POST(request: Request) {
     assert(
       value.length < maxLength,
       `Input must be less or equal to ${maxLength} characters.` +
-      `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`
+        `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`
     )
   }
 }

@@ -4,7 +4,6 @@ Welcome new developer! You likely have many questions. Some of them can be answe
 
 This is an improved version of the frontend for [hulen.no](https://www.hulen.no). The content is from [Hulen Studio (sanity)](https://github.com/Stiftelsen-Hulen/hulen_sanity).
 
-
 ## Getting Started
 
 1. Install Node Version 20. (Recommended to use NVM to do this, for more info on NVM see (https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/).
@@ -19,18 +18,17 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
    ```
 4. Steps to create the .env file with environment variables.
    - Copy the `.env.example` file
-      ```bash
-         cp .env.example .env
-      ```
+     ```bash
+        cp .env.example .env
+     ```
    - Edit the `.env` file and replace the placeholders with the appropriate credentials.
-        1. NEXT_PUBLIC_SANITY_PROJECT_ID: Log in to [Sanity.io](https://www.sanity.io), navigate to the **Projects**, select the **Hulen** project and copy the **PROJECT ID**.
-        2. NEXT_PUBLIC_SANITY_DATASET: In the **Project Dashboard**, go to **Datasets** and use the title of the chosen dataset. 
-6. Run the project
+     1. NEXT_PUBLIC_SANITY_PROJECT_ID: Log in to [Sanity.io](https://www.sanity.io), navigate to the **Projects**, select the **Hulen** project and copy the **PROJECT ID**.
+     2. NEXT_PUBLIC_SANITY_DATASET: In the **Project Dashboard**, go to **Datasets** and use the title of the chosen dataset.
+5. Run the project
    ```bash
    npm run dev
    ```
-7. Open http://localhost:3000 with your browser to see the result.  
-
+6. Open http://localhost:3000 with your browser to see the result.
 
 ## Technologies used
 
@@ -38,10 +36,10 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
 - [Next.js](https://nextjs.org) version 13.5.10 with [Typescript](https://www.typescriptlang.org) version 5.2.2
 - [Material UI](https://mui.com/material-ui/)
 
-
 ## Infrastructure
 
 Descriptions of some of the main folders:
+
 - `src/app/`: The main source code containing the different pages
 - `src/app/api/`: Api-endpoints
 - `src/components/`: Reusable UI components
@@ -54,10 +52,9 @@ Descriptions of some of the main folders:
 
 You'll find all over the project `index.ts` files. These are to bundle together the exports of different files. We do this to declutter our import statements and make things a little prettier. They aren't required, but they do help in maintaining the project.
 
-
 ## Deployment
 
-The project is deployed in [Vercel](https://vercel.com). 
+The project is deployed in [Vercel](https://vercel.com).
 
 [Link to the webpage](https://hulen-frontend.vercel.app).
 
@@ -77,19 +74,19 @@ Material UI is a wonderful, but sometimes daunting and confusing CSS framework.
 
 Normally in html, you use `<div>` for containers, `<p>` for text and so on. While you can technically still do it, it is antipattern and you do not inherit much of the base styling from specific components. So instead of using these, here is a handy short guide to the MUI variants:
 
-* `<Typography>`
+- `<Typography>`
 
 `<Typography>` is a text component. Changing the variant changes the styling and semantic tag. E.g., setting `variant='h1'` changes it to a h1 tag with the styling from the `theme.typography.h1` and so on. Use this for all text.
 
-* `<Box>`
+- `<Box>`
 
 `<Box>` is your standard `<div>`. It does not do anything more special by default, but we use this as we have access to the SX prop and other styling.
 
-* `<Stack>`
+- `<Stack>`
 
 `<Stack>` is a box with some default styling, namely `display='flex'` and `flexDirection:'column'`.
 
-* `<Paper>`
+- `<Paper>`
 
 `<Paper>` is a `<div>` with more styling. Think of it as a "styled container" and typically comes with some default styling such as background, rounded borders, box shadow etc.
 
@@ -129,15 +126,18 @@ Like this:
 `<SomeComponent style={{color:hulen_yellow}}>`
 
 ### Get content from Sanity
+
 The data from Sanity Studio is accessed with [GROQ queries](https://www.sanity.io/docs/how-queries-work) in the `src/util/sanity/groqQueries.ts` file.
 The queries are fetched in the `src/util/sanity/apiFunctions.ts` file.
 
-
 ## Contact
+
 Maintained by:
-* Nikolai Hansen Gangstø
-* Erik Grunnaleite Ingebrigtsen
-* Halvor Brunt
+
+- Nikolai Hansen Gangstø
+- Erik Grunnaleite Ingebrigtsen
+- Halvor Brunt
 
 First developed by;
-* Johnny Bjånesøy
+
+- Johnny Bjånesøy

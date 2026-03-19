@@ -8,7 +8,11 @@
     {
       "files": ["**/*.ts", "**/*.tsx"],
       "plugins": ["@typescript-eslint", "unused-imports"],
-      "extends": ["plugin:@typescript-eslint/recommended", "next/core-web-vitals", "plugin:prettier/recommended"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "next/core-web-vitals",
+        "plugin:prettier/recommended"
+      ],
       "rules": {
         "prettier/prettier": [
           "warn",

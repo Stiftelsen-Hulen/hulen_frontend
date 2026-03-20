@@ -1,43 +1,43 @@
 {
-  "name": "hulen-frontend-nextjs",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint --no-cache"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/server": "^11.11.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^6.5.0",
-    "@mui/material": "^6.5.0",
-    "@portabletext/react": "^6.0.3",
-    "@portabletext/types": "^4.0.2",
-    "@sanity/client": "^7.17.0",
-    "intl-tel-input": "^26.8.1",
-    "next": "^14.2.35",
-    "next-sanity-image": "^6.2.0",
-    "node-cache": "^5.1.2",
-    "nodemailer": "^8.0.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20.19.37",
-    "@types/nodemailer": "^7.0.11",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.35",
-    "eslint-config-prettier": "^8.10.2",
-    "eslint-plugin-prettier": "^5.5.5",
-    "eslint-plugin-unused-imports": "^2.0.0",
-    "prettier": "^3.8.1",
-    "typescript": "^5.9.3"
-  }
+    "name": "hulen-frontend-nextjs",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint --no-cache"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.14.0",
+        "@emotion/server": "^11.11.0",
+        "@emotion/styled": "^11.14.1",
+        "@mui/icons-material": "^6.5.0",
+        "@mui/material": "^6.5.0",
+        "@portabletext/react": "^6.0.3",
+        "@portabletext/types": "^4.0.2",
+        "@sanity/client": "^7.17.0",
+        "intl-tel-input": "^26.8.1",
+        "next": "^14.2.35",
+        "next-sanity-image": "^6.2.0",
+        "node-cache": "^5.1.2",
+        "nodemailer": "^8.0.3",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.19.37",
+        "@types/nodemailer": "^7.0.11",
+        "@types/react": "^18.3.28",
+        "@types/react-dom": "^18.3.7",
+        "@typescript-eslint/eslint-plugin": "^5.62.0",
+        "@typescript-eslint/parser": "^5.62.0",
+        "eslint": "^8.57.1",
+        "eslint-config-next": "^14.2.35",
+        "eslint-config-prettier": "^8.10.2",
+        "eslint-plugin-prettier": "^5.5.5",
+        "eslint-plugin-unused-imports": "^2.0.0",
+        "prettier": "^3.8.1",
+        "typescript": "^5.9.3"
+    }
 }

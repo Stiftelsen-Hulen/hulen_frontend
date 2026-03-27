@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // Next 15 no longer supports `swcMinify` (it's on by default when applicable).
   images: {
     remotePatterns: [
       {

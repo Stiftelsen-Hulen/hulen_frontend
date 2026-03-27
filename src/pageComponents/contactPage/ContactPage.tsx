@@ -2,7 +2,8 @@
 import { ContactCard } from '@/pageComponents/contactPage/components'
 import type { SanityContactPageContent } from '@/types/sanity/contact'
 import { useLanguage } from '@/util/LanguageContext/LanguageContext'
-import { Box, Grid, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { PortableText } from '@portabletext/react'
 
 /**
@@ -28,7 +29,7 @@ export const ContactPageContent = ({ content }: { content: SanityContactPageCont
       </Stack>
       <Grid container spacing={'1.5rem'} marginTop='1rem'>
         {content.contactList.map((contactInfo, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={index}>
             <ContactCard contactInfo={contactInfo} />
           </Grid>
         ))}

@@ -1,9 +1,17 @@
 /** @type {import('next').NextConfig} */
+// import type { NextConfig } from 'next'
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['cdn.sanity.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/**',
+      },
+    ],
   },
   modularizeImports: {
     '@mui/material': {

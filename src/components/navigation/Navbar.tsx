@@ -16,7 +16,7 @@ import { NavDropDown } from './NavDropDown'
 import { NavLink } from './NavLink'
 const LOGO_WIDTH_BASE = 143
 
-const StyledNavbarWrapper = styled(Box)({
+const StyledNavbarWrapper = styled('nav')({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -65,10 +65,7 @@ const NavigationBar = ({ navbarElements }: { navbarElements: SanityNavBarContent
   })
 
   return (
-    <StyledNavbarWrapper
-      component={'nav'} //Enhances accessibility with semantic HTML structure.
-      flexDirection={isMobile ? 'column' : 'row'}
-    >
+    <StyledNavbarWrapper sx={{ flexDirection: isMobile ? 'column' : 'row' }}>
       <Link
         href={'/'}
         style={{

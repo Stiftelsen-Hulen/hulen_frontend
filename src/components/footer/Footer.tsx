@@ -39,7 +39,7 @@ const StyledFooterWrapper = styled(Box)({
   flexWrap: 'wrap',
   maxWidth: DEFAULT_LAYOUT_MAXWIDTH,
 })
-const StyledFooterBorder = styled(Box)({
+const StyledFooterBorder = styled('footer')({
   padding: '2rem 1rem',
   display: 'flex',
   justifyContent: 'center',
@@ -70,7 +70,7 @@ export const Footer = ({ footerElements }: { footerElements: SanityFooterElement
   }
 
   return (
-    <StyledFooterBorder component={'footer'}>
+    <StyledFooterBorder>
       <StyledFooterWrapper
         sx={{
           flexDirection: { xs: 'column', sm: 'row' },

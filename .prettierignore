@@ -1,5 +1,16 @@
 .idea
 .vscode
 .next
+out
+build
 dist
+coverage
+.turbo
 node_modules
+package-lock.json
+pnpm-lock.yaml
+.vercel
+.swc
+.cache
+.eslintcache
+*.log

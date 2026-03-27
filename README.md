@@ -6,7 +6,7 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
 
 ## Getting Started
 
-1. Install Node Version 20. (Recommended to use NVM to do this, for more info on NVM see (https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/).
+1. Install Node.js 20.x (recommended). If you use a Node version manager (NVM), see https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/.
 
 2. Clone the repository
    ```bash
@@ -30,11 +30,38 @@ This is an improved version of the frontend for [hulen.no](https://www.hulen.no)
    ```
 6. Open http://localhost:3000 with your browser to see the result.
 
+## Commands
+
+```bash
+# Dev server
+npm run dev
+
+# Production
+npm run build
+npm run start
+
+# Linting (ESLint)
+npm run lint
+npm run lint:fix
+npm run lint:next
+
+# Formatting (Prettier)
+npm run format
+npm run format:check
+```
+
 ## Technologies used
 
-- [React](https://react.dev) version 18.2.21
-- [Next.js](https://nextjs.org) version 13.5.10 with [Typescript](https://www.typescriptlang.org) version 5.2.2
+- [React](https://react.dev) (see [package.json](package.json) for exact version)
+- [Next.js](https://nextjs.org) 14.2.x (see [package.json](package.json))
+- [TypeScript](https://www.typescriptlang.org) 5.9.x (see [package.json](package.json))
 - [Material UI](https://mui.com/material-ui/)
+
+## Tooling notes
+
+- ESLint runs via `eslint .` (this is the long-term path for newer Next versions).
+- Prettier formats code independently (no ESLint/Prettier “plugin coupling”).
+- Phase 2 (after upgrading Next): revisit ESLint 9 + flat config, and re-check whether `next.config.ts` is supported.
 
 ## Infrastructure
 

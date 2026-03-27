@@ -1,7 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // Next 15 no longer supports `swcMinify` (it's on by default when applicable).
+  outputFileTracingRoot: process.cwd(),   // Prevent Next from inferring a wrong root when multiple lockfiles exist.
   images: {
     remotePatterns: [
       {
@@ -99,4 +100,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig

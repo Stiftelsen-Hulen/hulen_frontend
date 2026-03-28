@@ -39,7 +39,7 @@ function GetMaxHeight(position: Position) {
   )
 }
 
-function PositionEntry(position: Position) {
+const PositionEntry = ({ position }: { position: Position }) => {
   const { language } = useLanguage()
   const image = position.descImage
 
@@ -154,7 +154,14 @@ export const PositionSection = ({
           borderStyle: 'solid',
         }}
       >
-        {positions.map((pos) => pos.category === Dayshift && PositionEntry(pos))}
+        {positions
+          .filter((pos) => pos.category === Dayshift)
+          .map((pos, index) => (
+            <PositionEntry
+              key={`${pos.category}-${pos.title.no ?? 'unknown'}-${index}`}
+              position={pos}
+            />
+          ))}
       </Box>
 
       <Typography variant='h4'>
@@ -169,7 +176,14 @@ export const PositionSection = ({
           borderStyle: 'solid',
         }}
       >
-        {positions.map((pos) => pos.category === Nightshift && PositionEntry(pos))}
+        {positions
+          .filter((pos) => pos.category === Nightshift)
+          .map((pos, index) => (
+            <PositionEntry
+              key={`${pos.category}-${pos.title.no ?? 'unknown'}-${index}`}
+              position={pos}
+            />
+          ))}
       </Box>
     </Stack>
   )

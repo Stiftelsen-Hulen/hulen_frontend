@@ -2,7 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  outputFileTracingRoot: process.cwd(),   // Prevent Next from inferring a wrong root when multiple lockfiles exist.
+  outputFileTracingRoot: process.cwd(), // Prevent Next from inferring a wrong root when multiple lockfiles exist.
   images: {
     remotePatterns: [
       {

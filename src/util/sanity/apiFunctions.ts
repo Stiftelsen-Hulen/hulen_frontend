@@ -156,7 +156,7 @@ export async function getTranslationObject(identifier: string) {
     return cachedSanity
   }
   const sanityData = await sanityClient.fetch<TranslationObject>(
-    getTranslationObjectGroq(identifier)
+    getTranslationObjectGroq(identifier),
   )
   sanityCache.set(cacheKey, sanityData)
 

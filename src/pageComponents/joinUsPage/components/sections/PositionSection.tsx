@@ -26,7 +26,7 @@ function GetMaxWidth(position: Position) {
     // max width, picture width, or width calculated from maxheight and aspect ratio
     MaxWidth,
     position.descImage.asset.metadata.dimensions.width,
-    MaxHeight * position.descImage.asset.metadata.dimensions.aspectRatio
+    MaxHeight * position.descImage.asset.metadata.dimensions.aspectRatio,
   )
 }
 
@@ -35,7 +35,7 @@ function GetMaxHeight(position: Position) {
     // max height, picture height, or height calculated from maxwidth and aspect ratio
     MaxHeight,
     position.descImage.asset.metadata.dimensions.height,
-    MaxWidth / position.descImage.asset.metadata.dimensions.aspectRatio
+    MaxWidth / position.descImage.asset.metadata.dimensions.aspectRatio,
   )
 }
 

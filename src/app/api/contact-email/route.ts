@@ -80,13 +80,13 @@ export async function POST(request: Request) {
 
       return NextResponse.json(
         { message: emailResponseStatus.success[languageOptions] },
-        { status: 200 }
+        { status: 200 },
       )
     } catch (err) {
       // mail client fail
       return NextResponse.json(
         { error: err + '\n' + emailResponseStatus.error[languageOptions] },
-        { status: 500 }
+        { status: 500 },
       )
     }
   } catch (err) {
@@ -104,7 +104,7 @@ export async function POST(request: Request) {
     phoneNumber_s?: string,
     job_s?: string,
     userMessage_s?: string,
-    language?: string
+    language?: string,
   ) {
     assertUserInputStringasserts(userName_s, 100, 'Name must be provided (Navn må være oppgitt)')
     assertUserInputStringasserts(userEmail_s, 100, 'Email must be provided (Epost må være oppgitt)')
@@ -113,19 +113,19 @@ export async function POST(request: Request) {
     const age = parseInt(userAge)
     assert(
       typeof age === 'number' && isFinite(age) && 18 <= age && age <= 100,
-      'Age must be a number (18-100)(Alder må være et tall (18-100)).'
+      'Age must be a number (18-100)(Alder må være et tall (18-100)).',
     )
     // intl-tel-input's phone number validation function depends on the frontend. In backend we assume that the phone number is the correct format. Only check for length abuse.
     assertUserInputStringasserts(
       phoneNumber_s,
       MAX_INPUT_LENGTH,
-      'Phone number must be provided (Telefonnummer må være oppgitt).'
+      'Phone number must be provided (Telefonnummer må være oppgitt).',
     )
     assertUserInputStringasserts(job_s, 30, 'Job must be provided (Verv må være oppgitt).')
     const languageOptions = language as LanguageOptions
     assert(
       positions.map((p) => p.title[languageOptions]).indexOf(job_s) > -1,
-      'You must pick a valid job (Du må velge et gyldig verv).'
+      'You must pick a valid job (Du må velge et gyldig verv).',
     )
     assert(typeof userMessage_s === 'string' && userMessage_s.length < MAX_INPUT_LENGTH)
 
@@ -135,13 +135,13 @@ export async function POST(request: Request) {
   function assertUserInputStringasserts(
     value: unknown,
     maxLength: number,
-    msg?: string
+    msg?: string,
   ): asserts value is string {
     assert(typeof value === 'string' && value.length >= 0 && value.length < maxLength, msg)
     assert(
       value.length < maxLength,
       `Input must be less or equal to ${maxLength} characters.` +
-        `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`
+        `(Input strørrelsen må være mindre eller lik ${maxLength} tegn)`,
     )
   }
 }

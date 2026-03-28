@@ -31,15 +31,9 @@ const eslintConfig = [
       'dist/**',
       'coverage/**',
       'tsconfig.json',
-      'prettierrc,json',
+      '.prettierrc.*',
       'package.json',
     ],
-  },
-
-  {
-    rules: {
-      '@next/next/no-document-import-in-page': 'off',
-    },
   },
 
   {
@@ -50,22 +44,30 @@ const eslintConfig = [
     rules: {
       'newline-before-return': 'warn',
 
-      'import/prefer-default-export': 'off',
-      'react-hooks/exhaustive-deps': 'off',
+      // Allow/require dangling commas for multiline.
+      'comma-dangle': ['error', 'always-multiline'],
 
-      '@typescript-eslint/comma-dangle': 'off',
+      // Keep modern React hooks safety net on (Next defaults this to warn).
+      'react-hooks/exhaustive-deps': 'warn',
+
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/consistent-type-imports': ['warn', { prefer: 'type-imports' }],
 
       'no-unused-vars': 'off',
 
-      'unused-imports/no-unused-imports': 'warn',
-      'unused-imports/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      // Prefer unused-imports' fixer-friendly unused detection.
+      '@typescript-eslint/no-unused-vars': 'off',
 
-      semi: 'off',
-      'no-extra-boolean-cast': 'off',
-      'comma-dangle': 'off',
+      // Enforce removing unused imports/vars (imports are auto-fixable).
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
 ]

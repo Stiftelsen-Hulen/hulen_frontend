@@ -6,9 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix",
-        "lint:next": "next lint --no-cache",
+        "lint": "eslint . --cache",
+        "lint:fix": "eslint . --fix --cache",
         "format": "prettier . --write",
         "format:check": "prettier . --check"
     },

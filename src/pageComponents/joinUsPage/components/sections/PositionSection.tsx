@@ -26,7 +26,7 @@ function GetMaxWidth(position: Position) {
     // max width, picture width, or width calculated from maxheight and aspect ratio
     MaxWidth,
     position.descImage.asset.metadata.dimensions.width,
-    MaxHeight * position.descImage.asset.metadata.dimensions.aspectRatio
+    MaxHeight * position.descImage.asset.metadata.dimensions.aspectRatio,
   )
 }
 
@@ -35,11 +35,11 @@ function GetMaxHeight(position: Position) {
     // max height, picture height, or height calculated from maxwidth and aspect ratio
     MaxHeight,
     position.descImage.asset.metadata.dimensions.height,
-    MaxWidth / position.descImage.asset.metadata.dimensions.aspectRatio
+    MaxWidth / position.descImage.asset.metadata.dimensions.aspectRatio,
   )
 }
 
-function PositionEntry(position: Position) {
+const PositionEntry = ({ position }: { position: Position }) => {
   const { language } = useLanguage()
   const image = position.descImage
 
@@ -154,7 +154,14 @@ export const PositionSection = ({
           borderStyle: 'solid',
         }}
       >
-        {positions.map((pos) => pos.category === Dayshift && PositionEntry(pos))}
+        {positions
+          .filter((pos) => pos.category === Dayshift)
+          .map((pos, index) => (
+            <PositionEntry
+              key={`${pos.category}-${pos.title.no ?? 'unknown'}-${index}`}
+              position={pos}
+            />
+          ))}
       </Box>
 
       <Typography variant='h4'>
@@ -169,7 +176,14 @@ export const PositionSection = ({
           borderStyle: 'solid',
         }}
       >
-        {positions.map((pos) => pos.category === Nightshift && PositionEntry(pos))}
+        {positions
+          .filter((pos) => pos.category === Nightshift)
+          .map((pos, index) => (
+            <PositionEntry
+              key={`${pos.category}-${pos.title.no ?? 'unknown'}-${index}`}
+              position={pos}
+            />
+          ))}
       </Box>
     </Stack>
   )

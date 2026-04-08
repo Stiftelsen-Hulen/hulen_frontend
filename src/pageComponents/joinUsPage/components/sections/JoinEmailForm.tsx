@@ -67,7 +67,7 @@ export const JoinEmailForm = ({
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-      | SelectChangeEvent<string>
+      | SelectChangeEvent<string>,
   ) => {
     const { name, value } = e.target
     console.log(formData)
@@ -91,7 +91,7 @@ export const JoinEmailForm = ({
       assertUserInputs(
         formData.userMessage,
         'Other relevant information (Annen relevant informasjon)',
-        -1
+        -1,
       )
       // Update language in case user changed language-context
       formData.language = language
@@ -129,12 +129,12 @@ export const JoinEmailForm = ({
   function assertUserInputs(
     value: unknown,
     inputName: string,
-    minSize = 0
+    minSize = 0,
   ): asserts value is string {
     assert(typeof value === 'string', 'input must be a string')
     assert(
       value.length > minSize && value.length < MaxInputFieldSize,
-      `Input: ${inputName}.\nInput size must be less or equal to ${MaxInputFieldSize} characters.\n(Input størrelsen må være mindre eller lik ${MaxInputFieldSize} tegn).`
+      `Input: ${inputName}.\nInput size must be less or equal to ${MaxInputFieldSize} characters.\n(Input størrelsen må være mindre eller lik ${MaxInputFieldSize} tegn).`,
     )
   }
 

@@ -43,7 +43,6 @@ npm run start
 # Linting (ESLint)
 npm run lint
 npm run lint:fix
-npm run lint:next
 
 # Formatting (Prettier)
 npm run format

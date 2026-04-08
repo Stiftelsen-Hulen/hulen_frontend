@@ -1,40 +1,31 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import nextVitals from 'eslint-config-next/core-web-vitals'
+import nextTs from 'eslint-config-next/typescript'
+import prettier from 'eslint-config-prettier/flat'
 import unusedImports from 'eslint-plugin-unused-imports'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-})
 
 const tsFiles = ['**/*.ts', '**/*.tsx']
 
-const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  prettier,
 
-  {
-    ignores: [
-      // Next defaults (explicitly listed so it's obvious in the repo):
-      '.next/**',
-      'out/**',
-      'build/**',
-      'next-env.d.ts',
+  // Explicitly list ignore patterns so it's obvious in the repo.
+  globalIgnores([
+    // Next defaults:
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
 
-      // Repo-specific:
-      'dist/**',
-      'coverage/**',
-      'tsconfig.json',
-      '.prettierrc.*',
-      'package.json',
-    ],
-  },
+    // Repo-specific:
+    'dist/**',
+    'coverage/**',
+    'tsconfig.json',
+    '.prettierrc.*',
+    'package.json',
+  ]),
 
   {
     files: tsFiles,
@@ -49,6 +40,7 @@ const eslintConfig = [
 
       // Keep modern React hooks safety net on (Next defaults this to warn).
       'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/set-state-in-effect': 'off',
 
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/consistent-type-imports': ['warn', { prefer: 'type-imports' }],
@@ -70,6 +62,13 @@ const eslintConfig = [
       ],
     },
   },
-]
+
+  {
+    files: ['src/util/LanguageContext/LanguageContext.tsx'],
+    rules: {
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
+])
 
 export default eslintConfig

@@ -12,17 +12,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  modularizeImports: {
-    '@mui/material': {
-      transform: '@mui/material/{{member}}',
-    },
-    '@mui/styles': {
-      transform: '@mui/styles/{{member}}',
-    },
-    '@mui/icons-material': {
-      transform: '@mui/icons-material/{{member}}',
-    },
-  },
   redirects: async () => {
     return [
       {

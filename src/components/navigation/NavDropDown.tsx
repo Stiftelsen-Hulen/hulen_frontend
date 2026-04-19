@@ -27,6 +27,7 @@ export const NavDropDown = ({
   const { language } = useLanguage()
   const theme = useTheme()
   const [isOpen, setIsOpen] = useState(false)
+  const [dropdownHeight, setDropdownHeight] = useState('0px')
 
   const isCurrentParentPath = currentPath.startsWith(navElement.subUrl)
 
@@ -57,6 +58,26 @@ export const NavDropDown = ({
 
     return () => window.removeEventListener('keydown', close)
   }, [isOpen])
+
+  useEffect(() => {
+    if (!isOpen) {
+      setDropdownHeight('0px')
+
+      return
+    }
+
+    const dropdownElement = dropdownRef.current
+    if (!dropdownElement) return
+
+    const updateHeight = () => {
+      setDropdownHeight(`${dropdownElement.scrollHeight}px`)
+    }
+
+    updateHeight()
+    window.addEventListener('resize', updateHeight)
+
+    return () => window.removeEventListener('resize', updateHeight)
+  }, [isOpen, isMobile, language, navElement.subNavElements.length])
 
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
@@ -94,7 +115,7 @@ export const NavDropDown = ({
             transformOrigin: 'top',
             transition: 'height .2s ease',
             visibility: isOpen ? 'visible' : 'hidden',
-            height: isOpen ? dropdownRef.current?.scrollHeight : '0px',
+            height: isOpen ? dropdownHeight : '0px',
           }}
           disablePadding
         >

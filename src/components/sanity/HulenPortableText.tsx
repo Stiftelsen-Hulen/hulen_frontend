@@ -10,10 +10,14 @@ import { PortableText } from '@portabletext/react'
 import { Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import type { PortableTextBlock } from '@portabletext/types'
-import type { LocaleImage } from '@/types/sanity'
+import type { LocaleImage, SanityImage } from '@/types/sanity'
 import type { LocalePortableTextBlock } from '@/types/sanity/genericPage/genericPageProps'
 import { type ComponentProps } from 'react'
 import { SanityImageComponent } from '.'
+
+type HulenPortableTextProps =
+  | { genericSanityPageProps: LocalePortableTextBlock; value?: never }
+  | { value: PortableTextBlock[]; genericSanityPageProps?: never }
 
 /**
  * Serializes the rich text content from a Sanity Text Block into React components.
@@ -22,12 +26,10 @@ import { SanityImageComponent } from '.'
  * For more information on using PortableText with React,
  * see: https://github.com/portabletext/react-portabletext#portabletextreact
  */
-export function HulenPortableText({
-  genericSanityPageProps,
-}: {
-  genericSanityPageProps: LocalePortableTextBlock
-}) {
+export function HulenPortableText(props: HulenPortableTextProps) {
   const { language } = useLanguage()
+  const blocks =
+    props.value !== undefined ? props.value : props.genericSanityPageProps[language]
 
   /**
    * The serializers define the appropriate components for the different block types.
@@ -40,6 +42,15 @@ export function HulenPortableText({
       localeImage: (localeImageProps: PortableTextTypeComponentProps<LocaleImage>) => (
         <SanityLocaleImageComponent imageProps={localeImageProps} />
       ),
+      image: (imageProps: PortableTextTypeComponentProps<SanityImage & { altText?: string }>) => {
+        if (imageProps.value?.asset?.metadata == undefined) {
+          return null
+        }
+
+        return (
+          <SanityImageComponent imageData={imageProps.value} alt={imageProps.value.altText ?? ''} />
+        )
+      },
     },
     list: (props: PortableTextComponentProps<PortableTextBlock>) => (
       <Typography component='ul' variant='body1'>
@@ -85,7 +96,7 @@ export function HulenPortableText({
 
   return (
     <Stack alignItems={'center'}>
-      {genericSanityPageProps[language].map((sanityBlock) => (
+      {blocks.map((sanityBlock) => (
         <PortableText key={sanityBlock._key} value={sanityBlock} components={serializers} />
       ))}
     </Stack>

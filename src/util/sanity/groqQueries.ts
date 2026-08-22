@@ -139,3 +139,15 @@ export function getPagePropsGroq(title: string) {
     .map((language) => `${language}[]{..., Image{asset -> {url, metadata}}}`)
     .join(',')} }}`
 }
+
+export const getAvailabilityPageGroq = `*[_type == "availabilityPage"]{
+  language,
+  title,
+  content[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset -> {url, metadata}
+    }
+  }
+}`

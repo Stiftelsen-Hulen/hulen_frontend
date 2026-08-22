@@ -2,7 +2,11 @@ import type { SanityNavBarContent } from '@/types/sanity'
 import type { SanityContactPageContent } from '@/types/sanity/contact'
 import type { SanityFooterElements } from '@/types/sanity/footerElements/footerElements'
 import type { GenericPageProps } from '@/types/sanity/genericPage/genericPageProps'
-import type { GuardianInfoPageContent } from '@/types/sanity/infoPages/guardianInfoPage'
+import type {
+  AvailabilityPageContent,
+  AvailabilityPageDocument,
+  GuardianInfoPageContent,
+} from '@/types/sanity/infoPages'
 import type { TechInfoPageContent } from '@/types/sanity/infoPages/techInfoPage'
 import type { JoinUsSanityContent, Position } from '@/types/sanity/joinUsPage'
 import type { Sanity404Page } from '@/types/sanity/pageNotFound'
@@ -14,6 +18,7 @@ import {
   getJoinUsPageGroq,
   getNavigationElementsGroq,
   getNoPageFoundGroq,
+  getAvailabilityPageGroq,
   getPagePropsGroq,
   getTechInfoPageGroq,
   getTranslationObjectGroq,
@@ -101,16 +106,23 @@ export async function getAboutUsContent() {
   return sanityData
 }
 
-export async function getAccessibilityPageProps() {
-  const cacheKey = `getAccessibilityPageProps`
-  const cachedSanity = sanityCache.get<GenericPageProps>(cacheKey)
+
+export async function getAvailabilityPageContent() {
+  const cacheKey = `getAvailabilityPageContent`
+  const cachedSanity = sanityCache.get<AvailabilityPageContent>(cacheKey)
   if (cachedSanity) {
     return cachedSanity
   }
-  const sanityData = await sanityClient.fetch<GenericPageProps>(getPagePropsGroq('accessibility'))
-  sanityCache.set(cacheKey, sanityData)
+  const sanityData = await sanityClient.fetch<AvailabilityPageDocument[]>(getAvailabilityPageGroq)
+  const pages: AvailabilityPageContent = {}
+  for (const page of sanityData) {
+    if (page.language) {
+      pages[page.language] = page
+    }
+  }
+  sanityCache.set(cacheKey, pages)
 
-  return sanityData
+  return pages
 }
 
 export async function getContactPageContent() {

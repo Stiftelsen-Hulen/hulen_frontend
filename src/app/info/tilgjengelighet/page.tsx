@@ -1,10 +1,10 @@
-import { HulenPortableText } from '@/components/sanity'
-import { getAccessibilityPageProps } from '@/util/sanity'
+import { AvailabilitySection } from '@/pageComponents/infoPage'
+import { getAvailabilityPageContent } from '@/util/sanity'
 
-export default async function AccessibilityPage() {
-  const data = await getAccessibilityPageProps()
+export default async function TilgjengelighetPage() {
+  const data = await getAvailabilityPageContent()
 
-  return <HulenPortableText genericSanityPageProps={data.locale} />
+  return <AvailabilitySection content={data} />
 }
 /**
  * Next js use implicit configuration of pages. By exporting a variable named revalidate, we have now switched to incremental static regeneration (ISR)

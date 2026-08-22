@@ -51,24 +51,24 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/companion',
-        destination: '/info/ledsagerordning',
-        permanent: true,
-        basePath: false,
-      },
-      {
-        source: 'info/availability',
         destination: '/info/tilgjengelighet',
         permanent: true,
         basePath: false,
       },
       {
-        source: '/companion',
-        destination: '/info/ledsagerordning',
+        source: '/info/companion',
+        destination: '/info/tilgjengelighet',
         permanent: true,
         basePath: false,
       },
       {
         source: '/accessibility',
+        destination: '/info/tilgjengelighet',
+        permanent: true,
+        basePath: false,
+      },
+      {
+        source: '/info/accessibility',
         destination: '/info/tilgjengelighet',
         permanent: true,
         basePath: false,

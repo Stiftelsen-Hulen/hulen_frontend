@@ -56,13 +56,7 @@ const nextConfig: NextConfig = {
         basePath: false,
       },
       {
-        source: '/availability',
-        destination: '/info/tilgjengelighet',
-        permanent: true,
-        basePath: false,
-      },
-      {
-        source: '/accessibility',
+        source: 'info/availability',
         destination: '/info/tilgjengelighet',
         permanent: true,
         basePath: false,

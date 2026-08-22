@@ -106,17 +106,6 @@ export async function getAboutUsContent() {
   return sanityData
 }
 
-export async function getCompanionPageProps() {
-  const cacheKey = `getCompanionPageProps`
-  const cachedSanity = sanityCache.get<GenericPageProps>(cacheKey)
-  if (cachedSanity) {
-    return cachedSanity
-  }
-  const sanityData = await sanityClient.fetch<GenericPageProps>(getPagePropsGroq('accessibility'))
-  sanityCache.set(cacheKey, sanityData)
-
-  return sanityData
-}
 
 export async function getAvailabilityPageContent() {
   const cacheKey = `getAvailabilityPageContent`

@@ -42,5 +42,9 @@
         "eslint-plugin-unused-imports": "^4.4.1",
         "prettier": "^3.8.1",
         "typescript": "^5.9.3"
+    },
+    "allowScripts": {
+        "sharp@0.34.5": true,
+        "unrs-resolver@1.11.1": true
     }
 }

@@ -68,13 +68,13 @@ const nextConfig: NextConfig = {
         basePath: false,
       },
       {
-        source: '/info/companion',
+        source: '/companion',
         destination: '/info/ledsagerordning',
         permanent: true,
         basePath: false,
       },
       {
-        source: '/info/accessibility',
+        source: '/accessibility',
         destination: '/info/tilgjengelighet',
         permanent: true,
         basePath: false,
